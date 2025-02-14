@@ -2,12 +2,12 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public class Square implements DrawingObject {
-    private int xPosition;
-    private int yPosition;
-    private int size;
+    private double xPosition;
+    private double yPosition;
+    private double size;
     private Color color;
 
-    public Square(int xPosition, int yPosition, int size, Color color){
+    public Square(double xPosition, double yPosition, double size, Color color){
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.size = size;
