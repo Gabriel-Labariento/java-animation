@@ -1,4 +1,5 @@
-import java.awt.Graphics2D;
+import java.awt.*;
+import java.awt.geom.*;
 
 public class Triangle implements DrawingObject {
     @Override
