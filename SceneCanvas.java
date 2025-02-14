@@ -6,10 +6,12 @@ public class SceneCanvas extends JComponent{
     
     private int width;
     private int height;
+    private Square s;
 
     public SceneCanvas(int w, int h){
         width = w;
         height = h;
+        s = new Square(10, 10, 50, Color.black);
     }
 
     protected void paintComponent(Graphics g){
@@ -20,7 +22,10 @@ public class SceneCanvas extends JComponent{
             RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints( rh);
         
+        s.draw(g2d);
         
+
+
         // Rectangle2D.Double r = new Rectangle2D.Double(0,0,width,height);
         // g2d.setColor(new Color(100, 149, 237));
         // g2d.fill(r);
