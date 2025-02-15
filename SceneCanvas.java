@@ -7,11 +7,15 @@ public class SceneCanvas extends JComponent{
     private int width;
     private int height;
     private Square s;
+    private Circle c;
+    private Line l;
 
     public SceneCanvas(int w, int h){
         width = w;
         height = h;
-        s = new Square(10, 10, 50, Color.black);
+        c = new Circle(100, 100, 50, Color.BLUE);
+        s = new Square(10, 10, 50, Color.BLACK);
+        l = new Line(50, 50, 75, 75, 10, Color.BLACK);
     }
 
     protected void paintComponent(Graphics g){
@@ -23,7 +27,8 @@ public class SceneCanvas extends JComponent{
         g2d.setRenderingHints( rh);
         
         s.draw(g2d);
-        
+        c.draw(g2d);
+        l.draw(g2d);
 
 
         // Rectangle2D.Double r = new Rectangle2D.Double(0,0,width,height);
