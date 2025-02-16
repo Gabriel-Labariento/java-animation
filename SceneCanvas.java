@@ -11,7 +11,7 @@ public class SceneCanvas extends JComponent{
     public SceneCanvas(int w, int h){
         width = w;
         height = h;
-        t = new Triangle(50,50,75,25,100,50, Color.BLACK, true);
+        
     }
 
     protected void paintComponent(Graphics g){
