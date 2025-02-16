@@ -2,23 +2,14 @@ import java.awt.*;
 import java.awt.geom.*;
 
 public class Triangle implements DrawingObject {
-    private double xOne;
-    private double yOne;
-    private double xTwo;
-    private double yTwo;
-    private double xThree;
-    private double yThree;
+    private double[] xPoints;
+    private double[] yPoints;
     private Color color;
     private boolean fill;
 
-    public Triangle(double xOne, double yOne, double xTwo, double yTwo, double xThree, double yThree, Color color, boolean fill){
-        this.xOne = xOne;     
-        this.yOne = yOne;
-        this.xTwo = xTwo;
-        this.xTwo = xTwo;
-        this.yTwo = yTwo;
-        this.xThree = xThree;
-        this.yThree = yThree;
+    public Triangle(double[] xPoints, double[] yPoints, Color color, boolean fill){
+        this.xPoints = xPoints;
+        this.yPoints = yPoints;
         this.color = color;
         this.fill = fill;
     }
@@ -26,9 +17,13 @@ public class Triangle implements DrawingObject {
     @Override
     public void draw(Graphics2D g2d){
         Path2D.Double p = new Path2D.Double();
-        p.moveTo(xOne, yOne);
-        p.lineTo(xTwo, yTwo);
-        p.lineTo(xThree, yThree);
+        
+        if (xPoints.length != 3 || yPoints.length != 3) return;
+
+        p.moveTo(xPoints[0], yPoints[0]);
+        for (int i = 1; i < 3; i++){
+            p.moveTo(xPoints[i], yPoints[i]);
+        }
         p.closePath();
         
         g2d.setColor(color);
