@@ -28,10 +28,7 @@ public class Octagon implements DrawingObject {
         g2d.setColor(color);
 
         if (fill) g2d.fill(p);
-        else g2d.draw(p);
-
-        
-        
+        else g2d.draw(p);     
     }
 
 }

@@ -23,8 +23,5 @@ public class SceneCanvas extends JComponent{
         g2d.setRenderingHints( rh);
         
         t.draw(g2d);
-        
-       
-
     }
 }
