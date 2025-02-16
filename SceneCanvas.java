@@ -6,11 +6,12 @@ public class SceneCanvas extends JComponent{
     
     private int width;
     private int height;
-    
+    private Triangle t;
 
     public SceneCanvas(int w, int h){
         width = w;
         height = h;
+        t = new Triangle(50,50,75,25,100,50, Color.BLACK, true);
     }
 
     protected void paintComponent(Graphics g){
@@ -21,13 +22,9 @@ public class SceneCanvas extends JComponent{
             RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints( rh);
         
+        t.draw(g2d);
 
-        Rectangle2D.Double r = new Rectangle2D.Double(-100,-200,100,200);
-        g2d.setColor(Color.BLACK);
-        g2d.translate(100, 200);
-        g2d.translate(175, 275);
-        g2d.translate(-175,-275);
-        g2d.fill(r);
+       
 
     }
 }
