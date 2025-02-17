@@ -52,25 +52,25 @@ public class SittingCat implements DrawingObject{
         AffineTransform reset = g2d.getTransform();
 
         Ellipse2D.Double e1 = new Ellipse2D.Double(size*(x+39.7), size*(y+131.9), size*26.7, size*9.8);
-        g2d.rotate(Math.toRadians(size*(4.9)), size*(e1.getX()), size*(e1.getY()));
+        g2d.rotate(Math.toRadians(4.9), e1.getX(), e1.getY());
         g2d.fill(e1);
 
         g2d.setTransform(reset);
 
         Ellipse2D.Double e2 = new Ellipse2D.Double(size*(x+52.1), size*(y+136.2), size*(26.7), size*(9.8));
-        g2d.rotate(Math.toRadians(size*(-18.4)), size*(e2.getX()), size*(e2.getY()));
+        g2d.rotate(Math.toRadians(-18.4), e2.getX(), e2.getY());
         g2d.fill(e2);
 
         g2d.setTransform(reset);
 
         Ellipse2D.Double e3 = new Ellipse2D.Double(size*(x+65.1), size*(y+136.9), size*18.1, size*8.8);
-        g2d.rotate(Math.toRadians(size*(-54)), size*(e3.getX()), size*(e3.getY()));
+        g2d.rotate(Math.toRadians(-54), e3.getX(), e3.getY());
         g2d.fill(e3);
 
         g2d.setTransform(reset);
 
         Ellipse2D.Double e4 = new Ellipse2D.Double(size*(x+54.5), size*(y+119.4), size*26.7, size*8.8);
-        g2d.rotate(Math.toRadians(size*(6.8)), size*(e4.getX()), size*(e4.getY()));
+        g2d.rotate(Math.toRadians(6.8), e4.getX(), e4.getY());
         g2d.fill(e4);
 
         g2d.setTransform(reset);

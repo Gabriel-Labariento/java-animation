@@ -12,7 +12,7 @@ public class SceneCanvas extends JComponent{
     public SceneCanvas(int w, int h){
         width = w;
         height = h;
-        sittingCat = new SittingCat(0, 0, 1, Color.BLACK);
+        sittingCat = new SittingCat(50, 20, 2, Color.BLACK);
     }
 
     protected void paintComponent(Graphics g){
