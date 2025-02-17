@@ -16,6 +16,7 @@ public class SceneFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setTitle("Midterm Project - Cabrera - Labariento");
+        // frame.pack();
 
         SceneCanvas canvas = new SceneCanvas(width, height);
         frame.add(canvas);
