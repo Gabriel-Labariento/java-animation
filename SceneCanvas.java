@@ -6,12 +6,10 @@ public class SceneCanvas extends JComponent{
     
     private int width;
     private int height;
-    private Triangle t;
 
-    public SceneCanvas(int w, int h){
-        width = w;
-        height = h;
-        
+    public SceneCanvas(int width, int height){
+        this.width = width;
+        this.height = height;
     }
 
     protected void paintComponent(Graphics g){
@@ -21,7 +19,5 @@ public class SceneCanvas extends JComponent{
             RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints( rh);
-        
-        t.draw(g2d);
     }
 }
