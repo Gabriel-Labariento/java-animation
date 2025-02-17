@@ -6,13 +6,13 @@ public class SceneCanvas extends JComponent{
     
     private int width;
     private int height;
-
-    private WalkingCat walkingCat;
+    private SittingCat sittingCat;
+    // private WalkingCat walkingCat;
 
     public SceneCanvas(int w, int h){
         width = w;
         height = h;
-        walkingCat = new WalkingCat(Color.BLACK);
+        sittingCat = new SittingCat(0, 0, 1, Color.BLACK);
     }
 
     protected void paintComponent(Graphics g){
@@ -23,6 +23,7 @@ public class SceneCanvas extends JComponent{
             RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints( rh);
 
-        walkingCat.draw(g2d);
+        // walkingCat.draw(g2d);
+        sittingCat.draw(g2d);
     }
 }

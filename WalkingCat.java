@@ -10,30 +10,27 @@ public class WalkingCat implements DrawingObject {
     }
 
     public void draw(Graphics2D g2d){
-        Trapezoid snout = createSnout();
-        Circle head = new Circle(262.1, 409.9, 37.1, Color.BLACK);
-        Triangle[] ears = createEars();
+        drawSnout(g2d);
+        drawHead(g2d);
 
-
-        for (Triangle ear : ears) {
-            ear.draw(g2d);
-        }
-        snout.draw(g2d);
-        head.draw(g2d);
+        
     }
 
 
-    private Trapezoid createSnout(){
+    private void drawSnout(Graphics2D g2d){
         Point2D.Double[] snoutPoints = new Point2D.Double[4];
         snoutPoints[0] = new Point2D.Double(278.4, 439.1);
         snoutPoints[1] = new Point2D.Double(293.4, 431.4);
         snoutPoints[2] = new Point2D.Double(295.6, 444.1);
         snoutPoints[3] = new Point2D.Double(286, 448.1);
         Trapezoid snout = new Trapezoid(snoutPoints, color, true);
-        return snout;
+        snout.draw(g2d);
     }
 
-    private Triangle[] createEars(){
+    private void drawHead(Graphics2D g2d){
+        Circle head = new Circle(262.1, 409.9, 37.1, Color.BLACK);
+        head.draw(g2d);
+
         Point2D.Double[] earOnePoints = new Point2D.Double[3];
         earOnePoints[0] = new Point2D.Double(272.4, 407);
         earOnePoints[1] = new Point2D.Double(288.5, 398);
@@ -46,8 +43,12 @@ public class WalkingCat implements DrawingObject {
         earTwoPoints[2] = new Point2D.Double(285.1, 407);
         Triangle earTwo = new Triangle(earTwoPoints, Color.BLACK, true);
 
-        return new Triangle[]{earOne, earTwo};
+        earOne.draw(g2d);
+        earTwo.draw(g2d);
     }
     
+    // private void drawBody(Graphics2D g2d){
+    //     Ellipse2D.Double e1 = new Ellipse2D.
+    // }
 
 }
