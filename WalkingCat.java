@@ -29,10 +29,17 @@ public class WalkingCat implements DrawingObject {
 
     private void drawSnout(Graphics2D g2d){
         Point2D.Double[] snoutPoints = new Point2D.Double[4];
-        snoutPoints[0] = new Point2D.Double(size*(x+200.9), size*(y+45.4));
-        snoutPoints[1] = new Point2D.Double(size*(x+218.2), size*(y+30));
-        snoutPoints[2] = new Point2D.Double(size*(x+224.9), size*(y+43.1));
-        snoutPoints[3] = new Point2D.Double(size*(x+211.8), size*(y+53.4));
+        if (walkFrame == 0){
+            snoutPoints[0] = new Point2D.Double(size*(x+200.9), size*(y+45.4));
+            snoutPoints[1] = new Point2D.Double(size*(x+218.2), size*(y+30));
+            snoutPoints[2] = new Point2D.Double(size*(x+224.9), size*(y+43.1));
+            snoutPoints[3] = new Point2D.Double(size*(x+211.8), size*(y+53.4));
+        } else if (walkFrame == 1){
+            snoutPoints[0] = new Point2D.Double(size*(x+192.8), size*(y+42.6));
+            snoutPoints[1] = new Point2D.Double(size*(x+208.8), size*(y+29));
+            snoutPoints[2] = new Point2D.Double(size*(x+214.8), size*(y+40.8));
+            snoutPoints[3] = new Point2D.Double(size*(x+203.2), size*(y+50.2));
+        }
         Trapezoid snout = new Trapezoid(snoutPoints, color, true);
         snout.draw(g2d);
     }
@@ -53,7 +60,7 @@ public class WalkingCat implements DrawingObject {
             earTwoPoints[2] = new Point2D.Double(size*(x+214), size*(y+20.9));
         } else if (walkFrame == 1){
             head.setFrame(size*(x+183.4), size*(y+14.2), size*32.6, size*32);
-            earOnePoints[0] = new Point2D.Double(size*(x+180.1), size*(y+19.3));
+            earOnePoints[0] = new Point2D.Double(size*(x+180.1), size*(y+20));
             earOnePoints[1] = new Point2D.Double(size*(x+190.9), size*(y));
             earOnePoints[2] = new Point2D.Double(size*(x+201.6), size*(y+20));
             earTwoPoints[0] = new Point2D.Double(size*(x+188.1), size*(y+16.4));
@@ -96,7 +103,24 @@ public class WalkingCat implements DrawingObject {
             g2d.fill(e5);
 
             g2d.setTransform(reset);
-        } 
+        } else if (walkFrame == 1){
+            Ellipse2D.Double e1 = new Ellipse2D.Double(size*(x+37.6), size*(y+21.7), size*72, size*44.3);
+            Ellipse2D.Double e2 = new Ellipse2D.Double(size*(x+46.1), size*(y+16.9), size*94.3, size*36.6);
+            Ellipse2D.Double e3 = new Ellipse2D.Double(size*(x+67.7), size*(y+39.3), size*110.1, size*24.2);
+            Ellipse2D.Double e4 = new Ellipse2D.Double(size*(x+111.6), size*(y+15.2), size*88.1, size*36.6);
+            Ellipse2D.Double e5 = new Ellipse2D.Double(size*(x+92.3), size*(y+18), size*94.3, size*36.6);
+            Ellipse2D.Double e6 = new Ellipse2D.Double(size*(x+147.6), size*(y+62.2), size*50.6, size*29.3);
+
+            g2d.fill(e1);
+            g2d.fill(e2);
+            g2d.fill(e3);
+            g2d.fill(e4);
+            g2d.fill(e5);
+
+            g2d.rotate(Math.toRadians(-57), e6.getX(), e6.getY());
+            g2d.fill(e6);
+            g2d.setTransform(reset);
+        }
     }
 
     private void drawLegs(Graphics2D g2d, int walkFrame){
@@ -178,6 +202,80 @@ public class WalkingCat implements DrawingObject {
             g2d.rotate(Math.toRadians(4.8), foot.getX(), foot.getY());
             g2d.fill(foot);
             g2d.setTransform(reset);
+        } else if (walkFrame == 1){
+            // First leg from the left
+            Ellipse2D.Double hindUpperOne = new Ellipse2D.Double(size*(x+13.2), size*(y+76.6), size*62.3, size*22.6);
+            Ellipse2D.Double hindUpperTwo = new Ellipse2D.Double(size*(x+12.6), size*(y+68.1), size*62.3, size*23.5);
+            
+            g2d.rotate(Math.toRadians(-56.8), hindUpperOne.getX(), hindUpperOne.getY());
+            g2d.fill(hindUpperOne);
+            g2d.setTransform(reset);
+       
+            g2d.rotate(Math.toRadians(-25.8), hindUpperTwo.getX(), hindUpperTwo.getY());
+            g2d.fill(hindUpperTwo);
+            g2d.setTransform(reset);
+       
+            Ellipse2D.Double hindLowerOne = new Ellipse2D.Double(size*(x+8), size*(y+104), size*32.6, size*12);
+            g2d.rotate(Math.toRadians(-70.8), hindLowerOne.getX(), hindLowerOne.getY());
+            g2d.fill(hindLowerOne);
+            g2d.setTransform(reset);
+
+            Ellipse2D.Double foot = new Ellipse2D.Double(size*(x+11.7), size*(y+100.5), size*18.1, size*6.7);
+            g2d.fill(foot);
+
+            // Second leg from the left
+            Ellipse2D.Double hindUpperThree = new Ellipse2D.Double(size*(x+77.1), size*(y+26.7), size*39.5, size*32);
+            g2d.rotate(Math.toRadians(46.9), hindUpperThree.getX(), hindUpperThree.getY());
+            g2d.fill(hindUpperThree);
+            g2d.setTransform(reset);
+
+            Point2D.Double[] trapPoints = new Point2D.Double[4];
+            trapPoints[0] = new Point2D.Double(size*(x+58.4), size*(y+83.5));
+            trapPoints[1] = new Point2D.Double(size*(x+71.7), size*(y+53.4));
+            trapPoints[2] = new Point2D.Double(size*(x+90.7), size*(y+65.3));
+            trapPoints[3] = new Point2D.Double(size*(x+71.7), size*(y+91.5));
+            Trapezoid hindUpperFour = new Trapezoid(trapPoints, color, true);
+            hindUpperFour.draw(g2d);
+
+            trapPoints[1] = new Point2D.Double(size*(x+66.9), size*(y+77.3));
+            trapPoints[2] = new Point2D.Double(size*(x+81.1), size*(y+103));
+            trapPoints[3] = new Point2D.Double(size*(x+77.3), size*(y+105.9));
+            Trapezoid hindLowerTwo = new Trapezoid(trapPoints, color, true);
+            hindLowerTwo.draw(g2d);
+
+            foot = new Ellipse2D.Double(size*(x+77.1), size*(y+101.3), size*15.5, size*7.2);
+            g2d.rotate(Math.toRadians(8), foot.getX(), foot.getY());
+            g2d.fill(foot);
+            g2d.setTransform(reset);
+
+            // Third foot from the left
+            trapPoints[0] = new Point2D.Double(size*(x+140.5), size*(y+51.8));
+            trapPoints[1] = new Point2D.Double(size*(x+156.1), size*(y+53));
+            trapPoints[2] = new Point2D.Double(size*(x+150.3), size*(y+100.5));
+            trapPoints[3] = new Point2D.Double(size*(x+140.5), size*(y+100.1));
+            Trapezoid thirdLeg = new Trapezoid(trapPoints, color, true);
+            thirdLeg.draw(g2d);
+
+            foot = new Ellipse2D.Double(size*(x+141.1), size*(y+96.3), size*20, size*10.5);
+            g2d.rotate(Math.toRadians(9), foot.getX(), foot.getY());
+            g2d.fill(foot);
+            g2d.setTransform(reset);
+
+            // Fourth leg from the left
+            Square upperFront = new Square(size*(x+160.3), size*(y+58), size*23, color);
+            upperFront.draw(g2d);
+
+            trapPoints[0] = new Point2D.Double(size*(x+160.3), size*(y+79.4));
+            trapPoints[1] = new Point2D.Double(size*(x+168.5), size*(y+66.1));
+            trapPoints[2] = new Point2D.Double(size*(x+207.2), size*(y+94.7));
+            trapPoints[3] = new Point2D.Double(size*(x+201.6), size*(y+103));
+            Trapezoid frontLower = new Trapezoid(trapPoints, color, true);
+            frontLower.draw(g2d);
+
+            foot = new Ellipse2D.Double(size*(x+197), size*(y+93.1), size*19.5, size*11.6);
+            g2d.rotate(Math.toRadians(5.9), foot.getX(), foot.getY());
+            g2d.fill(foot);
+            g2d.setTransform(reset);
         }
     };
 
@@ -204,7 +302,12 @@ public class WalkingCat implements DrawingObject {
             g2d.rotate(Math.toRadians(-37.1), e4.getX(), e4.getY());
             g2d.fill(e4);
             g2d.setTransform(reset);
-
+        
+        } else if (walkFrame == 1){
+            Ellipse2D.Double e1 = new Ellipse2D.Double(size*x, size*(y+73.1), size*32.6, size*12);
+            g2d.rotate(Math.toRadians(-5), e1.getX(), e1.getY());
+            g2d.fill(e1);
+            g2d.setTransform(reset);
         }
     };
 
