@@ -1,10 +1,10 @@
 public class SceneStarter{
 
     public static void main(String[] args){
-        int width = 800;
-        int height = 600;
-        SceneFrame gui = new SceneFrame();
-        gui.setUpGUI(width, height);
-        gui.setUpButtonListeners();
+        SceneFrame sf = new SceneFrame(800, 600, "Midterm Project - Cabrera - Labariento");
+        sf.setUpGUI();
+        // SceneFrame gui = new SceneFrame();
+        // gui.setUpGUI(width, height);
+        // gui.setUpButtonListeners();
     }
 } 

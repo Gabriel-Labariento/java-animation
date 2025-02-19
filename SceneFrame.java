@@ -1,40 +1,43 @@
-// import java.awt.*;
+import java.awt.*;
+import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class SceneFrame{
-    private JFrame frame;
-    private JButton defaultStart;
+public class SceneFrame extends JFrame{
 
-    public SceneFrame(){
-        frame = new JFrame();
-        defaultStart = new JButton();
+    private int width;
+    private int height;
+    private String title;
+
+    public SceneFrame(int w, int h, String t){
+        width = w;
+        height = h;
+        title = t;
     }
 
-    public void setUpGUI(int width, int height){
-        frame.setSize(width, height);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-        frame.setTitle("Midterm Project - Cabrera - Labariento");
-        // frame.pack();
-
-        SceneCanvas canvas = new SceneCanvas(width, height);
-        frame.add(canvas);
+    public void setUpGUI(){
+        Container contentPane = getContentPane();
+        SceneCanvas sceneCanvas = new SceneCanvas(width, height, Color.BLACK);
+        setTitle(title);
+        contentPane.add(sceneCanvas, BorderLayout.CENTER);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
     }
 
-    public void setUpButtonListeners(){
-        ActionListener buttonListener = new ActionListener(){
-        @Override
-        public void actionPerformed(ActionEvent ae){
-            Object o = ae.getSource();
-            if (o == defaultStart){
-                // Start Animation
-            }
+    // public void setUpButtonListeners(){
+    //     ActionListener buttonListener = new ActionListener(){
+    //     @Override
+    //     public void actionPerformed(ActionEvent ae){
+    //         Object o = ae.getSource();
+    //         if (o == defaultStart){
+    //             // Start Animation
+    //         }
 
 
-        }
-    };
-        //Assign an event handler for all of the buttons
-        defaultStart.addActionListener(buttonListener);
-    }
+    //     }
+    // };
+    //     //Assign an event handler for all of the buttons
+    //     defaultStart.addActionListener(buttonListener);
+    // }
 }
