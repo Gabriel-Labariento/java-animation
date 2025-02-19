@@ -1,12 +1,23 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class KeyControls implements KeyListener {
     
-    SceneCanvas sceneCanvas;
+    private SceneCanvas sceneCanvas;
+    private Timer timer;
+    private TimerTask timerTask;
+    private final int SPACEBARKEYCODE = 32;
+    private final int STEPSIZE = 20;
+    private final int FRAMEDELAY = 200;
+    private WalkingCat wc;
+    private boolean isAnimating;
 
     public KeyControls(SceneCanvas sceneCanvas){
         this.sceneCanvas = sceneCanvas;
+        wc = sceneCanvas.getWalkingCat();
+        isAnimating = false;
     }
 
     @Override
@@ -14,15 +25,34 @@ public class KeyControls implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent event){
-        final int SPACEBARKEYCODE = 32;
-        if (event.getKeyCode() == SPACEBARKEYCODE){
-            WalkingCat wc = sceneCanvas.getWalkingCat();
-            wc.adjustX(5);
-            wc.changeFrame();
-            sceneCanvas.repaint();
+        if ((event.getKeyCode() == SPACEBARKEYCODE) && !isAnimating){
+            timer = new Timer();
+            timerTask = new TimerTask(){
+                @Override
+                public void run(){
+                    startAnimation();
+                }
+            };
+            timer.scheduleAtFixedRate(timerTask, 0, FRAMEDELAY);
+            isAnimating = true;
         }
     };
  
     @Override
-    public void keyReleased(KeyEvent event){};
+    public void keyReleased(KeyEvent event){
+        if (event.getKeyCode() == SPACEBARKEYCODE){
+            timer.cancel();
+            timer.purge();
+            isAnimating = false;
+        }
+    };
+
+    private void startAnimation(){
+        wc.adjustX(STEPSIZE);
+        wc.changeFrame();
+        sceneCanvas.repaint();
+        if (wc.getX() >= sceneCanvas.getWidth()){
+            wc.adjustX(-(sceneCanvas.getWidth() + wc.getCatLength()));
+        }
+    }
 }

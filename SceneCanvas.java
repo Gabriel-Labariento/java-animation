@@ -10,8 +10,6 @@ public class SceneCanvas extends JComponent{
     private int width;
     private int height;
     private Color backgroundColor;
-    // private SittingCat sittingCat1;
-    // private SittingCat sittingCat2;
     private WalkingCat walkingCat;
     private ArrayList<DrawingObject> drawingObjects;
 
@@ -20,9 +18,7 @@ public class SceneCanvas extends JComponent{
         height = h;
         backgroundColor = c;
         setPreferredSize(new Dimension(width, height));
-        // sittingCat1 = new SittingCat(300, 20, 2, Color.BLACK);
-        // sittingCat2 = new SittingCat(50, 30, 1.5, Color.BLACK);
-        walkingCat = new WalkingCat(0, 0, 1, 2, Color.BLACK);
+        walkingCat = new WalkingCat(0, 410.5, 1, 2, Color.BLACK);
         // drawingObjects = new ArrayList<DrawingObject>();
     }
 
@@ -44,6 +40,10 @@ public class SceneCanvas extends JComponent{
 
     public WalkingCat getWalkingCat(){
         return walkingCat;
+    }
+
+    public int getWidth(){
+        return width;
     }
     
 }
