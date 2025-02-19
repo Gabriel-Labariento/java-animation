@@ -18,6 +18,11 @@ public class WalkingCat implements DrawingObject {
         this.color = color;
     }
 
+    @Override
+    public void adjustX(double distance){
+        x += distance;
+    }
+
     public void draw(Graphics2D g2d){
         drawSnout(g2d);
         drawHead(g2d, walkFrame);
@@ -25,7 +30,6 @@ public class WalkingCat implements DrawingObject {
         drawLegs(g2d, walkFrame);
         drawTail(g2d, walkFrame);
     }
-
 
     private void drawSnout(Graphics2D g2d){
         Point2D.Double[] snoutPoints = new Point2D.Double[4];

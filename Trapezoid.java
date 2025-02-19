@@ -14,6 +14,13 @@ public class Trapezoid implements DrawingObject {
     }
 
     @Override
+    public void adjustX(double distance){
+        for (Point2D.Double point : points) {
+            point.setLocation(point.getX()+distance, point.getY());
+        }
+    }
+    
+    @Override
     public void draw(Graphics2D g2d){        
         if (points.length != 4) return;
 

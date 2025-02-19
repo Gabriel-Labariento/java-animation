@@ -1,9 +1,8 @@
 import java.awt.*;
-import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class SceneFrame extends JFrame{
+public class SceneFrame extends JFrame {
 
     private int width;
     private int height;
@@ -17,7 +16,7 @@ public class SceneFrame extends JFrame{
 
     public void setUpGUI(){
         Container contentPane = getContentPane();
-        SceneCanvas sceneCanvas = new SceneCanvas(width, height, Color.BLACK);
+        SceneCanvas sceneCanvas = new SceneCanvas(width, height, Color.WHITE);
         setTitle(title);
         contentPane.add(sceneCanvas, BorderLayout.CENTER);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,8 +24,13 @@ public class SceneFrame extends JFrame{
         setVisible(true);
     }
 
-    // public void setUpButtonListeners(){
-    //     ActionListener buttonListener = new ActionListener(){
+    public void setUpListeners(){
+        KeyControls keyControls = new KeyControls();
+        addKeyListener(keyControls);
+    }
+    
+    // public void setUpListeners(){
+    //     ActionListener keyListener = new ActionListener(){
     //     @Override
     //     public void actionPerformed(ActionEvent ae){
     //         Object o = ae.getSource();
