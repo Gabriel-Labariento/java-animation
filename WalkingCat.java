@@ -31,6 +31,14 @@ public class WalkingCat implements DrawingObject {
         drawTail(g2d, walkFrame);
     }
 
+    public void changeFrame(){
+        if (this.walkFrame == 2){
+            this.walkFrame = 0;
+        } else {
+            walkFrame += 1;
+        }
+    }
+
     private void drawSnout(Graphics2D g2d){
         Point2D.Double[] snoutPoints = new Point2D.Double[4];
         if (walkFrame == 0){

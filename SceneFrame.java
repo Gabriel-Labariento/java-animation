@@ -22,12 +22,12 @@ public class SceneFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-    }
 
-    public void setUpListeners(){
-        KeyControls keyControls = new KeyControls();
+        KeyControls keyControls = new KeyControls(sceneCanvas);
         addKeyListener(keyControls);
     }
+
+    
     
     // public void setUpListeners(){
     //     ActionListener keyListener = new ActionListener(){

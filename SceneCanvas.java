@@ -12,7 +12,7 @@ public class SceneCanvas extends JComponent{
     private Color backgroundColor;
     // private SittingCat sittingCat1;
     // private SittingCat sittingCat2;
-    // private WalkingCat walkingCat;
+    private WalkingCat walkingCat;
     private ArrayList<DrawingObject> drawingObjects;
 
     public SceneCanvas(int w, int h, Color c){
@@ -22,8 +22,8 @@ public class SceneCanvas extends JComponent{
         setPreferredSize(new Dimension(width, height));
         // sittingCat1 = new SittingCat(300, 20, 2, Color.BLACK);
         // sittingCat2 = new SittingCat(50, 30, 1.5, Color.BLACK);
-        // walkingCat = new WalkingCat(0, 0, 1, 2, Color.BLACK);
-        drawingObjects = new ArrayList<DrawingObject>();
+        walkingCat = new WalkingCat(0, 0, 1, 2, Color.BLACK);
+        // drawingObjects = new ArrayList<DrawingObject>();
     }
 
     @Override
@@ -39,15 +39,11 @@ public class SceneCanvas extends JComponent{
         g2d.setColor(backgroundColor);
         g2d.fill(background);
 
-        animateCats(g2d);
+        walkingCat.draw(g2d);
     }
 
-    public void animateCats(Graphics2D g2d){
-        DrawingObject walkingCat = new WalkingCat(0, 0, 1, 0, Color.BLACK);
-        drawingObjects.add(walkingCat);
-
-        for (DrawingObject obj : drawingObjects) {
-            obj.draw(g2d);
-        }
+    public WalkingCat getWalkingCat(){
+        return walkingCat;
     }
+    
 }
