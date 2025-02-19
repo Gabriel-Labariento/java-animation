@@ -15,7 +15,7 @@ public class SceneCanvas extends JComponent{
         height = h;
         // sittingCat1 = new SittingCat(300, 20, 2, Color.BLACK);
         // sittingCat2 = new SittingCat(50, 30, 1.5, Color.BLACK);
-        walkingCat = new WalkingCat(0, 0, 1, 0, Color.BLACK);
+        walkingCat = new WalkingCat(0, 0, 1, 2, Color.BLACK);
     }
 
     protected void paintComponent(Graphics g){
