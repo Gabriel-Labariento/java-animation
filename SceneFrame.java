@@ -26,22 +26,4 @@ public class SceneFrame extends JFrame {
         KeyControls keyControls = new KeyControls(sceneCanvas);
         addKeyListener(keyControls);
     }
-
-    
-    
-    // public void setUpListeners(){
-    //     ActionListener keyListener = new ActionListener(){
-    //     @Override
-    //     public void actionPerformed(ActionEvent ae){
-    //         Object o = ae.getSource();
-    //         if (o == defaultStart){
-    //             // Start Animation
-    //         }
-
-
-    //     }
-    // };
-    //     //Assign an event handler for all of the buttons
-    //     defaultStart.addActionListener(buttonListener);
-    // }
 }

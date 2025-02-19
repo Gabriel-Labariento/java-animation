@@ -11,12 +11,12 @@ public class KeyControls implements KeyListener {
     private final int SPACEBARKEYCODE = 32;
     private final int STEPSIZE = 20;
     private final int FRAMEDELAY = 200;
-    private WalkingCat wc;
+    private WalkingCat walkingCat;
     private boolean isAnimating;
 
     public KeyControls(SceneCanvas sceneCanvas){
         this.sceneCanvas = sceneCanvas;
-        wc = sceneCanvas.getWalkingCat();
+        walkingCat = sceneCanvas.getWalkingCat();
         isAnimating = false;
     }
 
@@ -48,11 +48,11 @@ public class KeyControls implements KeyListener {
     };
 
     private void startAnimation(){
-        wc.adjustX(STEPSIZE);
-        wc.changeFrame();
+        walkingCat.adjustX(STEPSIZE);
+        walkingCat.changeFrame();
         sceneCanvas.repaint();
-        if (wc.getX() >= sceneCanvas.getWidth()){
-            wc.adjustX(-(sceneCanvas.getWidth() + wc.getCatLength()));
+        if (walkingCat.getX() >= sceneCanvas.getWidth()){
+            walkingCat.adjustX(-(sceneCanvas.getWidth() + walkingCat.getCatLength()));
         }
     }
 }

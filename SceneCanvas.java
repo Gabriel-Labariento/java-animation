@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-
 // import java.awt.geom.*;
 import javax.swing.*;
 
@@ -10,7 +9,6 @@ public class SceneCanvas extends JComponent{
     private int width;
     private int height;
     private Color backgroundColor;
-    private WalkingCat walkingCat;
     private ArrayList<DrawingObject> drawingObjects;
 
     public SceneCanvas(int w, int h, Color c){
@@ -18,8 +16,8 @@ public class SceneCanvas extends JComponent{
         height = h;
         backgroundColor = c;
         setPreferredSize(new Dimension(width, height));
-        walkingCat = new WalkingCat(0, 410.5, 1, 2, Color.BLACK);
-        // drawingObjects = new ArrayList<DrawingObject>();
+        drawingObjects = new ArrayList<DrawingObject>();
+        drawingObjects.add(new WalkingCat(0, 0, 1, 0, Color.BLACK));
     }
 
     @Override
@@ -35,11 +33,13 @@ public class SceneCanvas extends JComponent{
         g2d.setColor(backgroundColor);
         g2d.fill(background);
 
-        walkingCat.draw(g2d);
+        for (DrawingObject drawingObject : drawingObjects) {
+            drawingObject.draw(g2d);
+        }
     }
 
     public WalkingCat getWalkingCat(){
-        return walkingCat;
+        return (WalkingCat) drawingObjects.get(0);
     }
 
     public int getWidth(){
