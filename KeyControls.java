@@ -13,12 +13,15 @@ public class KeyControls implements KeyListener {
     private final int FRAMEDELAY = 200;
     private WalkingCat walkingCat;
     private boolean isAnimating;
+    private static int sceneCount = 1;
+    private SceneHandler sceneHandler;
 
     public KeyControls(SceneCanvas sceneCanvas){
         this.sceneCanvas = sceneCanvas;
         walkingCat = sceneCanvas.getWalkingCat();
         isAnimating = false;
-    }
+        sceneHandler = sceneCanvas.getSceneHandler();
+        }
 
     @Override
     public void keyTyped(KeyEvent event){};
@@ -51,8 +54,15 @@ public class KeyControls implements KeyListener {
         walkingCat.adjustX(STEPSIZE);
         walkingCat.changeFrame();
         sceneCanvas.repaint();
+        
         if (walkingCat.getX() >= sceneCanvas.getWidth()){
             walkingCat.adjustX(-(sceneCanvas.getWidth() + walkingCat.getCatLength()));
+            sceneCount++;
+            // sceneHandler.changeScene(sceneCount);
         }
+    }
+
+    public int getSceneCount(){
+        return sceneCount;
     }
 }

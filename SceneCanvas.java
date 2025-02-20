@@ -10,6 +10,7 @@ public class SceneCanvas extends JComponent{
     private int height;
     private Color backgroundColor;
     private ArrayList<DrawingObject> drawingObjects;
+    private SceneHandler sceneHandler;
 
     public SceneCanvas(int w, int h, Color c){
         width = w;
@@ -17,8 +18,8 @@ public class SceneCanvas extends JComponent{
         backgroundColor = c;
         setPreferredSize(new Dimension(width, height));
         drawingObjects = new ArrayList<DrawingObject>();
-        // drawingObjects.add(new WalkingCat(0, 0, 1, 0, Color.BLACK));
-        drawingObjects.add(new FeedingCats(0, 0, 1, Color.BLACK, Color.GRAY, Color.LIGHT_GRAY));
+        drawingObjects.add(new WalkingCat(0, 0, 1, 0, Color.BLACK));
+        sceneHandler = new SceneHandler(drawingObjects);
     }
 
     @Override
@@ -45,6 +46,10 @@ public class SceneCanvas extends JComponent{
 
     public int getWidth(){
         return width;
+    }
+
+    public SceneHandler getSceneHandler(){
+        return sceneHandler;
     }
     
 }

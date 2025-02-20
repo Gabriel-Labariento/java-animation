@@ -14,7 +14,7 @@ public class WalkingCat implements DrawingObject {
         x = xPosition;
         y = yPosition;
         this.size = size;
-        if (walkFrame > 3) this.walkFrame = 3;
+        if (walkFrame > 2) this.walkFrame = 2;
         else this.walkFrame = walkFrame;
         this.color = color;
         catLength = size * 220;
