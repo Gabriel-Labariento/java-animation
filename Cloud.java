@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
 public class Cloud implements DrawingObject{
     private double x;
@@ -30,5 +29,7 @@ public class Cloud implements DrawingObject{
     public void adjustX(double distance){
         x += distance;
     };
+
+    
     
 }
