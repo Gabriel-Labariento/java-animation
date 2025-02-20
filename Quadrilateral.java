@@ -2,12 +2,12 @@ import java.awt.*;
 import java.awt.geom.*;
 
 
-public class Trapezoid implements DrawingObject {
+public class Quadrilateral implements DrawingObject {
     private Point2D.Double[] points;
     private Color color;
     private boolean fill;
 
-    public Trapezoid(Point2D.Double[] points, Color color, boolean fill){
+    public Quadrilateral(Point2D.Double[] points, Color color, boolean fill){
         this.points = points;
         this.color = color;
         this.fill = fill;

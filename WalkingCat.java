@@ -67,7 +67,7 @@ public class WalkingCat implements DrawingObject {
             snoutPoints[2] = new Point2D.Double(size*(x+209.1), size*(y+39.3));
             snoutPoints[3] = new Point2D.Double(size*(x+199.2), size*(y+47.9));
         }
-        Trapezoid snout = new Trapezoid(snoutPoints, color, true);
+        Quadrilateral snout = new Quadrilateral(snoutPoints, color, true);
         snout.draw(g2d);
     }
 
@@ -195,18 +195,18 @@ public class WalkingCat implements DrawingObject {
             g2d.fill(hindUpperThree);
             g2d.setTransform(reset);
 
-            Point2D.Double[] trapPoints = new Point2D.Double[4];
-            trapPoints[0] = new Point2D.Double(size*(x+58.4), size*(y+83.5));
-            trapPoints[1] = new Point2D.Double(size*(x+71.7), size*(y+53.4));
-            trapPoints[2] = new Point2D.Double(size*(x+90.7), size*(y+65.3));
-            trapPoints[3] = new Point2D.Double(size*(x+71.7), size*(y+91.5));
-            Trapezoid hindUpperFour = new Trapezoid(trapPoints, color, true);
+            Point2D.Double[] quadPoints = new Point2D.Double[4];
+            quadPoints[0] = new Point2D.Double(size*(x+58.4), size*(y+83.5));
+            quadPoints[1] = new Point2D.Double(size*(x+71.7), size*(y+53.4));
+            quadPoints[2] = new Point2D.Double(size*(x+90.7), size*(y+65.3));
+            quadPoints[3] = new Point2D.Double(size*(x+71.7), size*(y+91.5));
+            Quadrilateral hindUpperFour = new Quadrilateral(quadPoints, color, true);
             hindUpperFour.draw(g2d);
 
-            trapPoints[1] = new Point2D.Double(size*(x+66.9), size*(y+77.3));
-            trapPoints[2] = new Point2D.Double(size*(x+81.1), size*(y+103));
-            trapPoints[3] = new Point2D.Double(size*(x+77.3), size*(y+105.9));
-            Trapezoid hindLowerTwo = new Trapezoid(trapPoints, color, true);
+            quadPoints[1] = new Point2D.Double(size*(x+66.9), size*(y+77.3));
+            quadPoints[2] = new Point2D.Double(size*(x+81.1), size*(y+103));
+            quadPoints[3] = new Point2D.Double(size*(x+77.3), size*(y+105.9));
+            Quadrilateral hindLowerTwo = new Quadrilateral(quadPoints, color, true);
             hindLowerTwo.draw(g2d);
 
             foot = new Ellipse2D.Double(size*(x+77.1), size*(y+101.3), size*15.5, size*7.2);
@@ -215,11 +215,11 @@ public class WalkingCat implements DrawingObject {
             g2d.setTransform(reset);
 
             // Third foot from the left
-            trapPoints[0] = new Point2D.Double(size*(x+140.5), size*(y+51.8));
-            trapPoints[1] = new Point2D.Double(size*(x+156.1), size*(y+53));
-            trapPoints[2] = new Point2D.Double(size*(x+150.3), size*(y+100.5));
-            trapPoints[3] = new Point2D.Double(size*(x+140.5), size*(y+100.1));
-            Trapezoid thirdLeg = new Trapezoid(trapPoints, color, true);
+            quadPoints[0] = new Point2D.Double(size*(x+140.5), size*(y+51.8));
+            quadPoints[1] = new Point2D.Double(size*(x+156.1), size*(y+53));
+            quadPoints[2] = new Point2D.Double(size*(x+150.3), size*(y+100.5));
+            quadPoints[3] = new Point2D.Double(size*(x+140.5), size*(y+100.1));
+            Quadrilateral thirdLeg = new Quadrilateral(quadPoints, color, true);
             thirdLeg.draw(g2d);
 
             foot = new Ellipse2D.Double(size*(x+141.1), size*(y+96.3), size*20, size*10.5);
@@ -231,11 +231,11 @@ public class WalkingCat implements DrawingObject {
             Square upperFront = new Square(size*(x+160.3), size*(y+58), size*23, color);
             upperFront.draw(g2d);
 
-            trapPoints[0] = new Point2D.Double(size*(x+160.3), size*(y+79.4));
-            trapPoints[1] = new Point2D.Double(size*(x+168.5), size*(y+66.1));
-            trapPoints[2] = new Point2D.Double(size*(x+207.2), size*(y+94.7));
-            trapPoints[3] = new Point2D.Double(size*(x+201.6), size*(y+103));
-            Trapezoid frontLower = new Trapezoid(trapPoints, color, true);
+            quadPoints[0] = new Point2D.Double(size*(x+160.3), size*(y+79.4));
+            quadPoints[1] = new Point2D.Double(size*(x+168.5), size*(y+66.1));
+            quadPoints[2] = new Point2D.Double(size*(x+207.2), size*(y+94.7));
+            quadPoints[3] = new Point2D.Double(size*(x+201.6), size*(y+103));
+            Quadrilateral frontLower = new Quadrilateral(quadPoints, color, true);
             frontLower.draw(g2d);
 
             foot = new Ellipse2D.Double(size*(x+197), size*(y+93.1), size*19.5, size*11.6);
@@ -255,13 +255,13 @@ public class WalkingCat implements DrawingObject {
             g2d.fill(hindEllipse2);
             g2d.setTransform(reset);
 
-            Point2D.Double[] trapPoints = new Point2D.Double[4];
-            trapPoints[0] = new Point2D.Double(size*(x+40.6), size*(y+65.3));
-            trapPoints[1] = new Point2D.Double(size*(x+86.4), size*(y+23.8));
-            trapPoints[2] = new Point2D.Double(size*(x+99.7), size*(y+39.7));
-            trapPoints[3] = new Point2D.Double(size*(x+52), size*(y+65.2));
-            Trapezoid hindTrapUpperOne = new Trapezoid(trapPoints, color, true);
-            hindTrapUpperOne.draw(g2d);
+            Point2D.Double[] quadPoints = new Point2D.Double[4];
+            quadPoints[0] = new Point2D.Double(size*(x+40.6), size*(y+65.3));
+            quadPoints[1] = new Point2D.Double(size*(x+86.4), size*(y+23.8));
+            quadPoints[2] = new Point2D.Double(size*(x+99.7), size*(y+39.7));
+            quadPoints[3] = new Point2D.Double(size*(x+52), size*(y+65.2));
+            Quadrilateral hindQuadUpperOne = new Quadrilateral(quadPoints, color, true);
+            hindQuadUpperOne.draw(g2d);
 
             Rectangle2D.Double lowerOne = new Rectangle2D.Double(size*(x+50.5), size*(y+62.2), size*34.6, size*8.4);
             g2d.rotate(Math.toRadians(83.5), lowerOne.getX(), lowerOne.getY());
@@ -272,12 +272,12 @@ public class WalkingCat implements DrawingObject {
             g2d.fill(foot);
 
             // Second leg from the left
-            trapPoints[0] = new Point2D.Double(size*(x+66.7), size*(y+76.4));
-            trapPoints[1] = new Point2D.Double(size*(x+96.5), size*(y+21.7));
-            trapPoints[2] = new Point2D.Double(size*(x+114.8), size*(y+32.1));
-            trapPoints[3] = new Point2D.Double(size*(x+79.2), size*(y+84.2));
-            Trapezoid hindTrapUpperTwo = new Trapezoid(trapPoints, color, true);
-            hindTrapUpperTwo.draw(g2d);
+            quadPoints[0] = new Point2D.Double(size*(x+66.7), size*(y+76.4));
+            quadPoints[1] = new Point2D.Double(size*(x+96.5), size*(y+21.7));
+            quadPoints[2] = new Point2D.Double(size*(x+114.8), size*(y+32.1));
+            quadPoints[3] = new Point2D.Double(size*(x+79.2), size*(y+84.2));
+            Quadrilateral hindQuadUpperTwo = new Quadrilateral(quadPoints, color, true);
+            hindQuadUpperTwo.draw(g2d);
 
             Rectangle2D.Double lowerTwo = new Rectangle2D.Double(size*(x+71.1), size*(y+73), size*36.3, size*6.9);
             g2d.rotate(Math.toRadians(39.8), lowerTwo.getX(), lowerTwo.getY());
@@ -289,12 +289,12 @@ public class WalkingCat implements DrawingObject {
             g2d.fill(foot);
 
             // Third leg from the left
-            trapPoints[0] = new Point2D.Double(size*(x+115.4), size*(y+98.1));
-            trapPoints[1] = new Point2D.Double(size*(x+137.4), size*(y+38.6));
-            trapPoints[2] = new Point2D.Double(size*(x+153.1), size*(y+46.1));
-            trapPoints[3] = new Point2D.Double(size*(x+127), size*(y+100.8));
-            Trapezoid frontTrapOne = new Trapezoid(trapPoints, color, true);
-            frontTrapOne.draw(g2d);
+            quadPoints[0] = new Point2D.Double(size*(x+115.4), size*(y+98.1));
+            quadPoints[1] = new Point2D.Double(size*(x+137.4), size*(y+38.6));
+            quadPoints[2] = new Point2D.Double(size*(x+153.1), size*(y+46.1));
+            quadPoints[3] = new Point2D.Double(size*(x+127), size*(y+100.8));
+            Quadrilateral frontQuadOne = new Quadrilateral(quadPoints, color, true);
+            frontQuadOne.draw(g2d);
 
             Rectangle2D.Double lowerThree = new Rectangle2D.Double(size*(x+130), size*(y+51.9), size*36.3, size*6.9);
             g2d.rotate(Math.toRadians(-13.5), lowerThree.getX(), lowerThree.getY());
@@ -307,12 +307,12 @@ public class WalkingCat implements DrawingObject {
             g2d.setTransform(reset);
 
             // Last leg 
-            trapPoints[0] = new Point2D.Double(size*(x+155.7), size*(y+47.7));
-            trapPoints[1] = new Point2D.Double(size*(x+172.7), size*(y+42.5));
-            trapPoints[2] = new Point2D.Double(size*(x+193.4), size*(y+100.6));
-            trapPoints[3] = new Point2D.Double(size*(x+179.5), size*(y+104.1));
-            Trapezoid frontTrapTwo = new Trapezoid(trapPoints, color, true);
-            frontTrapTwo.draw(g2d);
+            quadPoints[0] = new Point2D.Double(size*(x+155.7), size*(y+47.7));
+            quadPoints[1] = new Point2D.Double(size*(x+172.7), size*(y+42.5));
+            quadPoints[2] = new Point2D.Double(size*(x+193.4), size*(y+100.6));
+            quadPoints[3] = new Point2D.Double(size*(x+179.5), size*(y+104.1));
+            Quadrilateral frontQuadTwo = new Quadrilateral(quadPoints, color, true);
+            frontQuadTwo.draw(g2d);
 
             foot = new Ellipse2D.Double(size*(x+179.5), size*(y+97.2), size*22.5, size*11.9);
             g2d.rotate(Math.toRadians(4.8), foot.getX(), foot.getY());
@@ -346,18 +346,18 @@ public class WalkingCat implements DrawingObject {
             g2d.setTransform(reset);
 
             // Second leg from the left
-            Point2D.Double[] trapPoints = new Point2D.Double[4];
-            trapPoints[0] = new Point2D.Double(size*(x+66.8), size*(y+81.8));
-            trapPoints[1] = new Point2D.Double(size*(x+90.2), size*(y+35.2));
-            trapPoints[2] = new Point2D.Double(size*(x+105), size*(y+44.7));
-            trapPoints[3] = new Point2D.Double(size*(x+76.4), size*(y+87.4));
-            Trapezoid hindUpperThree = new Trapezoid(trapPoints, color, true);
+            Point2D.Double[] quadPoints = new Point2D.Double[4];
+            quadPoints[0] = new Point2D.Double(size*(x+66.8), size*(y+81.8));
+            quadPoints[1] = new Point2D.Double(size*(x+90.2), size*(y+35.2));
+            quadPoints[2] = new Point2D.Double(size*(x+105), size*(y+44.7));
+            quadPoints[3] = new Point2D.Double(size*(x+76.4), size*(y+87.4));
+            Quadrilateral hindUpperThree = new Quadrilateral(quadPoints, color, true);
             hindUpperThree.draw(g2d);
 
-            trapPoints[1] = new Point2D.Double(size*(x+73.6), size*(y+74.9));
-            trapPoints[2] = new Point2D.Double(size*(x+93.9), size*(y+97.5));
-            trapPoints[3] = new Point2D.Double(size*(x+91), size*(y+100.5));
-            Trapezoid lowerTwo = new Trapezoid(trapPoints, color, true);
+            quadPoints[1] = new Point2D.Double(size*(x+73.6), size*(y+74.9));
+            quadPoints[2] = new Point2D.Double(size*(x+93.9), size*(y+97.5));
+            quadPoints[3] = new Point2D.Double(size*(x+91), size*(y+100.5));
+            Quadrilateral lowerTwo = new Quadrilateral(quadPoints, color, true);
             lowerTwo.draw(g2d);
 
             foot = new Ellipse2D.Double(size*(x+88.1), size*(y+94.2), size*16.6, size*8.8);
@@ -382,11 +382,11 @@ public class WalkingCat implements DrawingObject {
             g2d.setTransform(reset);
 
             // Fourth leg from the left
-            trapPoints[0] = new Point2D.Double(size*(x+151.2), size*(y+53.3));
-            trapPoints[1] = new Point2D.Double(size*(x+167), size*(y+55.2));
-            trapPoints[2] = new Point2D.Double(size*(x+163.8), size*(y+96.7));
-            trapPoints[3] = new Point2D.Double(size*(x+154.3), size*(y+96.7));
-            Trapezoid fourthLeg = new Trapezoid(trapPoints, color, true);
+            quadPoints[0] = new Point2D.Double(size*(x+151.2), size*(y+53.3));
+            quadPoints[1] = new Point2D.Double(size*(x+167), size*(y+55.2));
+            quadPoints[2] = new Point2D.Double(size*(x+163.8), size*(y+96.7));
+            quadPoints[3] = new Point2D.Double(size*(x+154.3), size*(y+96.7));
+            Quadrilateral fourthLeg = new Quadrilateral(quadPoints, color, true);
             fourthLeg.draw(g2d);
 
             foot = new Ellipse2D.Double(size*(x+155.3), size*(y+92.6), size*19.6, size*9.4);
