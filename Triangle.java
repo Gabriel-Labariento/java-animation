@@ -37,4 +37,12 @@ public class Triangle implements DrawingObject {
         else g2d.draw(p);
 
     }
+
+    public double[] getX(){
+        double[] xPoints = new double[3];
+        for (int i = 0; i < xPoints.length; i++){
+            xPoints[i] = points[i].getX();
+        }
+        return xPoints;
+    }
 }

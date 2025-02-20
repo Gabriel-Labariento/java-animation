@@ -38,4 +38,12 @@ public class Quadrilateral implements DrawingObject {
         else g2d.draw(p);     
     }
 
+    public double[] getX(){
+        double[] xPoints = new double[4];
+        for (int i = 0; i < xPoints.length; i++){
+            xPoints[i] = points[i].getX();
+        }
+        return xPoints;
+    }
+
 }

@@ -31,4 +31,11 @@ public class Line implements DrawingObject {
         xStart += distance;
         xEnd += distance;
     }
+
+    public double[] getX(){
+        double[] xPoints = new double[2];
+        xPoints[0] = xStart;
+        xPoints[1] = xEnd;
+        return xPoints;
+    }
 }
