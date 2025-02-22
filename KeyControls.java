@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.awt.event.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -9,7 +8,7 @@ public class KeyControls implements KeyListener {
     private Timer timer;
     private TimerTask timerTask;
     private final int SPACEBARKEYCODE = 32;
-    private final int STEPSIZE = 20;
+    private final int STEPSIZE = 200;
     private final int FRAMEDELAY = 200;
     private WalkingCat walkingCat;
     private boolean isAnimating;
@@ -53,13 +52,17 @@ public class KeyControls implements KeyListener {
     private void startAnimation(){
         walkingCat.adjustX(STEPSIZE);
         walkingCat.changeFrame();
-        sceneCanvas.repaint();
-        
+
         if (walkingCat.getX() >= sceneCanvas.getWidth()){
             walkingCat.adjustX(-(sceneCanvas.getWidth() + walkingCat.getCatLength()));
             sceneCount++;
-            // sceneHandler.changeScene(sceneCount);
+
+            if (sceneCount > 9) {
+                sceneCount = 1;
+            }
+            sceneHandler.changeScene(sceneCount);
         }
+        sceneCanvas.repaint();
     }
 
     public int getSceneCount(){

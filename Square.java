@@ -14,7 +14,6 @@ public class Square implements DrawingObject {
         this.color = color;
     }
 
-    @Override
     public void adjustX(double distance){
         x += distance;
     }
@@ -25,4 +24,6 @@ public class Square implements DrawingObject {
         g2d.setColor(color);
         g2d.fill(square);
     }
+
+
 }

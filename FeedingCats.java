@@ -21,16 +21,19 @@ public class FeedingCats implements DrawingObject{
         c3 = colorThree;
     }
 
+    @Override
     public void draw(Graphics2D g2d){
         drawCatOne(g2d);
         drawCatTwo(g2d);
         drawCatThree(g2d);
     };
-    
+
     public void adjustX(double distance){
         x += distance;
     };
 
+
+    
     private void drawCatOne(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 

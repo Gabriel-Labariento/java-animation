@@ -13,7 +13,6 @@ public class Quadrilateral implements DrawingObject {
         this.fill = fill;
     }
 
-    @Override
     public void adjustX(double distance){
         for (Point2D.Double point : points) {
             point.setLocation(point.getX()+distance, point.getY());
@@ -37,13 +36,4 @@ public class Quadrilateral implements DrawingObject {
         if (fill) g2d.fill(p);
         else g2d.draw(p);     
     }
-
-    public double[] getX(){
-        double[] xPoints = new double[4];
-        for (int i = 0; i < xPoints.length; i++){
-            xPoints[i] = points[i].getX();
-        }
-        return xPoints;
-    }
-
 }

@@ -13,6 +13,7 @@ public class Cloud implements DrawingObject{
         this.color = color;
     }
 
+    @Override
     public void draw(Graphics2D g2d){
         Circle c = new Circle(size*(x+5.7), size*(y+32), size*64, color);
         c.draw(g2d);
@@ -30,6 +31,5 @@ public class Cloud implements DrawingObject{
         x += distance;
     };
 
-    
-    
+
 }

@@ -19,13 +19,12 @@ public class Buildings implements DrawingObject {
         c3 = colorThree;
     }
 
+    @Override
     public void draw(Graphics2D g2d){
         drawTertiaryBuildings(g2d);
         drawSecondaryBuildings(g2d);
         drawPrimaryBuildings(g2d);
     };
-
-    public void adjustX(double distance){};
 
     private void drawTertiaryBuildings(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();

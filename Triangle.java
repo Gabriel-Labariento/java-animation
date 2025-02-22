@@ -12,7 +12,6 @@ public class Triangle implements DrawingObject {
         this.fill = fill;
     }
 
-    @Override
     public void adjustX(double distance){
         for (Point2D.Double point : points) {
             point.setLocation(point.getX()+distance, point.getY());
