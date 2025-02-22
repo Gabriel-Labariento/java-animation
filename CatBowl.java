@@ -23,10 +23,10 @@ public class CatBowl implements DrawingObject{
         AffineTransform reset = g2d.getTransform();
         g2d.translate(x, y);
         g2d.scale(size, size);
-
+        
         g2d.setColor(colorOne);
         
-        Ellipse2D.Double e = new Ellipse2D.Double((10.1), y, 113.1, 13.2);
+        Ellipse2D.Double e = new Ellipse2D.Double((10.1), 0, 113.1, 13.2);
         g2d.fill(e);
 
         g2d.setColor(colorTwo);
@@ -34,9 +34,8 @@ public class CatBowl implements DrawingObject{
         g2d.fill(e);
 
         g2d.setColor(colorOne);
-        e = new Ellipse2D.Double((x), (31.7), 133.2, 13.2);
+        e = new Ellipse2D.Double((0), (31.7), 133.2, 13.2);
         g2d.fill(e);
-
 
         Point2D.Double[] quadPoints = new Point2D.Double[4];
         quadPoints[0] = new Point2D.Double(0, (37.2));

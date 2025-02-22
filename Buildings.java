@@ -10,9 +10,6 @@ public class Buildings implements DrawingObject {
     private Color c2;
     private Color c3;
 
-    private final double BASEWIDTH = 231;
-    private final double BASEHEIGHT = 139.6;
-
     public Buildings(double xPosition, double yPosition, double size, Color colorOne, Color colorTwo, Color colorThree){
         x = xPosition;
         y = yPosition;
