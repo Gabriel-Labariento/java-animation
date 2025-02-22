@@ -19,7 +19,7 @@ public class SceneCanvas extends JComponent{
         setPreferredSize(new Dimension(width, height));
         drawingObjects = new ArrayList<DrawingObject>();
         drawingObjects.add(new WalkingCat(0, 0, 1, 0, Color.BLACK));
-        drawingObjects.add(new LimpingCat(200, 200, 1, Color.BLACK));
+        drawingObjects.add(new AngryCat(200, 200, 1, Color.BLACK));
         sceneHandler = new SceneHandler(drawingObjects);
     }
 
