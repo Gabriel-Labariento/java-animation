@@ -14,7 +14,6 @@ public class TrashCan implements DrawingObject {
 
     @Override
     public void draw(Graphics2D g2d){
-        AffineTransform reset = g2d.getTransform();
         g2d.setColor(color);
 
         // Lid
