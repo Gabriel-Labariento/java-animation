@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 public class Cloud implements DrawingObject{
     private double x;
@@ -14,16 +15,22 @@ public class Cloud implements DrawingObject{
     }
 
     public void draw(Graphics2D g2d){
-        Circle c = new Circle(size*(x+5.7), size*(y+32), size*64, color);
+        AffineTransform reset = g2d.getTransform();
+        g2d.translate(x, y);
+        g2d.scale(size, size);
+
+        Circle c = new Circle((5.7), (32), 64, color);
         c.draw(g2d);
-        c = new Circle(size*(x+32.7), size*(y+3.2), size*64, color);
+        c = new Circle((32.7), (3.2), 64, color);
         c.draw(g2d);
-        c = new Circle(size*(x+48.5), size*(y+37.7), size*64, color);
+        c = new Circle((48.5), (37.7), 64, color);
         c.draw(g2d);
-        c = new Circle(size*(x+61), size*(y+3.2), size*64, color);
+        c = new Circle((61), (3.2), 64, color);
         c.draw(g2d);
-        c = new Circle(size*(x+91.3), size*(y+32), size*64, color);
+        c = new Circle((91.3), (32), 64, color);
         c.draw(g2d);
+
+        g2d.setTransform(reset);
     };
 
     public void adjustX(double distance){
