@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 public class Rainbow implements DrawingObject{
     private double x;
@@ -20,20 +21,23 @@ public class Rainbow implements DrawingObject{
         final Color GREEN = new Color(1, 143, 77);
         final Color BLUE = new Color(74, 165, 249);
 
-        Circle redCircle = new Circle(size*x, size*y, size*242, RED);
-        Circle orangeCircle = new Circle(size*(x+6.4), size*(y+6.4), size*229.2, ORANGE);
-        Circle yellowCircle = new Circle(size*(x+12.7), size*(y+12.7), size*216.5, YELLOW);
-        Circle greenCircle = new Circle(size*(x+19.1), size*(y+19.1), size*203.8, GREEN);
-        Circle blueCircle = new Circle(size*(x+25.5), size*(y+25.5), size*191, BLUE);
-        Circle centerCircle = new Circle(size*(x+31.8), size*(y+31.8), size*178.3, centerColor); 
+        Circle redCircle = new Circle(0, 0, 242, RED);
+        Circle orangeCircle = new Circle((6.4), (6.4), 229.2, ORANGE);
+        Circle yellowCircle = new Circle((12.7), (12.7), 216.5, YELLOW);
+        Circle greenCircle = new Circle((19.1), (19.1), 203.8, GREEN);
+        Circle blueCircle = new Circle((25.5), (25.5), 191, BLUE);
+        Circle centerCircle = new Circle((31.8), (31.8), 178.3, centerColor); 
 
-
+        AffineTransform reset = g2d.getTransform();
+        g2d.translate(x, y);
+        g2d.scale(size, size);
         redCircle.draw(g2d);
         orangeCircle.draw(g2d);
         yellowCircle.draw(g2d);
         greenCircle.draw(g2d);
         blueCircle.draw(g2d);
         centerCircle.draw(g2d);
+        g2d.setTransform(reset);
     };
 
     public double getX(){

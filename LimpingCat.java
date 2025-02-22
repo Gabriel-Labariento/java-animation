@@ -19,10 +19,16 @@ public class LimpingCat implements DrawingObject{
 
     @Override 
     public void draw(Graphics2D g2d){
+        AffineTransform reset = g2d.getTransform();
+        g2d.translate(x, y);
+        g2d.scale(size, size);
+
         drawHead(g2d);
         drawBody(g2d);
         drawLegs(g2d);
         drawTail(g2d);
+
+        g2d.setTransform(reset);
     };
 
     private void drawHead(Graphics2D g2d){

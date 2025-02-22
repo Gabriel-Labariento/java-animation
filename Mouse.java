@@ -18,6 +18,21 @@ public class Mouse implements DrawingObject {
     @Override
     public void draw(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
+        g2d.translate(x, y);
+        g2d.scale(size, size);
+
+        drawMouseNoScaling(g2d);
+
+        g2d.setTransform(reset);
+    };
+
+    @Override
+    public void adjustX(double distance){
+        x += distance;
+    };
+
+    private void drawMouseNoScaling(Graphics2D g2d){
+        AffineTransform reset = g2d.getTransform();
         g2d.setColor(color);
 
         // Tail
@@ -71,16 +86,6 @@ public class Mouse implements DrawingObject {
         g2d.rotate(Math.toRadians(-10.5), e.getX(), e.getY());
         g2d.fill(e);
         g2d.setTransform(reset);
-    };
-
-
-    public double getX(){
-        return x;
-    };
-
-    @Override
-    public void adjustX(double distance){
-        x += distance;
-    };
+    }
 
 }
