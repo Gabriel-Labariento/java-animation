@@ -16,8 +16,15 @@ public class SceneCanvas extends JComponent{
         backgroundColor = c;
         setPreferredSize(new Dimension(width, height));
         drawingObjects = new ArrayList<DrawingObject>();
+
         sceneHandler = new SceneHandler(drawingObjects, width, height);
         drawingObjects.add(new WalkingCat(0, 0, 1, 0, Color.BLACK));
+
+        drawingObjects.add(new WalkingCat(0, 0, 0.5, 0, Color.BLACK));
+        drawingObjects.add(new Tree(200, 200, 0.5, Color.BLACK));
+        // drawingObjects.add(new Buildings(200, 200, 0.8, Color.BLACK, Color.DARK_GRAY, Color.GRAY));
+        sceneHandler = new SceneHandler(drawingObjects);
+
     }
 
     @Override

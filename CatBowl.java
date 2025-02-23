@@ -20,28 +20,32 @@ public class CatBowl implements DrawingObject{
 
     @Override
     public void draw(Graphics2D g2d){
+        AffineTransform reset = g2d.getTransform();
+        g2d.translate(x, y);
+        g2d.scale(size, size);
+        
         g2d.setColor(colorOne);
         
-        Ellipse2D.Double e = new Ellipse2D.Double(size*(x+10.1), size*y, size*113.1, size*13.2);
+        Ellipse2D.Double e = new Ellipse2D.Double((10.1), 0, 113.1, 13.2);
         g2d.fill(e);
 
         g2d.setColor(colorTwo);
-        e = new Ellipse2D.Double(size*(x+18.1), size*(y+2.8), size*97.1, size*8.5);
+        e = new Ellipse2D.Double((18.1), (2.8), 97.1, 8.5);
         g2d.fill(e);
 
         g2d.setColor(colorOne);
-        e = new Ellipse2D.Double(size*(x), size*(y+31.7), size*133.2, size*13.2);
+        e = new Ellipse2D.Double((0), (31.7), 133.2, 13.2);
         g2d.fill(e);
 
-
         Point2D.Double[] quadPoints = new Point2D.Double[4];
-        quadPoints[0] = new Point2D.Double(size*x, size*(y+37.2));
-        quadPoints[1] = new Point2D.Double(size*(x+9.3), size*(y+7.4));
-        quadPoints[2] = new Point2D.Double(size*(x+122.2), size*(y+7.4));
-        quadPoints[3] = new Point2D.Double(size*(x+131.6), size*(y+37.2));
+        quadPoints[0] = new Point2D.Double(0, (37.2));
+        quadPoints[1] = new Point2D.Double((9.3), (7.4));
+        quadPoints[2] = new Point2D.Double((122.2), (7.4));
+        quadPoints[3] = new Point2D.Double((131.6), (37.2));
         Quadrilateral bowl = new Quadrilateral(quadPoints, colorOne, true);
         bowl.draw(g2d);
         
+        g2d.setTransform(reset);
     };
 
 }

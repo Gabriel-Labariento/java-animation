@@ -23,9 +23,15 @@ public class FeedingCats implements DrawingObject{
 
     @Override
     public void draw(Graphics2D g2d){
+        AffineTransform reset = g2d.getTransform();
+        g2d.translate(x, y);
+        g2d.scale(size, size);
+
         drawCatOne(g2d);
         drawCatTwo(g2d);
         drawCatThree(g2d);
+
+        g2d.setTransform(reset);
     };
 
     public void adjustX(double distance){
@@ -38,57 +44,57 @@ public class FeedingCats implements DrawingObject{
         AffineTransform reset = g2d.getTransform();
 
         Point2D.Double[] earPoints = new Point2D.Double[3];
-        earPoints[0] = new Point2D.Double(size*(x+24.4), size*(y+28));
-        earPoints[1] = new Point2D.Double(size*(x+16.4), size*(y+13.6));
-        earPoints[2] = new Point2D.Double(size*(x+32.7), size*(y+14.5));
+        earPoints[0] = new Point2D.Double((24.4), (28));
+        earPoints[1] = new Point2D.Double((16.4), (13.6));
+        earPoints[2] = new Point2D.Double((32.7), (14.5));
         Triangle earOne = new Triangle(earPoints, c1, true);
         earOne.draw(g2d);
 
-        earPoints[0] = new Point2D.Double(size*(x+38.1), size*(y+10.9));
-        earPoints[1] = new Point2D.Double(size*(x+55.2), size*(y+5.6));
-        earPoints[2] = new Point2D.Double(size*(x+49.9), size*(y+21.7));
+        earPoints[0] = new Point2D.Double((38.1), (10.9));
+        earPoints[1] = new Point2D.Double((55.2), (5.6));
+        earPoints[2] = new Point2D.Double((49.9), (21.7));
         Triangle earTwo = new Triangle(earPoints, c1, true);
         earTwo.draw(g2d);
 
         g2d.setColor(c1);
 
-        Circle cirlceOne = new Circle(size*(x+23.2), size*(y+10.6), size*28.5, c1);
+        Circle cirlceOne = new Circle((23.2), (10.6), 28.5, c1);
         cirlceOne.draw(g2d);
 
-        Circle cirlceTwo = new Circle(size*(x+45.8), size*(y+18.2), size*28.5, c1);
+        Circle cirlceTwo = new Circle((45.8), (18.2), 28.5, c1);
         cirlceTwo.draw(g2d);
 
-        Ellipse2D.Double e1 = new Ellipse2D.Double(size*(x+30.4), size*(y+18.2), size*55.6, size*36.5);
+        Ellipse2D.Double e1 = new Ellipse2D.Double((30.4), (18.2), 55.6, 36.5);
         g2d.rotate(Math.toRadians(27.4), e1.getX(), e1.getY());
         g2d.fill(e1);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e2 = new Ellipse2D.Double(size*(x+19.5), size*(y+54.6), size*33.6, size*16.4);
+        Ellipse2D.Double e2 = new Ellipse2D.Double((19.5), (54.6), 33.6, 16.4);
         g2d.rotate(Math.toRadians(-9.5), e2.getX(), e2.getY());
         g2d.fill(e2);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e3 = new Ellipse2D.Double(size*(x+68.3), size*(y+9.4), size*73.8, size*28.5);
+        Ellipse2D.Double e3 = new Ellipse2D.Double((68.3), (9.4), 73.8, 28.5);
         g2d.rotate(Math.toRadians(27.4), e3.getX(), e3.getY());
         g2d.fill(e3);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e4 = new Ellipse2D.Double(size*(x+74.6), size*(y+29.9), size*72.2, size*37.4);
+        Ellipse2D.Double e4 = new Ellipse2D.Double((74.6), (29.9), 72.2, 37.4);
         g2d.rotate(Math.toRadians(33.3), e4.getX(), e4.getY());
         g2d.fill(e4);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e5 = new Ellipse2D.Double(size*(x+138.6), size*(y+60.2), size*39.9, size*28.5);
+        Ellipse2D.Double e5 = new Ellipse2D.Double((138.6), (60.2), 39.9, 28.5);
         g2d.rotate(Math.toRadians(123.9), e5.getX(), e5.getY());
         g2d.fill(e5);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e6 = new Ellipse2D.Double(size*(x+97.4), size*(y+100.8), size*27, size*14);
+        Ellipse2D.Double e6 = new Ellipse2D.Double((97.4), (100.8), 27, 14);
         g2d.rotate(Math.toRadians(-57.2), e6.getX(), e6.getY());
         g2d.fill(e6);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e7 = new Ellipse2D.Double(size*(x+86.9), size*(y+105.2), size*28.9, size*8.5);
+        Ellipse2D.Double e7 = new Ellipse2D.Double((86.9), (105.2), 28.9, 8.5);
         g2d.rotate(Math.toRadians(-24.4), e7.getX(), e7.getY());
         g2d.fill(e7);
         g2d.setTransform(reset);
@@ -98,31 +104,31 @@ public class FeedingCats implements DrawingObject{
         AffineTransform reset = g2d.getTransform();
 
         Point2D.Double[] earPoints = new Point2D.Double[3];
-        earPoints[0] = new Point2D.Double(size*(x+61.6), size*(y+57.4));
-        earPoints[1] = new Point2D.Double(size*(x+62.8), size*(y+40.5));
-        earPoints[2] = new Point2D.Double(size*(x+76.2), size*(y+50.3));
+        earPoints[0] = new Point2D.Double((61.6), (57.4));
+        earPoints[1] = new Point2D.Double((62.8), (40.5));
+        earPoints[2] = new Point2D.Double((76.2), (50.3));
         Triangle earOne = new Triangle(earPoints, c2, true);
         earOne.draw(g2d);
 
-        earPoints[0] = new Point2D.Double(size*(x+74.2), size*(y+51.3));
-        earPoints[1] = new Point2D.Double(size*(x+90.6), size*(y+47.1));
-        earPoints[2] = new Point2D.Double(size*(x+86.5), size*(y+64));
+        earPoints[0] = new Point2D.Double((74.2), (51.3));
+        earPoints[1] = new Point2D.Double((90.6), (47.1));
+        earPoints[2] = new Point2D.Double((86.5), (64));
         Triangle earTwo = new Triangle(earPoints, c2, true);
         earTwo.draw(g2d);
 
         g2d.setColor(c2);
 
-        Ellipse2D.Double e1 = new Ellipse2D.Double(size*(x+64.5), size*(y+47.1), size*25.8, size*22.3);
+        Ellipse2D.Double e1 = new Ellipse2D.Double((64.5), (47.1), 25.8, 22.3);
         g2d.rotate(Math.toRadians(12.2), e1.getX(), e1.getY());
         g2d.fill(e1);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e2 = new Ellipse2D.Double(size*(x+77.6), size*(y+53.2), size*44.9, size*22.3);
+        Ellipse2D.Double e2 = new Ellipse2D.Double((77.6), (53.2), 44.9, 22.3);
         g2d.rotate(Math.toRadians(32.2), e2.getX(), e2.getY());
         g2d.fill(e2);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e3 = new Ellipse2D.Double(size*(x+81.3), size*(y+54.5), size*44.9, size*46.7);
+        Ellipse2D.Double e3 = new Ellipse2D.Double((81.3), (54.5), 44.9, 46.7);
         g2d.rotate(Math.toRadians(32.2), e3.getX(), e3.getY());
         g2d.fill(e3);
         g2d.setTransform(reset);
@@ -132,45 +138,45 @@ public class FeedingCats implements DrawingObject{
         AffineTransform reset = g2d.getTransform();
 
         Point2D.Double[] earPoints = new Point2D.Double[3];
-        earPoints[0] = new Point2D.Double(size*(x+66.1), size*(y+73.5));
-        earPoints[1] = new Point2D.Double(size*(x+78.8), size*(y+71.7));
-        earPoints[2] = new Point2D.Double(size*(x+71), size*(y+81.6));
+        earPoints[0] = new Point2D.Double((66.1), (73.5));
+        earPoints[1] = new Point2D.Double((78.8), (71.7));
+        earPoints[2] = new Point2D.Double((71), (81.6));
         Triangle earOne = new Triangle(earPoints, c3, true);
         earOne.draw(g2d);
 
         g2d.setColor(c3);
 
-        Ellipse2D.Double e1 = new Ellipse2D.Double(size*(x+47.9), size*(y+74.1), size*22.2, size*21.9);
+        Ellipse2D.Double e1 = new Ellipse2D.Double((47.9), (74.1), 22.2, 21.9);
         g2d.rotate(Math.toRadians(-29.5), e1.getX(), e1.getY());
         g2d.fill(e1);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e2 = new Ellipse2D.Double(size*(x+68.7), size*(y+74.3), size*13.9, size*17);
+        Ellipse2D.Double e2 = new Ellipse2D.Double((68.7), (74.3), 13.9, 17);
         g2d.rotate(Math.toRadians(66.5), e2.getX(), e2.getY());
         g2d.fill(e2);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e3 = new Ellipse2D.Double(size*(x+59.1), size*(y+57.3), size*22.2, size*28.3);
+        Ellipse2D.Double e3 = new Ellipse2D.Double((59.1), (57.3), 22.2, 28.3);
         g2d.rotate(Math.toRadians(57.5), e3.getX(), e3.getY());
         g2d.fill(e3);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e4 = new Ellipse2D.Double(size*(x+54.5), size*(y+56.1), size*22.2, size*43.7);
+        Ellipse2D.Double e4 = new Ellipse2D.Double((54.5), (56.1), 22.2, 43.7);
         g2d.rotate(Math.toRadians(64), e4.getX(), e4.getY());
         g2d.fill(e4);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e5 = new Ellipse2D.Double(size*(x+29.1), size*(y+56.8), size*43.3, size*54.6);
+        Ellipse2D.Double e5 = new Ellipse2D.Double((29.1), (56.8), 43.3, 54.6);
         g2d.rotate(Math.toRadians(32.2), e5.getX(), e5.getY());
         g2d.fill(e5);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e6 = new Ellipse2D.Double(size*(x+63.5), size*(y+91.9), size*11.6, size*46.7);
+        Ellipse2D.Double e6 = new Ellipse2D.Double((63.5), (91.9), 11.6, 46.7);
         g2d.rotate(Math.toRadians(67.5), e6.getX(), e6.getY());
         g2d.fill(e6);
         g2d.setTransform(reset);
 
-        Ellipse2D.Double e7 = new Ellipse2D.Double(size*(x+69.2), size*(y+87.2), size*9.3, size*28.3);
+        Ellipse2D.Double e7 = new Ellipse2D.Double((69.2), (87.2), 9.3, 28.3);
         g2d.rotate(Math.toRadians(57.5), e7.getX(), e7.getY());
         g2d.fill(e7);
         g2d.setTransform(reset);
