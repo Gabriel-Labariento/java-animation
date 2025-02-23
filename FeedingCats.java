@@ -21,6 +21,7 @@ public class FeedingCats implements DrawingObject{
         c3 = colorThree;
     }
 
+    @Override
     public void draw(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
         g2d.translate(x, y);
@@ -32,11 +33,13 @@ public class FeedingCats implements DrawingObject{
 
         g2d.setTransform(reset);
     };
-    
+
     public void adjustX(double distance){
         x += distance;
     };
 
+
+    
     private void drawCatOne(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 

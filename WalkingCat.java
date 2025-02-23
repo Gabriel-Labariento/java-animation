@@ -20,11 +20,11 @@ public class WalkingCat implements DrawingObject {
         catLength = size * 220;
     }
 
-    @Override
     public void adjustX(double distance){
         x += distance;
     }
 
+    @Override
     public void draw(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
         g2d.translate(x, y);
@@ -37,16 +37,16 @@ public class WalkingCat implements DrawingObject {
         g2d.setTransform(reset);
     }
 
-    public void changeFrame(){
-        if (this.walkFrame == 2){
-            this.walkFrame = 0;
-        } else {
-            walkFrame += 1;
-        }
-    }
-
     public double getX(){
         return x;
+    }
+
+    public void changeFrame(){
+        if (this.walkFrame == 2) 
+            this.walkFrame = 0;
+        else 
+            walkFrame += 1;
+        
     }
 
     public double getCatLength(){
