@@ -1,7 +1,5 @@
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-// import java.awt.geom.*;
 import javax.swing.*;
 
 public class SceneCanvas extends JComponent{
@@ -18,10 +16,8 @@ public class SceneCanvas extends JComponent{
         backgroundColor = c;
         setPreferredSize(new Dimension(width, height));
         drawingObjects = new ArrayList<DrawingObject>();
-        drawingObjects.add(new WalkingCat(0, 0, 0.5, 0, Color.BLACK));
-        drawingObjects.add(new Tree(200, 200, 0.5, Color.BLACK));
-        // drawingObjects.add(new Buildings(200, 200, 0.8, Color.BLACK, Color.DARK_GRAY, Color.GRAY));
-        sceneHandler = new SceneHandler(drawingObjects);
+        sceneHandler = new SceneHandler(drawingObjects, width, height);
+        drawingObjects.add(new WalkingCat(0, 430.7, 1, 0, Color.decode("#242424")));
     }
 
     @Override
@@ -33,21 +29,21 @@ public class SceneCanvas extends JComponent{
             RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints( rh);
 
-        Rectangle2D.Double background = new Rectangle2D.Double(0, 0, width, height);
-        g2d.setColor(backgroundColor);
-        g2d.fill(background);
-
         for (DrawingObject drawingObject : drawingObjects) {
             drawingObject.draw(g2d);
         }
     }
 
     public WalkingCat getWalkingCat(){
-        return (WalkingCat) drawingObjects.get(0);
+        return (WalkingCat) drawingObjects.get(1);
     }
-
+    
     public int getWidth(){
         return width;
+    }
+
+    public int getHeight(){
+        return height;
     }
 
     public SceneHandler getSceneHandler(){

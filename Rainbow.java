@@ -14,6 +14,7 @@ public class Rainbow implements DrawingObject{
         this.centerColor = centerColor;
     }
 
+    @Override
     public void draw(Graphics2D g2d){
         final Color RED = new Color(195, 45, 47);
         final Color ORANGE = new Color(236, 83, 34);

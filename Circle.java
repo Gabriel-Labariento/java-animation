@@ -22,7 +22,6 @@ public class Circle implements DrawingObject {
         g2d.fill(circle);
     }
 
-    @Override
     public void adjustX(double distance){
         x += distance;
     }

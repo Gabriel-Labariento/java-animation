@@ -16,6 +16,7 @@ public class AngryCat implements DrawingObject {
         x += distance;
     }
 
+    @Override
     public void draw(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
         g2d.translate(x, y);

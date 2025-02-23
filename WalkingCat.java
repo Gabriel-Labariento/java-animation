@@ -20,11 +20,11 @@ public class WalkingCat implements DrawingObject {
         catLength = size * 220;
     }
 
-    @Override
     public void adjustX(double distance){
         x += distance;
     }
 
+    @Override
     public void draw(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
         g2d.translate(x, y);
@@ -107,8 +107,8 @@ public class WalkingCat implements DrawingObject {
             earTwoPoints[2] = new Point2D.Double((197.6), (19.2));
         }
 
-        Triangle earOne = new Triangle(earOnePoints, Color.BLACK, true);
-        Triangle earTwo = new Triangle(earTwoPoints, Color.BLACK, true);
+        Triangle earOne = new Triangle(earOnePoints, color, true);
+        Triangle earTwo = new Triangle(earTwoPoints, color, true);
 
         g2d.fill(head);
         earOne.draw(g2d);

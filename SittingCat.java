@@ -14,7 +14,6 @@ public class SittingCat implements DrawingObject{
         this.color = color;
     }
 
-    @Override
     public void adjustX(double distance){
         x += distance;
     }

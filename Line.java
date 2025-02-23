@@ -26,7 +26,6 @@ public class Line implements DrawingObject {
         g2d.draw(line);
     }
 
-    @Override
     public void adjustX(double distance){
         xStart += distance;
         xEnd += distance;

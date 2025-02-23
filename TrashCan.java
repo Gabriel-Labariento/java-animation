@@ -38,7 +38,6 @@ public class TrashCan implements DrawingObject {
         g2d.setTransform(reset);
     };
 
-    @Override
     public void adjustX(double distance){
         x += distance;
     };
