@@ -12,10 +12,10 @@ public class LimpingCat implements DrawingObject{
         this.color = color;
     }
 
-    @Override
-    public void adjustX(double distance){
-        x += distance;
-    }
+    // @Override
+    // public void adjustX(double distance){
+    //     x += distance;
+    // }
 
     @Override 
     public void draw(Graphics2D g2d){

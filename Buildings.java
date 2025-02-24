@@ -33,10 +33,10 @@ public class Buildings implements DrawingObject {
     };
 
 
-    @Override
-    public void adjustX(double distance){
-        x += distance;
-    };
+    // @Override
+    // public void adjustX(double distance){
+    //     x += distance;
+    // };
 
     private void drawTertiaryBuildings(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();

@@ -26,10 +26,10 @@ public class Mouse implements DrawingObject {
         g2d.setTransform(reset);
     };
 
-    @Override
-    public void adjustX(double distance){
-        x += distance;
-    };
+    // @Override
+    // public void adjustX(double distance){
+    //     x += distance;
+    // };
 
     private void drawMouseNoScaling(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
