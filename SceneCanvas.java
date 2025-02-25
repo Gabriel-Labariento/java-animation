@@ -17,7 +17,6 @@ public class SceneCanvas extends JComponent{
         setPreferredSize(new Dimension(width, height));
         drawingObjects = new ArrayList<DrawingObject>();
         sceneHandler = new SceneHandler(drawingObjects, width, height);
-        drawingObjects.add(new WalkingCat(0, 430.7, 1, 0, Color.decode("#242424")));
     }
 
     @Override
@@ -33,17 +32,9 @@ public class SceneCanvas extends JComponent{
             drawingObject.draw(g2d);
         }
     }
-
-    public WalkingCat getWalkingCat(){
-        return (WalkingCat) drawingObjects.get(1);
-    }
     
-    public int getWidth(){
-        return width;
-    }
-
-    public int getHeight(){
-        return height;
+    public ArrayList<DrawingObject> getDrawingObjects(){
+        return drawingObjects;
     }
 
     public SceneHandler getSceneHandler(){

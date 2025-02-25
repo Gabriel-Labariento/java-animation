@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.ArrayList;
 
 public class SceneHandler {
@@ -10,7 +11,9 @@ public class SceneHandler {
         this.drawingObjects = drawingObjects;
         width = w;
         height = h;
+        
         drawingObjects.add(new Scene1(width, height));
+        drawingObjects.add(new SleepingCat(400, 488.6, 0.66, Color.decode("#242424")));
     }
 
     public void changeScene(int sceneCount){

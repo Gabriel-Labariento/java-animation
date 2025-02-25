@@ -43,14 +43,16 @@ public class SleepingCat implements DrawingObject{
 
         // Head
         Ellipse2D.Double e = new Ellipse2D.Double(40.1, 7.2, 45.3, 50.3);
-        g2d.draw(e);
+        g2d.rotate(Math.toRadians(47.7), e.getX(), e.getY());
+        g2d.fill(e);
+        g2d.setTransform(reset);
 
         // Body
         e = new Ellipse2D.Double(22.2, 20.2, 114.7, 54.4);
-        g2d.draw(e);
+        g2d.fill(e);
 
         e = new Ellipse2D.Double(70.5, 0, 79.7, 77.4);
-        g2d.draw(e);
+        g2d.fill(e);
 
         //Tail
         Rectangle2D.Double r = new Rectangle2D.Double(138, 53.7, 37.6, 8.4);

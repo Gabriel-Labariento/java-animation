@@ -49,6 +49,10 @@ public class WalkingCat implements DrawingObject {
         return x;
     }
 
+    public double getY(){
+        return y;
+    }
+
     public double getCatLength(){
         return catLength;
     }
