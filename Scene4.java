@@ -4,10 +4,12 @@ import java.awt.geom.*;
 public class Scene4 implements DrawingObject {
     private double width;
     private double height;
+    private boolean areCatsFighting;
 
-    public Scene4(int w, int h){
+    public Scene4(int w, int h, boolean areCatsFighting){
         width = w;
         height = h;
+        this.areCatsFighting = areCatsFighting;
     }
     
     @Override
@@ -51,8 +53,16 @@ public class Scene4 implements DrawingObject {
         trashCan1.draw(g2d);
         trashCan2.draw(g2d);
 
-        SittingCat enemyCat = new SittingCat(519.5, 377.6, 1.10, Color.decode("#242424"));
-        enemyCat.draw(g2d);
+        if (areCatsFighting){
+            AngryCat enemyCat = new AngryCat(519.5, 377.6, 1.10, Color.decode("#242424"));
+            enemyCat.draw(g2d);
+        } else {
+            SittingCat enemyCat = new SittingCat(519.5, 377.6, 1.10, Color.decode("#242424"));
+            enemyCat.draw(g2d);
+        } 
+    }
+
+    private void drawCatFightScene(Graphics2D g2d){
 
     }
 }

@@ -40,5 +40,13 @@ public class SceneCanvas extends JComponent{
     public SceneHandler getSceneHandler(){
         return sceneHandler;
     }
+
+    public int getWidth(){
+        return width;
+    };
+
+    public int getHeight(){
+        return height;
+    }
     
 }

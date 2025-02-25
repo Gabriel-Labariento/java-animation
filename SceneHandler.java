@@ -12,6 +12,7 @@ public class SceneHandler {
         width = w;
         height = h;
         
+        // Start with Scene1 and a SleepingCat
         drawingObjects.add(new Scene1(width, height));
         drawingObjects.add(new SleepingCat(400, 488.6, 0.66, Color.decode("#242424")));
     }
@@ -28,7 +29,7 @@ public class SceneHandler {
                 drawingObjects.set(0, new Scene3(width, height));
                 break;
             case 4:
-                drawingObjects.set(0, new Scene4(width, height));
+                drawingObjects.set(0, new Scene4(width, height, false));
                 break;
             case 5:
                 drawingObjects.set(0, new Scene5(width, height));

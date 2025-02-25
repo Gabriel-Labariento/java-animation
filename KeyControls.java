@@ -29,7 +29,7 @@ public class KeyControls implements KeyListener {
         isAnimating = false;
         sceneHandler = sceneCanvas.getSceneHandler();
         drawingObjects = sceneCanvas.getDrawingObjects();
-        stepSize = 20;
+        stepSize = 40;
         frameDelay = 200;
         xCatPos = 446.5;
         }
@@ -68,9 +68,16 @@ public class KeyControls implements KeyListener {
     private void startAnimation(){
         walkingCat = (WalkingCat) drawingObjects.get(1);
         xCatPos += stepSize;
+        
+        // Scene 4 cat fight animation
+        // final int 
+        if (sceneCount == 4 & xCatPos >= 200 ){
+            drawingObjects.set(0, new Scene4(sceneCanvas.getWidth(), sceneCanvas.getHeight(), true));
+            sceneCanvas.repaint();
+        }
 
-        //Scene 6 Cutscene Animation
-        if (xCatPos >= 330 && sceneCount == 6){
+        // Scene 6 Cutscene Animation
+        else if (xCatPos >= 330 && sceneCount == 6){
             cutScene1();
         }
         else {
@@ -78,7 +85,7 @@ public class KeyControls implements KeyListener {
             walkingCat.changeFrame();
         }
         
-        //Check if cat is out of frame and transition scenes
+        // Check if cat is out of frame and transition scenes
         if (walkingCat.getX() >= sceneCanvas.getWidth()){
             double excess = sceneCanvas.getWidth() + walkingCat.getCatLength();
             walkingCat.adjustX(-(excess));
@@ -86,11 +93,16 @@ public class KeyControls implements KeyListener {
             sceneCount++;
             changeWalk();
 
+            // Loop scenes
             if (sceneCount > 9) sceneCount = 1;
-            sceneHandler.changeScene(sceneCount);
+            else sceneHandler.changeScene(sceneCount);
         }
         sceneCanvas.repaint();
     }
+
+    private void catFightScene(){
+        // drawingObjects.add(walkingCat)
+    };
 
     private void cutScene1(){
         //Make the black cat sit for 5 seconds and move with the white cat after
@@ -124,9 +136,8 @@ public class KeyControls implements KeyListener {
         timer2.scheduleAtFixedRate(timerTask2, 5000, frameDelay);
     }
 
-
-
     private void changeWalk(){
+        // Change y position of cat depending on scene. Change to sittingcat when not key pressed.
         switch (sceneCount){
             case 1:
                 if (isAnimating) drawingObjects.set(1, new WalkingCat(xCatPos, 469.9, 0.59, 0, Color.decode("#242424")));
