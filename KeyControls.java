@@ -3,6 +3,7 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.util.*;
 import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class KeyControls implements KeyListener {
     
@@ -33,7 +34,7 @@ public class KeyControls implements KeyListener {
         isAnimating = false;
         sceneHandler = sceneCanvas.getSceneHandler();
         drawingObjects = sceneCanvas.getDrawingObjects();
-        stepSize = 200;
+        stepSize = 20;
         frameDelay = 200;
         xCatPos = 446.5;
         gameStarted = false;
@@ -54,6 +55,7 @@ public class KeyControls implements KeyListener {
                     sceneHandler.changeScene(sceneCount);
                 } catch (IOException ex) {
                 } catch (LineUnavailableException ex) {
+                } catch (UnsupportedAudioFileException ex) {
                 }
 
                 sceneCanvas.repaint();
@@ -99,6 +101,7 @@ public class KeyControls implements KeyListener {
         walkingCat = (WalkingCat) drawingObjects.get(1);
         xCatPos += stepSize;
 
+
         //Scene 6 Cutscene Animation
         // if (xCatPos >= 330 && sceneCount == 6){
         //     cutScene1();
@@ -118,6 +121,7 @@ public class KeyControls implements KeyListener {
 
             if (sceneCount > 9) {
                 sceneCount = 0;
+                xCatPos = 446.5;
             }
             try {
                 //Custom animation for
@@ -136,6 +140,7 @@ public class KeyControls implements KeyListener {
                 sceneHandler.changeScene(sceneCount);
             } catch (IOException ex) {
             } catch (LineUnavailableException ex) {
+            } catch (UnsupportedAudioFileException ex) {
             }
         }
         sceneCanvas.repaint();
