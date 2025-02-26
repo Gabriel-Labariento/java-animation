@@ -1,5 +1,9 @@
 import java.awt.*;
 import java.util.ArrayList;
+import javax.sound.sampled.*;
+import java.io.*;
+import java.util.Scanner;
+
 import javax.swing.*;
 
 public class SceneCanvas extends JComponent{
@@ -10,7 +14,7 @@ public class SceneCanvas extends JComponent{
     private ArrayList<DrawingObject> drawingObjects;
     private SceneHandler sceneHandler;
 
-    public SceneCanvas(int w, int h, Color c){
+    public SceneCanvas(int w, int h, Color c) throws UnsupportedAudioFileException,IOException, LineUnavailableException{
         width = w;
         height = h;
         backgroundColor = c;
@@ -39,14 +43,6 @@ public class SceneCanvas extends JComponent{
 
     public SceneHandler getSceneHandler(){
         return sceneHandler;
-    }
-
-    public int getWidth(){
-        return width;
-    };
-
-    public int getHeight(){
-        return height;
     }
     
 }
