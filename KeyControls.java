@@ -1,15 +1,19 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.*;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class KeyControls implements KeyListener {
     
     private final int SPACEBARKEYCODE = 32;
-    private final int timerDelay = 200;
-    private static int sceneCount = 1;
+    private int timerDelay = 200;
+    private static int sceneCount = 0;
     private int frameDelay;
     private int stepSize;
     private SceneCanvas sceneCanvas;
+    private Timer scene0Timer;
     private Timer timer1;
     private Timer timer2;
     private TimerTask timerTask1;
@@ -18,6 +22,7 @@ public class KeyControls implements KeyListener {
     private WalkingCat walkingCat2;
     private boolean isAnimating;
     private boolean catsCreated;
+    private boolean gameStarted;
     private SceneHandler sceneHandler;
     private ArrayList<DrawingObject> drawingObjects;
     private double xCatPos;
@@ -29,9 +34,10 @@ public class KeyControls implements KeyListener {
         isAnimating = false;
         sceneHandler = sceneCanvas.getSceneHandler();
         drawingObjects = sceneCanvas.getDrawingObjects();
-        stepSize = 40;
+        stepSize = 20;
         frameDelay = 200;
         xCatPos = 446.5;
+        gameStarted = false;
         }
 
     @Override
@@ -39,10 +45,36 @@ public class KeyControls implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent event){
-        if ((event.getKeyCode() == SPACEBARKEYCODE) && !isAnimating){
+        if (event.getKeyCode() == SPACEBARKEYCODE && !isAnimating){
             isAnimating = true;
-            //Modify walking cat according to current scene
-            changeWalk();
+
+            if (sceneCount == 0){
+                sceneCount++;
+
+                try {
+                    sceneHandler.changeScene(sceneCount);
+                } catch (IOException ex) {
+                } catch (LineUnavailableException ex) {
+                } catch (UnsupportedAudioFileException ex) {
+                }
+
+                sceneCanvas.repaint();
+
+                //Add delay to when user can move the cat
+                timerDelay += 2000;
+                TimerTask scene0Task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        timerDelay -= 2000;
+                        //Modify walking cat according to current scene    
+                        changeWalk();
+                    }
+                };
+                scene0Timer = new Timer("Timer");
+                scene0Timer.schedule(scene0Task, 1900);
+            }
+            else changeWalk();
+
             timer1 = new Timer();
             timerTask1 = new TimerTask(){
                 @Override
@@ -65,27 +97,21 @@ public class KeyControls implements KeyListener {
         }
     };
 
-    private void startAnimation(){
+    private void startAnimation() {      
         walkingCat = (WalkingCat) drawingObjects.get(1);
         xCatPos += stepSize;
-        
-        // Scene 4 cat fight animation
-        // final int 
-        if (sceneCount == 4 & xCatPos >= 200 ){
-            drawingObjects.set(0, new Scene4(sceneCanvas.getWidth(), sceneCanvas.getHeight(), true));
-            sceneCanvas.repaint();
-        }
 
-        // Scene 6 Cutscene Animation
-        else if (xCatPos >= 330 && sceneCount == 6){
-            cutScene1();
-        }
-        else {
+
+        //Scene 6 Cutscene Animation
+        // if (xCatPos >= 330 && sceneCount == 6){
+        //     cutScene1();
+        // }
+        // else {
             walkingCat.adjustX(stepSize);
             walkingCat.changeFrame();
-        }
+        // }
         
-        // Check if cat is out of frame and transition scenes
+        //Check if cat is out of frame and transition scenes
         if (walkingCat.getX() >= sceneCanvas.getWidth()){
             double excess = sceneCanvas.getWidth() + walkingCat.getCatLength();
             walkingCat.adjustX(-(excess));
@@ -93,16 +119,32 @@ public class KeyControls implements KeyListener {
             sceneCount++;
             changeWalk();
 
-            // Loop scenes
-            if (sceneCount > 9) sceneCount = 1;
-            else sceneHandler.changeScene(sceneCount);
+            if (sceneCount > 9) {
+                sceneCount = 0;
+                xCatPos = 446.5;
+            }
+            try {
+                //Custom animation for
+                // else if (sceneCount == 3){
+                //     drawingObjects.add(new Mouse(-179.5, 496.2, 1.28, Color.decode("#242424")));
+                //     Timer mouseTimer = new Timer();
+                //     TimerTask mouseTask = new TimerTask(){
+                //         @Override
+                //         public void run(){
+                //             Mouse.adjustX(stepSize);
+                //             if ()
+                //         }
+                //     };
+                //     timer1.scheduleAtFixedRate(timerTask1, timerDelay, frameDelay);
+                // }
+                sceneHandler.changeScene(sceneCount);
+            } catch (IOException ex) {
+            } catch (LineUnavailableException ex) {
+            } catch (UnsupportedAudioFileException ex) {
+            }
         }
         sceneCanvas.repaint();
     }
-
-    private void catFightScene(){
-        // drawingObjects.add(walkingCat)
-    };
 
     private void cutScene1(){
         //Make the black cat sit for 5 seconds and move with the white cat after
@@ -137,7 +179,6 @@ public class KeyControls implements KeyListener {
     }
 
     private void changeWalk(){
-        // Change y position of cat depending on scene. Change to sittingcat when not key pressed.
         switch (sceneCount){
             case 1:
                 if (isAnimating) drawingObjects.set(1, new WalkingCat(xCatPos, 469.9, 0.59, 0, Color.decode("#242424")));

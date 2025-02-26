@@ -1,26 +1,75 @@
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
+import javax.sound.sampled.*;
 
 public class SceneHandler {
     
     private ArrayList<DrawingObject> drawingObjects;
     private int width;
     private int height;
+    private ArrayList<File> files;
+    private ArrayList<AudioInputStream> streams;
+    private ArrayList<Clip> clips;
+    private AudioInputStream audioInputStream;
+    private Clip clip;
+    private Boolean hasPlayed;
+    private Boolean isLooped;
 
-    public SceneHandler(ArrayList<DrawingObject> drawingObjects, int w, int h){
+    public SceneHandler(ArrayList<DrawingObject> drawingObjects, int w, int h) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
         this.drawingObjects = drawingObjects;
         width = w;
         height = h;
-        
-        // Start with Scene1 and a SleepingCat
-        drawingObjects.add(new Scene1(width, height));
+        hasPlayed = false;
+        isLooped = false;
+        files = new ArrayList<>();
+        streams = new ArrayList<>();
+        clips = new ArrayList<>();
+
+        for (int i = 0; i < 9; i++) {
+            files.add(new File(String.format("%d.wav", i+1)));
+            streams.add(AudioSystem.getAudioInputStream(files.get(i)));
+            clips.add(AudioSystem.getClip());
+        }
+
+        drawingObjects.add(new Scene0(width, height));
         drawingObjects.add(new SleepingCat(400, 488.6, 0.66, Color.decode("#242424")));
     }
 
-    public void changeScene(int sceneCount){
+    public void changeScene(int sceneCount) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+        if(isLooped){
+            for (int j = 0; j < 9; j++) {
+                files.set(j, new File(String.format("%d.wav", j+1)));
+                streams.set(j, AudioSystem.getAudioInputStream(files.get(j)));
+                clips.set(j, AudioSystem.getClip());
+            }
+        }
+
+        if (!(sceneCount == 0)){
+            //Check if music has been played before, if it hasnt stop the currently playing music
+            if (hasPlayed){
+                clip.stop();
+                clip.close();
+                System.out.print("1");
+            } 
+            else hasPlayed = true;
+
+            System.out.print("2");
+            clip = clips.get(sceneCount-1);
+            clip.open(streams.get(sceneCount-1));
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
+                System.out.print("3");
         switch (sceneCount){
+            case 0:
+                drawingObjects.set(0, new Scene0(width, height));
+                isLooped = true;
+                System.out.print("4");
+                break;
             case 1:
                 drawingObjects.set(0, new Scene1(width, height));
+                drawingObjects.set(1, new SleepingCat(400, 488.6, 0.66, Color.decode("#242424")));
                 break;
             case 2:
                 drawingObjects.set(0, new Scene2(width, height));
@@ -29,7 +78,7 @@ public class SceneHandler {
                 drawingObjects.set(0, new Scene3(width, height));
                 break;
             case 4:
-                drawingObjects.set(0, new Scene4(width, height, false));
+                drawingObjects.set(0, new Scene4(width, height));
                 break;
             case 5:
                 drawingObjects.set(0, new Scene5(width, height));

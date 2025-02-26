@@ -38,14 +38,6 @@ public class Cloud implements DrawingObject{
         x += distance;
     };
 
-    public double getX(){
-        return x;
-    }
-
-    public double getY(){
-        return y;
-    }
-
     
     
 }
