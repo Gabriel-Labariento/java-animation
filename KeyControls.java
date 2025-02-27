@@ -13,19 +13,16 @@ public class KeyControls implements KeyListener {
     private int stepSize;
     private SceneCanvas sceneCanvas;
     private Timer timer1;
-    private Timer timer2;
     private Cat walkingCat;
-    private Cat walkingCat2;
     private boolean isCatWalking;
     private boolean isCatFighting;
     private boolean isDoneFighting;
     private boolean isCatMingling;
+    private boolean isCatSleeping;
     private boolean catsCreated;
     private SceneHandler sceneHandler;
     private ArrayList<DrawingObject> drawingObjects;
     private double xCatPos;
-    private double yCatPos;
-    private double catSize;
 
     public KeyControls(SceneCanvas sceneCanvas){
         this.sceneCanvas = sceneCanvas;
@@ -61,7 +58,7 @@ public class KeyControls implements KeyListener {
  
     @Override
     public void keyReleased(KeyEvent event){
-        if (event.getKeyCode() == SPACEBARKEYCODE && (!isCatFighting) && (!isCatMingling)){
+        if (event.getKeyCode() == SPACEBARKEYCODE && (!isCatFighting) && (!isCatMingling) && (!isCatSleeping) && (!isCatSleeping)){
             timer1.stop();
             isCatWalking = false;
             changeWalk();
@@ -91,11 +88,14 @@ public class KeyControls implements KeyListener {
             catFightScene();
             // walkingCat.setIsLimping(true); TODO: MODIFY CAT BEHAVIOR FOR LIMPING CAT
         }
-
         // Scene 6 Cutscene Animation
         else if ((sceneCount == 6) && (xCatPos >= 330) && (!isCatMingling)){
             sceneSixAnimation();
         }
+        // Scene 9 Cat to sleep animation
+        else if ((sceneCount == 9) && (xCatPos >= 495) && (!isCatSleeping)){
+            sceneNineAnimation();
+        } 
         else {
             walkingCat.adjustX(stepSize);
             walkingCat.changeFrame();
@@ -218,6 +218,23 @@ public class KeyControls implements KeyListener {
         timer2.start();
     }
 
+    private void sceneNineAnimation(){
+        timer1.stop();
+        isCatSleeping = true;
+
+        xCatPos = 495;
+        drawingObjects.set(1, new SittingCat(xCatPos, 423.1, 1, Color.decode("#242424")));
+        sceneCanvas.repaint();
+        
+        Timer sittingCatToSleepingCatTimer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae){
+                drawingObjects.set(1, new SleepingCat(xCatPos, 473.1, 1, Color.decode("#242424")));
+                sceneCanvas.repaint();
+            }
+        });
+        sittingCatToSleepingCatTimer.start();
+    }
 
     private void changeWalk(){
         // Change y position of cat depending on scene. Change to sittingcat when not key pressed.
