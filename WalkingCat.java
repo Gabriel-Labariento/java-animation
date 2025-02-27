@@ -32,6 +32,7 @@ public class WalkingCat implements DrawingObject, Cat {
         AffineTransform reset = g2d.getTransform();
         g2d.translate(x, y);
         g2d.scale(size, size);
+
         drawSnout(g2d);
         drawHead(g2d, walkFrame);
         drawBody(g2d, walkFrame);
@@ -466,4 +467,7 @@ public class WalkingCat implements DrawingObject, Cat {
         }
     };
 
+    public void setIsLimping(boolean isLimping){
+        this.isLimping = isLimping;
+    }
 }

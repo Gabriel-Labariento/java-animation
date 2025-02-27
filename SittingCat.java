@@ -31,7 +31,10 @@ public class SittingCat implements DrawingObject, Cat{
     @Override
     public double getCatLength(){
         return size * CATLENGTH;
-    };
+    }
+
+    @Override
+    public void setIsLimping(boolean isLimping){}
 
     @Override
     public void draw(Graphics2D g2d){

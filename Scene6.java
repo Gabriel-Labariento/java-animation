@@ -115,8 +115,13 @@ public class Scene6 implements DrawingObject {
         Rectangle2D.Double foreGround = new Rectangle2D.Double(0, 453.3, 800, 191.1);
         g2d.setColor(Color.decode("#f8bdc1"));
         g2d.fill(foreGround);
+
+        // Lover cat
+        // loverCat = new SittingCat(414, 381.5, 1, Color.WHITE);
+        // loverCat.draw(g2d);
     }
 
     @Override
     public void setColor(Color color) {};
+
 }

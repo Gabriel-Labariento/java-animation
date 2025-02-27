@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.Desktop.Action;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.Timer;
@@ -13,15 +14,12 @@ public class KeyControls implements KeyListener {
     private SceneCanvas sceneCanvas;
     private Timer timer1;
     private Timer timer2;
-    // private Timer timer1;
-    // private Timer timer2;
-    // private TimerTask timerTask1;
-    // private TimerTask timerTask2;
     private Cat walkingCat;
-    private WalkingCat walkingCat2;
+    private Cat walkingCat2;
     private boolean isCatWalking;
     private boolean isCatFighting;
     private boolean isDoneFighting;
+    private boolean isCatMingling;
     private boolean catsCreated;
     private SceneHandler sceneHandler;
     private ArrayList<DrawingObject> drawingObjects;
@@ -34,6 +32,7 @@ public class KeyControls implements KeyListener {
         isCatWalking = false;
         isCatFighting = false;
         isDoneFighting = false;
+        isCatMingling = false;
         sceneHandler = sceneCanvas.getSceneHandler();
         drawingObjects = sceneCanvas.getDrawingObjects();
         stepSize = 60;
@@ -46,7 +45,7 @@ public class KeyControls implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent event){
-        if ((event.getKeyCode() == SPACEBARKEYCODE) && (!isCatWalking) && (!isCatFighting)){
+        if ((event.getKeyCode() == SPACEBARKEYCODE) && (!isCatWalking) && (!isCatFighting) && (!isCatMingling)){
             isCatWalking = true;
             //Modify walking cat according to current scene
             changeWalk();
@@ -56,14 +55,13 @@ public class KeyControls implements KeyListener {
                     startAnimation();
                 }
             });
-            timer1.setInitialDelay(timerDelay);
             timer1.start();
         }
     };
  
     @Override
     public void keyReleased(KeyEvent event){
-        if (event.getKeyCode() == SPACEBARKEYCODE && (!isCatFighting)){
+        if (event.getKeyCode() == SPACEBARKEYCODE && (!isCatFighting) && (!isCatMingling)){
             timer1.stop();
             isCatWalking = false;
             changeWalk();
@@ -72,7 +70,7 @@ public class KeyControls implements KeyListener {
     };
 
     private void startAnimation(){
-        walkingCat = (Cat) drawingObjects.get(1);
+        if (drawingObjects.size() > 1) walkingCat = (Cat) drawingObjects.get(1);
         xCatPos += stepSize;
         
         // Check if cat is out of frame and transition scenes
@@ -91,17 +89,17 @@ public class KeyControls implements KeyListener {
         // Scene 4 cat fight animation
         else if ((sceneCount == 4) && (xCatPos >= 200) && (!isCatFighting) && (!isDoneFighting)){
             catFightScene();
+            // walkingCat.setIsLimping(true); TODO: MODIFY CAT BEHAVIOR FOR LIMPING CAT
         }
 
         // Scene 6 Cutscene Animation
-        else if (xCatPos >= 330 && sceneCount == 6){
-            // cutScene1();
+        else if ((sceneCount == 6) && (xCatPos >= 330) && (!isCatMingling)){
+            sceneSixAnimation();
         }
         else {
             walkingCat.adjustX(stepSize);
             walkingCat.changeFrame();
         }
-        
         sceneCanvas.repaint();
     }
 
@@ -132,7 +130,7 @@ public class KeyControls implements KeyListener {
                     direction *= -1;
                     moveCounter++;
                 } else {
-                    drawingObjects.remove(fightCloud);
+                    if (drawingObjects.contains(fightCloud)) drawingObjects.remove(fightCloud);
                     drawingObjects.set(0, new Scene4(sceneCanvas, sceneCanvas.getWidth(), sceneCanvas.getHeight(), true, false));
                     cat.setColor(Color.decode("#242424"));
                     sceneCanvas.repaint();
@@ -161,43 +159,65 @@ public class KeyControls implements KeyListener {
         catFightSceneTimer.start();
     }
         
-        
-        
-        
-            
-        
+    private void sceneSixAnimation(){
+        timer1.stop();
+        isCatMingling = true;
 
-    // private void cutScene1(){
-    //     //Make the black cat sit for 5 seconds and move with the white cat after
-    //     xCatPos = 330.3;
-    //     drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#242424")));
+        //Make the black cat sit for 5 seconds and move with the white cat after
+        xCatPos = 330.3;
+        drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#242424")));
+        drawingObjects.add(new SittingCat(414, 381.5, 1, Color.WHITE));
+        
+        catsCreated = false;
+        
+        // Stop when the cats are out of frame, otherwise keep moving
+        Timer loverCatsMovementTimer = new Timer(frameDelay, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae){
+                Cat loverCatBlack = null;
+                Cat loverCatWhite = null;
 
-    //     catsCreated = false;
-    //     timer2 = new Timer();
-    //     timerTask2 = new TimerTask(){
-    //         @Override
-    //         public void run(){
-    //             if (!catsCreated){
-    //                 drawingObjects.set(1, new WalkingCat(xCatPos, 430.7, 0.96, 0, Color.decode("#242424")));
-    //                 drawingObjects.set(2, new WalkingCat(xCatPos+204.6, 444.8, 0.83, 0, Color.WHITE));
-    //                 catsCreated = true;
-    //             }
-    //             walkingCat = (WalkingCat) drawingObjects.get(1);
-    //             walkingCat2 = (WalkingCat) drawingObjects.get(2);
-    //             walkingCat.adjustX(stepSize);
-    //             walkingCat2.adjustX(stepSize);
-    //             walkingCat.changeFrame();
-    //             walkingCat2.changeFrame();
-    //             sceneCanvas.repaint();
-    //             if (walkingCat.getX() >= sceneCanvas.getWidth()){
-    //                 timer2.cancel();
-    //                 timer2.purge();
-    //                 drawingObjects.remove(2);
-    //             }
-    //         }
-    //     };
-    //     timer2.scheduleAtFixedRate(timerTask2, 5000, frameDelay);
-    // }
+                if (drawingObjects.size() > 2){
+                    loverCatBlack = (Cat) drawingObjects.get(1);
+                    loverCatWhite = (Cat) drawingObjects.get(2);
+                }
+
+                if ((loverCatBlack != null) && (loverCatBlack.getX() >= sceneCanvas.getWidth())){
+                    drawingObjects.remove(2);
+                    sceneCanvas.repaint();
+                    ((Timer) ae.getSource()).stop();
+                    sceneCount++;
+                    sceneHandler.changeScene(sceneCount);
+                    xCatPos = 0;
+                    isCatMingling = false;
+                    return;
+                } else {
+                    loverCatBlack.adjustX(20);
+                    loverCatWhite.adjustX(20);
+                    loverCatBlack.changeFrame();
+                    loverCatWhite.changeFrame();
+                    sceneCanvas.repaint();
+                }
+            }
+        });
+
+        Timer timer2 = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae){
+                if (!catsCreated){
+                    walkingCat = new WalkingCat(xCatPos, 430.7, 0.96, 0, Color.decode("#242424"));
+                    drawingObjects.set(1, (DrawingObject) walkingCat);
+                    drawingObjects.set(2, new WalkingCat(xCatPos+204.6, 444.8, 0.83, 0, Color.WHITE));
+                    catsCreated = true;
+                    sceneCanvas.repaint();
+                    ((Timer) ae.getSource()).stop();
+                    loverCatsMovementTimer.start();
+                }
+            }
+        });
+        timer2.start();
+    }
+
 
     private void changeWalk(){
         // Change y position of cat depending on scene. Change to sittingcat when not key pressed.
@@ -223,7 +243,7 @@ public class KeyControls implements KeyListener {
                 else drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#242424")));
                 break;
             case 6:
-                if (isCatWalking) drawingObjects.set(1, new WalkingCat(xCatPos, 430.7, 0.96, 0, Color.decode("#242424")));
+                if (isCatWalking && (!isCatMingling)) drawingObjects.set(1, new WalkingCat(xCatPos, 430.7, 0.96, 0, Color.decode("#242424")));
                 else drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#242424")));
                 break;
             case 7:
