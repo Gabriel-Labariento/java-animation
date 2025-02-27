@@ -33,7 +33,7 @@ public class SceneHandler {
         }
 
         drawingObjects.add(new Scene0(width, height));
-        drawingObjects.add(new SleepingCat(400, 488.6, 0.66, Color.decode("#242424")));
+        drawingObjects.add(new SleepingCat(400, 488.6, 0.66, Color.decode("#1f2020")));
     }
 
     public void changeScene(int sceneCount) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
@@ -47,7 +47,7 @@ public class SceneHandler {
         }
 
         if (!(sceneCount == 0)){
-            //Check if music has been played before, if it hasnt stop the currently playing music
+            //Check if music has been played before, if it has stop the currently playing music
             if (hasPlayed){
                 clip.stop();
                 clip.close();
@@ -66,7 +66,7 @@ public class SceneHandler {
                 break;
             case 1:
                 drawingObjects.set(0, new Scene1(width, height));
-                drawingObjects.set(1, new SleepingCat(400, 488.6, 0.66, Color.decode("#242424")));
+                drawingObjects.set(1, new SleepingCat(400, 488.6, 0.66, Color.decode("#1f2020")));
                 break;
             case 2:
                 drawingObjects.set(0, new Scene2(width, height));

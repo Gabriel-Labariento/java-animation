@@ -181,8 +181,8 @@ public class KeyControls implements KeyListener {
     private void changeWalk(){
         switch (sceneCount){
             case 1:
-                if (isAnimating) drawingObjects.set(1, new WalkingCat(xCatPos, 469.9, 0.59, 0, Color.decode("#242424")));
-                else drawingObjects.set(1, new SittingCat(xCatPos, 434.1, 0.67, Color.decode("#242424")));
+                if (isAnimating) drawingObjects.set(1, new WalkingCat(xCatPos, 469.9, 0.59, 0, Color.decode("#1f2020")));
+                else drawingObjects.set(1, new SittingCat(xCatPos, 434.1, 0.67, Color.decode("#1f2020")));
                 break;
             case 2:
                 if (isAnimating) drawingObjects.set(1, new WalkingCat(xCatPos, 452.5, 0.75, 0, Color.decode("#242424")));

@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.geom.*;
-import java.util.*;
 
 
 public class Scene0 implements DrawingObject {
@@ -17,7 +16,7 @@ public class Scene0 implements DrawingObject {
         AffineTransform reset = g2d.getTransform();
 
         Rectangle2D.Double background = new Rectangle2D.Double(0, 0, width, height);
-        g2d.setColor(Color.decode("#242424"));
+        g2d.setColor(Color.decode("#1f2020"));
         g2d.fill(background);
 
         g2d.setColor(Color.WHITE);
