@@ -42,6 +42,7 @@ public class SceneHandler {
                 files.set(j, new File(String.format("%d.wav", j+1)));
                 streams.set(j, AudioSystem.getAudioInputStream(files.get(j)));
                 clips.set(j, AudioSystem.getClip());
+                isLooped = false;
             }
         }
 
@@ -53,19 +54,16 @@ public class SceneHandler {
                 System.out.print("1");
             } 
             else hasPlayed = true;
-
-            System.out.print("2");
+            
             clip = clips.get(sceneCount-1);
             clip.open(streams.get(sceneCount-1));
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
-                System.out.print("3");
-        switch (sceneCount){
+            switch (sceneCount){
             case 0:
                 drawingObjects.set(0, new Scene0(width, height));
                 isLooped = true;
-                System.out.print("4");
                 break;
             case 1:
                 drawingObjects.set(0, new Scene1(width, height));
