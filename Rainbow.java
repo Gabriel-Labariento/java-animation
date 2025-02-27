@@ -41,6 +41,9 @@ public class Rainbow implements DrawingObject{
         g2d.setTransform(reset);
     };
 
+    @Override
+    public void setColor(Color color) {};
+    
     public double getX(){
         return x;
     }

@@ -1,15 +1,21 @@
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.ArrayList;
+
 
 public class Scene4 implements DrawingObject {
+    private SceneCanvas sceneCanvas;
     private double width;
     private double height;
     private boolean areCatsFighting;
+    private boolean isDoneFighting;
 
-    public Scene4(int w, int h, boolean areCatsFighting){
+    public Scene4(SceneCanvas sc,int w, int h, boolean areCatsFighting, boolean isDoneFighting){
+        sceneCanvas = sc;
         width = w;
         height = h;
         this.areCatsFighting = areCatsFighting;
+        this.isDoneFighting = isDoneFighting;
     }
     
     @Override
@@ -53,16 +59,20 @@ public class Scene4 implements DrawingObject {
         trashCan1.draw(g2d);
         trashCan2.draw(g2d);
 
+        ArrayList<DrawingObject> drawingObjects = sceneCanvas.getDrawingObjects();
+
         if (areCatsFighting){
             AngryCat enemyCat = new AngryCat(519.5, 377.6, 1.10, Color.decode("#242424"));
             enemyCat.draw(g2d);
+        } 
+        else if (isDoneFighting){
+            drawingObjects.add(new WalkingCat(519.5, 377.6, 1, 0, Color.decode("#242424")));
         } else {
             SittingCat enemyCat = new SittingCat(519.5, 377.6, 1.10, Color.decode("#242424"));
             enemyCat.draw(g2d);
         } 
     }
 
-    private void drawCatFightScene(Graphics2D g2d){
-
-    }
+    @Override
+    public void setColor(Color color) {};
 }

@@ -22,6 +22,9 @@ public class Circle implements DrawingObject {
         g2d.fill(circle);
     }
 
+    @Override
+    public void setColor(Color color) {};
+    
     public void adjustX(double distance){
         x += distance;
     }

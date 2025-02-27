@@ -71,4 +71,7 @@ public class SleepingCat implements DrawingObject{
         g2d.setTransform(reset);
     }
     
+    @Override
+    public void setColor(Color color) {};
+    
 }

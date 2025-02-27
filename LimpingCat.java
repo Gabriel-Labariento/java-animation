@@ -29,6 +29,9 @@ public class LimpingCat implements DrawingObject{
 
         g2d.setTransform(reset);
     };
+    
+    @Override
+    public void setColor(Color color) {};
 
     private void drawHead(Graphics2D g2d){
         g2d.setColor(color);

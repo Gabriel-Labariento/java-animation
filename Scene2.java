@@ -82,4 +82,8 @@ public class Scene2 implements DrawingObject {
         g6.draw(g2d);
 
     }
+
+    @Override
+    public void setColor(Color color) {};
+    
 }

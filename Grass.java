@@ -31,6 +31,9 @@ public class Grass implements DrawingObject {
         g2d.setTransform(reset);
     }
 
+    @Override
+    public void setColor(Color color) {};
+    
     private void drawGrassNoScaling(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 

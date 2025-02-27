@@ -168,4 +168,6 @@ public class Tree implements DrawingObject{
         g2d.fill(e);
     }
 
+    @Override
+    public void setColor(Color color) {};
 }

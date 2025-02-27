@@ -37,6 +37,9 @@ public class Quadrilateral implements DrawingObject {
         else g2d.draw(p);     
     }
 
+    @Override
+    public void setColor(Color color) {};
+    
     public double[] getX(){
         double[] xPoints = new double[4];
         for (int i = 0; i < xPoints.length; i++){

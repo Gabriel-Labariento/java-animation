@@ -67,4 +67,7 @@ public class Scene5 implements DrawingObject {
         g7.draw(g2d);
         g8.draw(g2d);
     }
+
+    @Override
+    public void setColor(Color color) {};
 }

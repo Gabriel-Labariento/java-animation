@@ -116,4 +116,7 @@ public class Scene6 implements DrawingObject {
         g2d.setColor(Color.decode("#f8bdc1"));
         g2d.fill(foreGround);
     }
+
+    @Override
+    public void setColor(Color color) {};
 }

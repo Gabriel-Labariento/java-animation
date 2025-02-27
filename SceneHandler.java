@@ -3,11 +3,13 @@ import java.util.ArrayList;
 
 public class SceneHandler {
     
+    private SceneCanvas sceneCanvas;
     private ArrayList<DrawingObject> drawingObjects;
     private int width;
     private int height;
 
-    public SceneHandler(ArrayList<DrawingObject> drawingObjects, int w, int h){
+    public SceneHandler(SceneCanvas sceneCanvas, ArrayList<DrawingObject> drawingObjects, int w, int h){
+        this.sceneCanvas = sceneCanvas;
         this.drawingObjects = drawingObjects;
         width = w;
         height = h;
@@ -29,7 +31,7 @@ public class SceneHandler {
                 drawingObjects.set(0, new Scene3(width, height));
                 break;
             case 4:
-                drawingObjects.set(0, new Scene4(width, height, false));
+                drawingObjects.set(0, new Scene4(sceneCanvas, width, height, false, false));
                 break;
             case 5:
                 drawingObjects.set(0, new Scene5(width, height));

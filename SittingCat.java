@@ -1,11 +1,12 @@
 import java.awt.*;
 import java.awt.geom.*;
 
-public class SittingCat implements DrawingObject{
+public class SittingCat implements DrawingObject, Cat{
     private double x;
     private double y;
     private double size;
     private Color color;
+    private final int CATLENGTH = 81;
 
     public SittingCat(double xPosition, double yPosition, double size, Color color){
         x = xPosition;
@@ -14,9 +15,23 @@ public class SittingCat implements DrawingObject{
         this.color = color;
     }
 
+    @Override
     public void adjustX(double distance){
         x += distance;
     }
+
+    @Override
+    public double getX(){
+        return x;
+    }
+
+    @Override
+    public void changeFrame() {}
+
+    @Override
+    public double getCatLength(){
+        return size * CATLENGTH;
+    };
 
     @Override
     public void draw(Graphics2D g2d){
@@ -83,5 +98,10 @@ public class SittingCat implements DrawingObject{
         g2d.fill(e4);
 
         g2d.setTransform(reset);
+    };
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
     };
 }

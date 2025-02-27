@@ -26,6 +26,9 @@ public class Mouse implements DrawingObject {
         g2d.setTransform(reset);
     };
 
+    @Override
+    public void setColor(Color color) {};
+    
     public void adjustX(double distance){
         x += distance;
     };

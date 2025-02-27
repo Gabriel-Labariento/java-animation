@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.geom.*;
 
-public class WalkingCat implements DrawingObject {
+public class WalkingCat implements DrawingObject, Cat {
 
     private double x;
     private double y;
@@ -9,7 +9,8 @@ public class WalkingCat implements DrawingObject {
     private int walkFrame;
     private Color color;
     private double catLength;
-
+    private boolean isLimping;
+    
     public WalkingCat(double xPosition, double yPosition, double size, int walkFrame, Color color){
         x = xPosition;
         y = yPosition;
@@ -18,11 +19,13 @@ public class WalkingCat implements DrawingObject {
         else this.walkFrame = walkFrame;
         this.color = color;
         catLength = size * 220;
+        isLimping = false;
     }
 
     public void adjustX(double distance){
         x += distance;
     }
+
 
     @Override
     public void draw(Graphics2D g2d){
@@ -37,14 +40,26 @@ public class WalkingCat implements DrawingObject {
         g2d.setTransform(reset);
     }
 
+    @Override
     public void changeFrame(){
-        if (this.walkFrame == 2){
-            this.walkFrame = 0;
+        if (!isLimping){
+            if (this.walkFrame == 2){
+                this.walkFrame = 0;
+            } else {
+                walkFrame += 1;
+            }
         } else {
-            walkFrame += 1;
+            if (this.walkFrame == 2){
+                this.walkFrame = 1;
+            } else {
+                walkFrame += 1;
+            }
         }
-    }
 
+        
+    }        
+
+    @Override
     public double getX(){
         return x;
     }
@@ -53,8 +68,13 @@ public class WalkingCat implements DrawingObject {
         return y;
     }
 
+    @Override
     public double getCatLength(){
         return catLength;
+    }
+
+    public void setColor(Color color){
+        this.color = color;
     }
 
     private void drawSnout(Graphics2D g2d){

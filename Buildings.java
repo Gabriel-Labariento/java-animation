@@ -32,9 +32,8 @@ public class Buildings implements DrawingObject {
         g2d.setTransform(reset);
     };
 
-    public void adjustX(double distance){
-        x += distance;
-    };
+    @Override
+    public void setColor(Color color) {};
 
     private void drawTertiaryBuildings(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();

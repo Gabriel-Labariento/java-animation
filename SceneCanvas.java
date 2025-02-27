@@ -16,7 +16,7 @@ public class SceneCanvas extends JComponent{
         backgroundColor = c;
         setPreferredSize(new Dimension(width, height));
         drawingObjects = new ArrayList<DrawingObject>();
-        sceneHandler = new SceneHandler(drawingObjects, width, height);
+        sceneHandler = new SceneHandler(this, drawingObjects, width, height);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class SceneCanvas extends JComponent{
         RenderingHints rh = new RenderingHints(
             RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setRenderingHints( rh);
+            g2d.setRenderingHints( rh);
 
         for (DrawingObject drawingObject : drawingObjects) {
             drawingObject.draw(g2d);
