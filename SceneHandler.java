@@ -51,7 +51,6 @@ public class SceneHandler {
             if (hasPlayed){
                 clip.stop();
                 clip.close();
-                System.out.print("1");
             } 
             else hasPlayed = true;
             
