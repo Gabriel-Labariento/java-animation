@@ -101,6 +101,7 @@ public class KeyControls implements KeyListener {
             walkingCat.adjustX(stepSize);
             walkingCat.changeFrame();
         }
+        
         sceneCanvas.repaint();
     }
 

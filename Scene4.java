@@ -74,5 +74,5 @@ public class Scene4 implements DrawingObject {
     }
 
     @Override
-    public void setColor(Color color) {};
+    public void setColor(Color color){};
 }
