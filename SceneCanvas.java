@@ -10,14 +10,12 @@ public class SceneCanvas extends JComponent{
     
     private int width;
     private int height;
-    private Color backgroundColor;
     private ArrayList<DrawingObject> drawingObjects;
     private SceneHandler sceneHandler;
 
-    public SceneCanvas(int w, int h, Color c) throws UnsupportedAudioFileException,IOException, LineUnavailableException{
+    public SceneCanvas(int w, int h) throws UnsupportedAudioFileException,IOException, LineUnavailableException{
         width = w;
         height = h;
-        backgroundColor = c;
         setPreferredSize(new Dimension(width, height));
         drawingObjects = new ArrayList<DrawingObject>();
         sceneHandler = new SceneHandler(this, drawingObjects, width, height);

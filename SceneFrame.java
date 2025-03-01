@@ -19,7 +19,7 @@ public class SceneFrame extends JFrame {
 
     public void setUpGUI() throws UnsupportedAudioFileException,IOException, LineUnavailableException{
         Container contentPane = getContentPane();
-        SceneCanvas sceneCanvas = new SceneCanvas(width, height, Color.WHITE);
+        SceneCanvas sceneCanvas = new SceneCanvas(width, height);
         setTitle(title);
         contentPane.add(sceneCanvas, BorderLayout.CENTER);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

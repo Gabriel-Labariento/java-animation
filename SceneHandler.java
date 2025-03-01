@@ -11,7 +11,6 @@ public class SceneHandler {
     private ArrayList<DrawingObject> drawingObjects;
     private int width;
     private int height;
-    private AudioInputStream audioInputStream;
     private ArrayList<File> files;
     private ArrayList<AudioInputStream> streams;
     private ArrayList<Clip> clips;

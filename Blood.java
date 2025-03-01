@@ -29,9 +29,5 @@ public class Blood implements DrawingObject{
     @Override
     public void setColor(Color color) {};
     
-    private void drawDrops(Graphics2D g2d){
-        
-    }
-    
     
 }

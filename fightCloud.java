@@ -1,10 +1,10 @@
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public class fightCloud implements DrawingObject{
+public class FightCloud implements DrawingObject{
     private double x, y, size;
 
-    public fightCloud(double xPositon, double yPosition, double size){
+    public FightCloud(double xPositon, double yPosition, double size){
         x = xPositon;
         y = yPosition;
         this.size = size;
@@ -17,6 +17,13 @@ public class fightCloud implements DrawingObject{
         g2d.scale(size, size);
         drawFightCloudNoScaling(g2d);
         g2d.setTransform(reset);
+    }
+
+    @Override
+    public void setColor(Color color) {}
+
+    public void adjustX(double distance) {
+        x += distance;
     }
 
     private void drawFightCloudNoScaling(Graphics2D g2d){
