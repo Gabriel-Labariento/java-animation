@@ -24,4 +24,7 @@ public class Square implements DrawingObject {
         g2d.setColor(color);
         g2d.fill(square);
     }
+
+    @Override
+    public void setColor(Color color) {};
 }

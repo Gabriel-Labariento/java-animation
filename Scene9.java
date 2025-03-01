@@ -131,8 +131,8 @@ public class Scene9 implements DrawingObject {
         Tree tree = new Tree(561.9, 265.3, 0.87, sceneBlack);
         tree.draw(g2d);
 
-        Grass g1 = new Grass(294.3, 427.4, 0.65, sceneBlack);
-        Grass g2 = new Grass(110.2, 459.1, 0.65, sceneBlack);
+        Grass g1 = new Grass(192.1, 429.1, 0.65, sceneBlack);
+        Grass g2 = new Grass(143, 455.2, 0.65, sceneBlack);
         g1.draw(g2d);
         g2.draw(g2d);
 
@@ -152,9 +152,12 @@ public class Scene9 implements DrawingObject {
 
         Grass g3 = new Grass(-117, 370.1, 1.87, sceneBlack);
         Grass g4 = new Grass(650.6, 431.2, 1.32, sceneBlack);
-        Grass g5 = new Grass(353.3, 499.9, 0.94, sceneBlack);
+        Grass g5 = new Grass(375.2, 534, 0.94, sceneBlack);
         g3.draw(g2d);
         g4.draw(g2d);
         g5.draw(g2d);
     }
+
+    @Override
+    public void setColor(Color color) {};
 }

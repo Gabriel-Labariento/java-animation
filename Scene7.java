@@ -76,4 +76,7 @@ public class Scene7 implements DrawingObject {
         catBowl2.draw(g2d);
 
     }
+
+    @Override
+    public void setColor(Color color) {};
 }

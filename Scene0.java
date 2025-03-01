@@ -25,4 +25,7 @@ public class Scene0 implements DrawingObject {
         g2d.setFont(new Font("Arial", Font.PLAIN, 15));
         g2d.drawString("HOLD THE SPACEBAR TO MOVE", 280, 550);
     }
+
+    @Override
+    public void setColor(Color color) {}
 }

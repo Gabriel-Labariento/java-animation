@@ -1,7 +1,8 @@
 import java.awt.*;
-import javax.sound.sampled.*;
-import java.io.*;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 public class SceneFrame extends JFrame {
@@ -16,7 +17,7 @@ public class SceneFrame extends JFrame {
         title = t;
     }
 
-    public void setUpGUI() throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+    public void setUpGUI() throws UnsupportedAudioFileException,IOException, LineUnavailableException{
         Container contentPane = getContentPane();
         SceneCanvas sceneCanvas = new SceneCanvas(width, height, Color.WHITE);
         setTitle(title);

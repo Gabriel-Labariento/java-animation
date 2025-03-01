@@ -36,6 +36,9 @@ public class Triangle implements DrawingObject {
 
     }
 
+    @Override
+    public void setColor(Color color) {};
+    
     public double[] getX(){
         double[] xPoints = new double[3];
         for (int i = 0; i < xPoints.length; i++){

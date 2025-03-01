@@ -42,4 +42,7 @@ public class TrashCan implements DrawingObject {
         x += distance;
     };
 
+    @Override
+    public void setColor(Color color) {};
+
 }

@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.geom.*;
 
+
 public class Scene4 implements DrawingObject {
     private double width;
     private double height;
@@ -8,6 +9,7 @@ public class Scene4 implements DrawingObject {
     public Scene4(int w, int h){
         width = w;
         height = h;
+
     }
     
     @Override
@@ -50,9 +52,8 @@ public class Scene4 implements DrawingObject {
         TrashCan trashCan2 = new TrashCan(-158.8, 253.3, 2.6, Color.decode("#242424"));
         trashCan1.draw(g2d);
         trashCan2.draw(g2d);
-
-        SittingCat enemyCat = new SittingCat(519.5, 377.6, 1.10, Color.decode("#242424"));
-        enemyCat.draw(g2d);
-
     }
+
+    @Override
+    public void setColor(Color color) {}
 }

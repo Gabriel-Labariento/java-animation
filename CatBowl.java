@@ -13,9 +13,8 @@ public class CatBowl implements DrawingObject{
         this.colorTwo = colorTwo;
     }
 
-    public void adjustX(double distance){
-        x += distance;
-    }
+    @Override
+    public void setColor(Color color) {};
 
     @Override
     public void draw(Graphics2D g2d){

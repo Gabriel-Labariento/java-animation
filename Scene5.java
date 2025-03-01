@@ -12,6 +12,7 @@ public class Scene5 implements DrawingObject {
     
     @Override
     public void draw(Graphics2D g2d){
+        AffineTransform reset = g2d.getTransform();
         Color cloudColor = Color.decode("#1f2020");
         Color grassColor = Color.decode("#82954b");
 
@@ -57,7 +58,6 @@ public class Scene5 implements DrawingObject {
         Grass g5 = new Grass(111.4, 413.6, 0.51, grassColor);
         Grass g6 = new Grass(154.4, 436.2, 0.51, grassColor);
         Grass g7 = new Grass(174.5, 381.9, 0.69, grassColor);
-        Grass g8 = new Grass(-23.4, 524, 0.68, grassColor);
         g1.draw(g2d);
         g2.draw(g2d);
         g3.draw(g2d);
@@ -65,6 +65,43 @@ public class Scene5 implements DrawingObject {
         g5.draw(g2d);
         g6.draw(g2d);
         g7.draw(g2d);
+
+        Rectangle2D.Double shard1 = new Rectangle2D.Double(6.9, 555, 23.4, 11.7);
+        Rectangle2D.Double shard2 = new Rectangle2D.Double(13, 509.2, 14.9, 7.4);
+        Rectangle2D.Double shard3 = new Rectangle2D.Double(20.9, 509.2, 14.9, 7.4);
+        Rectangle2D.Double shard4 = new Rectangle2D.Double(49.2, 530.4, 23.4, 7.2);
+        Rectangle2D.Double shard5 = new Rectangle2D.Double(57.2, 528.7, 23.4, 11.7);
+        Rectangle2D.Double shard6 = new Rectangle2D.Double(109.4, 527.1, 10.9, 5);
+        Rectangle2D.Double shard7 = new Rectangle2D.Double(239.8, 538.5, 5.3, 5.1);
+        
+        g2d.setColor(Color.WHITE);
+        g2d.rotate(Math.toRadians(-148.3), shard1.getX(), shard1.getY());
+        g2d.fill(shard1);
+        g2d.setTransform(reset);
+        g2d.rotate(Math.toRadians(-15.2), shard2.getX(), shard2.getY());
+        g2d.fill(shard2);
+        g2d.setTransform(reset);
+        g2d.rotate(Math.toRadians(-15.2), shard3.getX(), shard3.getY());
+        g2d.fill(shard3);
+        g2d.setTransform(reset);        
+        g2d.rotate(Math.toRadians(21.4), shard4.getX(), shard4.getY());
+        g2d.fill(shard4);
+        g2d.setTransform(reset);
+        g2d.rotate(Math.toRadians(21.4), shard5.getX(), shard5.getY());
+        g2d.fill(shard5);
+        g2d.setTransform(reset);
+        g2d.rotate(Math.toRadians(-26), shard6.getX(), shard6.getY());
+        g2d.fill(shard6);
+        g2d.setTransform(reset);
+        g2d.rotate(Math.toRadians(35.1), shard7.getX(), shard7.getY());
+        g2d.fill(shard7);
+        g2d.setTransform(reset);
+
+
+        Grass g8 = new Grass(-23.4, 524, 0.68, grassColor);
         g8.draw(g2d);
     }
+
+    @Override
+    public void setColor(Color color) {};
 }

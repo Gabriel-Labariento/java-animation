@@ -1,22 +1,31 @@
 import java.awt.*;
+import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 import javax.sound.sampled.*;
+import javax.swing.Timer;
 
 public class SceneHandler {
     
+    private SceneCanvas sceneCanvas;
     private ArrayList<DrawingObject> drawingObjects;
     private int width;
     private int height;
+    private AudioInputStream audioInputStream;
     private ArrayList<File> files;
     private ArrayList<AudioInputStream> streams;
     private ArrayList<Clip> clips;
-    private AudioInputStream audioInputStream;
+    private ArrayList<Butterfly> butterflies;
     private Clip clip;
+    private Timer butterfliesTimer;
+    private Timer mouseTimer;
     private Boolean hasPlayed;
     private Boolean isLooped;
+    private double butterflyXend;
+    private double mouseXend;
 
-    public SceneHandler(ArrayList<DrawingObject> drawingObjects, int w, int h) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
+    public SceneHandler(SceneCanvas sceneCanvas, ArrayList<DrawingObject> drawingObjects, int w, int h) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        this.sceneCanvas = sceneCanvas;
         this.drawingObjects = drawingObjects;
         width = w;
         height = h;
@@ -25,19 +34,21 @@ public class SceneHandler {
         files = new ArrayList<>();
         streams = new ArrayList<>();
         clips = new ArrayList<>();
+        butterflies = new ArrayList<>();
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++){
             files.add(new File(String.format("%d.wav", i+1)));
             streams.add(AudioSystem.getAudioInputStream(files.get(i)));
             clips.add(AudioSystem.getClip());
         }
 
+        
+        // Start with Scene1 and a SleepingCat
         drawingObjects.add(new Scene0(width, height));
-        drawingObjects.add(new SleepingCat(400, 488.6, 0.66, Color.decode("#1f2020")));
     }
 
     public void changeScene(int sceneCount) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
-        if(isLooped){
+        if (isLooped){
             for (int j = 0; j < 9; j++) {
                 files.set(j, new File(String.format("%d.wav", j+1)));
                 streams.set(j, AudioSystem.getAudioInputStream(files.get(j)));
@@ -59,29 +70,88 @@ public class SceneHandler {
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
-            switch (sceneCount){
+        
+        switch (sceneCount){
             case 0:
                 drawingObjects.set(0, new Scene0(width, height));
+                drawingObjects.remove(1);
                 isLooped = true;
                 break;
             case 1:
                 drawingObjects.set(0, new Scene1(width, height));
-                drawingObjects.set(1, new SleepingCat(400, 488.6, 0.66, Color.decode("#1f2020")));
+                drawingObjects.add(new SleepingCat(400, 488.6, 0.66, Color.decode("#242424")));
                 break;
             case 2:
                 drawingObjects.set(0, new Scene2(width, height));
+                drawingObjects.add(new Butterfly(-32.6, 398.2, 0.33, 0, Color.WHITE));
+                drawingObjects.add(new Butterfly(20.9, 429.8, 0.23, 0, Color.WHITE));
+                drawingObjects.add(new Butterfly(31.6, 362, 0.42, 0, Color.WHITE));
+    
+                for (int k = 2; k <= 4; k++){
+                    butterflies.add((Butterfly) drawingObjects.get(k));
+                }
+
+                butterflyXend = -32.6;
+                butterfliesTimer = new Timer(300, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae){
+                        butterflyXend += 20;
+                        for (Butterfly butterfly : butterflies){
+                            butterfly.adjustX(20);
+                            butterfly.adjustY(-4);
+                            butterfly.changeFrame();
+                            //For tracking if the butterflies have gone off screen without relying on getx
+                        }
+                        if (butterflyXend >= width){
+                            butterfliesTimer.stop();
+                        }
+                        sceneCanvas.repaint();
+                    }
+                });
+                butterfliesTimer.start();
                 break;
             case 3:
+                //Delete left-over effects from previous scene
+                for (int l = 0; l < 3; l++){
+                    drawingObjects.remove(2);
+                    butterflies.remove(0);
+                }
+
                 drawingObjects.set(0, new Scene3(width, height));
+                drawingObjects.add(new Mouse(-179.5, 496.2, 1.29, Color.decode("#242424")));
+                Mouse mouse = (Mouse) drawingObjects.get(2);
+                
+                mouseXend = -179.5;
+                mouseTimer = new Timer(15, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae){
+                        mouseXend += 10;
+                        mouse.adjustX(10);
+                        if (mouseXend >= width){
+                            mouseTimer.stop();
+                        }
+                        sceneCanvas.repaint();
+                    }
+                });
+                mouseTimer.start();
                 break;
             case 4:
+                //Delete left-over effects from previous scene
+                drawingObjects.remove(2);
                 drawingObjects.set(0, new Scene4(width, height));
+                drawingObjects.add(new SittingCat(519.5, 377.6, 1.10, Color.decode("#242424")));
                 break;
             case 5:
+                drawingObjects.remove(2);
                 drawingObjects.set(0, new Scene5(width, height));
                 break;
             case 6:
+                for (int m = 0; m < 5; m++){
+                    drawingObjects.remove(2);
+                }
+
                 drawingObjects.set(0, new Scene6(width, height));
+                drawingObjects.add(new SittingCat(414, 381.5, 1, Color.WHITE));
                 break;
             case 7:
                 drawingObjects.set(0, new Scene7(width, height));

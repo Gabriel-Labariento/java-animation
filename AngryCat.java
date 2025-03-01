@@ -28,6 +28,9 @@ public class AngryCat implements DrawingObject {
         g2d.setTransform(reset);
     }
 
+    @Override
+    public void setColor(Color color) {};
+
     private void drawHead(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 
@@ -95,7 +98,7 @@ public class AngryCat implements DrawingObject {
         g2d.fill(e);
         g2d.setTransform(reset);
 
-        e = new Ellipse2D.Double((49.5), (y), 62.3, 58.7);
+        e = new Ellipse2D.Double((49.5), (0), 62.3, 58.7);
         g2d.fill(e);
     
         e = new Ellipse2D.Double((101.1), (100.9), 66.7, 14);
@@ -182,6 +185,7 @@ public class AngryCat implements DrawingObject {
 
         Triangle tailEnd = new Triangle(triPoints, color, true);
         tailEnd.draw(g2d);
+
     }
     
 }

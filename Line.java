@@ -25,6 +25,9 @@ public class Line implements DrawingObject {
         g2d.setStroke(new BasicStroke((float)thickness));
         g2d.draw(line);
     }
+    
+    @Override
+    public void setColor(Color color) {};
 
     public void adjustX(double distance){
         xStart += distance;

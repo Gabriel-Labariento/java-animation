@@ -23,4 +23,7 @@ public class Scene8 implements DrawingObject {
         Door door = new Door(0, 0, 1);
         door.draw(g2d);
     }
+
+    @Override
+    public void setColor(Color color) {};
 }

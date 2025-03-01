@@ -137,4 +137,7 @@ public class Scene1 implements DrawingObject {
         Quadrilateral lightLeg4 = new Quadrilateral(quadPoints, light, true);
         lightLeg4.draw(g2d);
     }
+    
+    @Override
+    public void setColor(Color color) {};
 }
