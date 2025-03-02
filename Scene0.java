@@ -13,8 +13,7 @@ public class Scene0 implements DrawingObject {
     
     @Override
     public void draw(Graphics2D g2d){
-        AffineTransform reset = g2d.getTransform();
-
+        
         Rectangle2D.Double background = new Rectangle2D.Double(0, 0, width, height);
         g2d.setColor(Color.decode("#1f2020"));
         g2d.fill(background);

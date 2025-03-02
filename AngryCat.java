@@ -1,3 +1,25 @@
+/**
+        The AngryCat class creates an AngryCat object and has methods
+        for drawing it as it implements DrawingObject. Since the main
+        cat never becomes an AngryCat, the AngryCat class need not 
+        implement the Cat interface. The AngryCat is seen in the fourth
+        scene of the animation.
+
+        @author Niles Tristan V. Cabrera ()
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 02 September 2023
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -5,6 +27,13 @@ public class AngryCat implements DrawingObject {
     private double x, y, size;
     private Color color;
 
+    /**
+     * Constructor initializes a new AngryCat with the given arguments
+     * @param xPositon the x-coordinate of the AngryCat
+     * @param yPosition the y-coordinate of the AngryCat
+     * @param size the scaling applied to the AngryCat
+     * @param color the color of the AngryCat's entire figure
+     */
     public AngryCat(double xPositon, double yPosition, double size, Color color){
         x = xPositon;
         y = yPosition;
@@ -12,6 +41,10 @@ public class AngryCat implements DrawingObject {
         this.color = color;
     }
 
+    /**
+     * Adjusts the position of the AngryCat along the x-axis
+     * @param distance the distance to move the cat from the original position
+     */
     public void adjustX(double distance){
         x += distance;
     }
@@ -21,16 +54,24 @@ public class AngryCat implements DrawingObject {
         AffineTransform reset = g2d.getTransform();
         g2d.translate(x, y);
         g2d.scale(size, size);
+
         drawHead(g2d);
         drawBody(g2d);
         drawLegs(g2d);
         drawTail(g2d);
+
         g2d.setTransform(reset);
     }
 
     @Override
-    public void setColor(Color color) {};
+    public void setColor(Color color) {
+        this.color = color;
+    };
 
+    /**
+     * Factors out drawing the AngryCat's head
+     * @param g2d the object to manipulate the needed shapes
+     */
     private void drawHead(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 
@@ -73,6 +114,10 @@ public class AngryCat implements DrawingObject {
         ear.draw(g2d);
     }
 
+    /**
+     * Factors out drawing the AngryCat's body
+     * @param g2d the object to manipulate the needed shapes
+     */
     private void drawBody(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 
@@ -117,6 +162,10 @@ public class AngryCat implements DrawingObject {
         g2d.setTransform(reset);    
     }
 
+    /**
+     * Factors out drawing the AngryCat's legs
+     * @param g2d the object to manipulate the needed shapes
+     */
     private void drawLegs(Graphics2D g2d) {
         AffineTransform reset = g2d.getTransform();
 
@@ -164,6 +213,10 @@ public class AngryCat implements DrawingObject {
 
     }
 
+    /**
+     * Factors out drawing the AngryCat's tail
+     * @param g2d the object to manipulate the needed shapes
+     */
     private void drawTail(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
         g2d.setColor(color);

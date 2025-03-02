@@ -29,5 +29,4 @@ public class Blood implements DrawingObject{
     @Override
     public void setColor(Color color) {};
     
-    
 }
