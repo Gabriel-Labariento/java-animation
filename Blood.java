@@ -1,12 +1,12 @@
 /**
-        The Blooc class creates a Blood object and has methods
+        The Blood class creates a Blood object and has methods
         for drawing it as it implements DrawingObject. It paints
         on the canvas three drops of blood at three different
         x-coordinates.
 
         @author Niles Tristan V. Cabrera ()
         @author Gabriel Matthew P. Labariento (242425)
-        @version 02 September 2023
+        @version 03 March 2025
 
         We have not discussed the Java language code in my program
         with anyone other than my instructor or the teaching assistants
