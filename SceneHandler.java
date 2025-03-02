@@ -1,3 +1,24 @@
+/**
+        The SceneHandler class handles scene transitions. It does so
+        by creating new scene objects inside the drawingObjects ArrayList
+        based on the passed value of sceneCount. It also handles the 
+        audio of the scenes along with the transitions.
+   
+        @author Niles Tristan V. Cabrera (240828)
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -11,10 +32,12 @@ public class SceneHandler {
     private ArrayList<DrawingObject> drawingObjects;
     private int width;
     private int height;
-    private AudioInputStream audioInputStream;
-    private ArrayList<File> files;
-    private ArrayList<AudioInputStream> streams;
-    private ArrayList<Clip> clips;
+    private ArrayList<File> bgFiles;
+    private ArrayList<AudioInputStream> bgStreams;
+    private ArrayList<Clip> bgClips;
+    private File squeaksFile;
+    private AudioInputStream squeaksStream;
+    private Clip squeaksClip;
     private ArrayList<Butterfly> butterflies;
     private Clip clip;
     private Timer butterfliesTimer;
@@ -24,6 +47,16 @@ public class SceneHandler {
     private double butterflyXend;
     private double mouseXend;
 
+    /**
+     * Creates a sceneHandler that manages scenes for the provided sceneCanvas, initializes audio, and starts the animation with a Scene0 object. 
+     * @param sceneCanvas the canvas where scenes are displayed
+     * @param drawingObjects the ArrayList containing the objects to be drawn
+     * @param w the width of the scenes
+     * @param h the height of the scenes
+     * @throws UnsupportedAudioFileException when the audio file used is not supported See: http://docs.oracle.com/javase/8/docs/api/javax/sound/sampled/UnsupportedAudioFileException.html
+     * @throws IOException when an Input-Output error has occured. See: https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html
+     * @throws LineUnavailableException when a line cannot be opened. See: https://docs.oracle.com/javase/8/docs/api/javax/sound/sampled/LineUnavailableException.html
+     */
     public SceneHandler(SceneCanvas sceneCanvas, ArrayList<DrawingObject> drawingObjects, int w, int h) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         this.sceneCanvas = sceneCanvas;
         this.drawingObjects = drawingObjects;
@@ -31,28 +64,36 @@ public class SceneHandler {
         height = h;
         hasPlayed = false;
         isLooped = false;
-        files = new ArrayList<>();
-        streams = new ArrayList<>();
-        clips = new ArrayList<>();
+        bgFiles = new ArrayList<>();
+        bgStreams = new ArrayList<>();
+        bgClips = new ArrayList<>();
         butterflies = new ArrayList<>();
 
+        // Populate the ArrayLists with appropriate files
         for (int i = 0; i < 9; i++){
-            files.add(new File(String.format("%d.wav", i+1)));
-            streams.add(AudioSystem.getAudioInputStream(files.get(i)));
-            clips.add(AudioSystem.getClip());
+            bgFiles.add(new File(String.format("%d.wav", i+1)));
+            bgStreams.add(AudioSystem.getAudioInputStream(bgFiles.get(i)));
+            bgClips.add(AudioSystem.getClip());
         }
 
-        
         // Start with Scene1 and a SleepingCat
         drawingObjects.add(new Scene0(width, height));
     }
 
+    /**
+     * Changes the scene displayed and audio played based on the value of sceneCount
+     * Creates appropriate drawing objects and sets up animations in different scenes 
+     * @param sceneCount
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     public void changeScene(int sceneCount) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
         if (isLooped){
             for (int j = 0; j < 9; j++) {
-                files.set(j, new File(String.format("%d.wav", j+1)));
-                streams.set(j, AudioSystem.getAudioInputStream(files.get(j)));
-                clips.set(j, AudioSystem.getClip());
+                bgFiles.set(j, new File(String.format("%d.wav", j+1)));
+                bgStreams.set(j, AudioSystem.getAudioInputStream(bgFiles.get(j)));
+                bgClips.set(j, AudioSystem.getClip());
                 isLooped = false;
             }
         }
@@ -65,8 +106,8 @@ public class SceneHandler {
             } 
             else hasPlayed = true;
             
-            clip = clips.get(sceneCount-1);
-            clip.open(streams.get(sceneCount-1));
+            clip = bgClips.get(sceneCount-1);
+            clip.open(bgStreams.get(sceneCount-1));
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
         }
@@ -120,6 +161,13 @@ public class SceneHandler {
                 drawingObjects.set(0, new Scene3(width, height));
                 drawingObjects.add(new Mouse(-179.5, 496.2, 1.29, Color.decode("#242424")));
                 Mouse mouse = (Mouse) drawingObjects.get(2);
+
+                //Make variables for mouse squeaking sound effect
+                squeaksFile = new File("squeaks.wav");
+                squeaksStream = AudioSystem.getAudioInputStream(squeaksFile);
+                squeaksClip = AudioSystem.getClip();
+                squeaksClip.open(squeaksStream);
+                squeaksClip.start();
                 
                 mouseXend = -179.5;
                 mouseTimer = new Timer(15, new ActionListener() {
@@ -128,7 +176,10 @@ public class SceneHandler {
                         mouseXend += 10;
                         mouse.adjustX(10);
                         if (mouseXend >= width){
+                            squeaksClip.stop();
+                            squeaksClip.close();
                             mouseTimer.stop();
+
                         }
                         sceneCanvas.repaint();
                     }

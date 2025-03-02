@@ -1,3 +1,25 @@
+/**
+        The Grass class creates a Grass object and has methods
+        for drawing it as it implements DrawingObject. This object
+        appears in scenes two, three, five, and nine. It uses the
+        Triangle class to be drawn.
+   
+        @author Niles Tristan V. Cabrera (240828)
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -6,20 +28,19 @@ public class Grass implements DrawingObject {
     private double y;
     private double size;
     private Color color;
-
+    
+    /**
+     * Initializes the object's field values to the arguments provided
+     * @param xPosition the object's x-coordinate 
+     * @param yPosition the object's y-coordinate
+     * @param size the scaling applied to the object. If size = 1, the framing rectangle is 168.2px by 136.7px
+     * @param c the object's color
+     */
     public Grass(double xPosition, double yPosition, double size, Color c){
         x = xPosition;
         y = yPosition;
         this.size = size;
         color = c;
-    }
-
-    public double getX(){
-        return x;
-    }
-
-    public void adjustX(double distance){
-        x += distance;
     }
 
     @Override
@@ -32,8 +53,23 @@ public class Grass implements DrawingObject {
     }
 
     @Override
-    public void setColor(Color color) {};
-    
+    public void setColor(Color color) {
+        this.color = color;
+    };
+
+    /**
+     * Gets the x-coordinate of the Grass object
+     * @return the x-coordinate of the object's framing rectangle
+     */
+    public double getX(){
+        return x;
+    }
+
+
+    /**
+     * Draws a grass object without the translation and scaling given to the constructor. Called inside draw method.
+     * @param g2d object to manipulate geometric shapes
+     */
     private void drawGrassNoScaling(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 
@@ -45,7 +81,6 @@ public class Grass implements DrawingObject {
         g2d.rotate(Math.toRadians(62.3), e.getX(), e.getY());
         g2d.fill(e);
         g2d.setTransform(reset);
-
 
 
         Point2D.Double[] triPoints = new Point2D.Double[3];

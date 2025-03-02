@@ -1,3 +1,23 @@
+/**
+        The Scene6 class creates a Scene6 object and has methods
+        for drawing it as it implements DrawingObject. This object
+        uses Buildings, Cloud, and Circle classes to compose the scene.
+   
+        @author Niles Tristan V. Cabrera (240828)
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -5,6 +25,11 @@ public class Scene6 implements DrawingObject {
     private double width;
     private double height;
 
+    /**
+     * Initializes the object's field values to the provided arguments
+     * @param w the scene's width
+     * @param h the scene's height
+     */
     public Scene6(int w, int h){
         width = w;
         height = h;
@@ -116,9 +141,6 @@ public class Scene6 implements DrawingObject {
         g2d.setColor(Color.decode("#f8bdc1"));
         g2d.fill(foreGround);
 
-        // Lover cat
-        // loverCat = new SittingCat(414, 381.5, 1, Color.WHITE);
-        // loverCat.draw(g2d);
     }
 
     @Override

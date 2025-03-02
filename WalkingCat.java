@@ -1,3 +1,25 @@
+/**
+        The WalkingCat class creates a WalkingCat object and has 
+        methods for drawing it as it implements DrawingObject.
+        The WalkingCat object also implements the Cat interface 
+        to support the cat's movement with methods adjustX and
+        changeFrame.
+   
+        @author Niles Tristan V. Cabrera (240828)
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -10,7 +32,16 @@ public class WalkingCat implements DrawingObject, Cat {
     private Color color;
     private double catLength;
     private boolean isLimping;
-    
+
+    /**
+     * Initializes the object's field values to the arguments provided. When the WalkingCat is constructed, it is not limping.
+     * @param xPosition the object's x-coordinate
+     * @param yPosition the object's y-coordinate
+     * @param size the scaling applied to the object. If size = 1, the framing rectangle is 220.8px by 110.6px when walkFrame is 0.
+     * Scaling is approximately similar regardless of walkFrame
+     * @param walkFrame an integer specifying which of three walkFrames the cat is drawn in. These frames are necessary to illustrate movement
+     * @param color the object's color
+     */
     public WalkingCat(double xPosition, double yPosition, double size, int walkFrame, Color color){
         x = xPosition;
         y = yPosition;
@@ -68,6 +99,10 @@ public class WalkingCat implements DrawingObject, Cat {
         return x;
     }
 
+    /**
+     * Gets the y-coordinate of the WalkingCat
+     * @return the WalkingCat's y-coordinate
+     */
     public double getY(){
         return y;
     }
@@ -82,6 +117,10 @@ public class WalkingCat implements DrawingObject, Cat {
         this.color = color;
     }
 
+    /**
+     * Factors out drawing the WalkingCat's snout
+     * @param g2d the object to manipulate geometric shapes
+     */
     private void drawSnout(Graphics2D g2d){
         Point2D.Double[] snoutPoints = new Point2D.Double[4];
         switch (walkFrame) {
@@ -116,6 +155,11 @@ public class WalkingCat implements DrawingObject, Cat {
         snout.draw(g2d);
     }
 
+    /**
+     * Factors out drawing the WalkingCat's head
+     * @param g2d the object to manipulate geometric shapes
+     * @param walkFrame one of three frames of WalkingCat
+     */
     private void drawHead(Graphics2D g2d, int walkFrame){
 
         Ellipse2D.Double head = new Ellipse2D.Double();
@@ -170,6 +214,11 @@ public class WalkingCat implements DrawingObject, Cat {
         earTwo.draw(g2d);
     }
     
+    /**
+     * Factors out drawing the WalkingCat's body
+     * @param g2d the object to manipulate geometric shapes
+     * @param walkFrame one of three frames of WalkingCat
+     */
     private void drawBody(Graphics2D g2d, int walkFrame){
         AffineTransform reset = g2d.getTransform();
         switch (walkFrame) {
@@ -251,6 +300,11 @@ public class WalkingCat implements DrawingObject, Cat {
         }
     }
 
+    /**
+     * Factors out drawing the WalkingCat's legs
+     * @param g2d the object to manipulate geometric shapes
+     * @param walkFrame one of three frames of WalkingCat
+     */
     private void drawLegs(Graphics2D g2d, int walkFrame){
         AffineTransform reset = g2d.getTransform();
         
@@ -541,6 +595,11 @@ public class WalkingCat implements DrawingObject, Cat {
         }
     };
 
+    /**
+     * Factors out drawing the WalkingCat's tail
+     * @param g2d the object to manipulate geometric shapes
+     * @param walkFrame one of three frames of WalkingCat
+     */
     private void drawTail(Graphics2D g2d, int walkFrame){
         AffineTransform reset = g2d.getTransform();
 
