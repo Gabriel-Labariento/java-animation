@@ -1,3 +1,24 @@
+/**
+        The Door class creates a Door object and has methods
+        for drawing it as it implements DrawingObject. This object
+        is seen in scene eight. It has fields for positioning and
+        scaling, but transparency is unmodifiable.
+   
+        @author Niles Tristan V. Cabrera ()
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -7,11 +28,17 @@ public class Door implements DrawingObject{
     private double size;
     private AlphaComposite ac;
 
+    /**
+     * Initializes the Door object's field values to the provided arguments. AlphaComposite value is initialized to 0.3
+     * @param xPosition the object's x-coordinate
+     * @param yPosition the object's y-coordinate
+     * @param size the scaling applied to the object.
+     */
     public Door(double xPosition, double yPosition, double size){
         x = xPosition;
         y = yPosition;
         this.size = size;
-        ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,0.3f); 
+        ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f); 
     }
 
     @Override
@@ -59,12 +86,5 @@ public class Door implements DrawingObject{
 
     @Override
     public void setColor(Color color) {};
-    
 
-    public void adjustX(double distance){
-        x += distance;
-    };
-
-    
-    
 }
