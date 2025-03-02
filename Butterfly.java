@@ -1,3 +1,23 @@
+/**
+        The Buttefly class creates a Buttefly object and has methods
+        for drawing it as it implements DrawingObject. This object
+        has three instances in scene two.
+        
+        @author Niles Tristan V. Cabrera ()
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -9,23 +29,31 @@ public class Butterfly implements DrawingObject {
     private int flyFrame;
     private Color color;
 
+    /**
+     * Initializes the Butterfly with the arguments as field values
+     * @param xPosition the x-coordinate of the butterfly
+     * @param yPosition the y-coordinate of the butterfly
+     * @param size the scaling applies to the butterfly. If size = 1, framing rectangle is 71.7px by 61.8px
+     * @param flyFrame
+     * @param color
+     */
     public Butterfly(double xPosition, double yPosition, double size, int flyFrame, Color color){
         x = xPosition;
         y = yPosition;
         this.size = size;
-        if (flyFrame > 1) this.flyFrame = 1;
+
+        // Handles passing a flyFrame that does not exist
+        if ((flyFrame > 1) || (flyFrame < 0)) this.flyFrame = 1;
         else this.flyFrame = flyFrame;
+        
         this.color = color;
     }
 
-    public void adjustX(double distance){
-        x += distance;
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
     }
 
-    public void adjustY(double distance){
-        y += distance;
-    }
-    
     @Override
     public void draw(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
@@ -37,8 +65,13 @@ public class Butterfly implements DrawingObject {
         g2d.setTransform(reset);
     }
 
+    /**
+     * Draws the frame of the cat based on the current value of flyFrame
+     * @param g2d object to manipulate geometric shapes
+     */
     private void drawFrames(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
+        
         if (flyFrame == 0){
             Ellipse2D.Double b1 = new Ellipse2D.Double((163.3), (60.5), 58.6, 152.4);
             g2d.rotate(Math.toRadians(109.7), b1.getX(), b1.getY());
@@ -93,21 +126,44 @@ public class Butterfly implements DrawingObject {
         g2d.setTransform(reset);
     }
 
+    /**
+     * Switches the flyFrame of the Butterfly instance
+     */
     public void changeFrame(){
         if (this.flyFrame == 1) this.flyFrame = 0;
-        else flyFrame += 1;
+        else flyFrame = 1;
     }
 
+    /**
+     * Gets the current x-position
+     * @return the x-coordinate of the framing rectangle
+     */
     public double getX(){
         return x;
     }
 
+    /**
+     * Gets the current y-position
+     * @return the y-coordinate of the framing rectangle
+     */
     public double getY(){
         return y;
     }
 
-    @Override
-    public void setColor(Color color) {
+    /**
+     * Changes the object's x-position by a certain amount
+     * @param distance the amount to change the object's x-position by
+     */
+    public void adjustX(double distance){
+        x += distance;
+    }
+
+    /**
+     * Changes the object's y-position by a cerain amount
+     * @param distance the amount to change the object's y-position by
+     */
+    public void adjustY(double distance){
+        y += distance;
     }
 }
 
