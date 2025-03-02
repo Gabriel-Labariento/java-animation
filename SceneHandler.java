@@ -1,3 +1,24 @@
+/**
+        The SceneHandler class handles scene transitions. It does so
+        by creating new scene objects inside the drawingObjects ArrayList
+        based on the passed value of sceneCount. It also handles the 
+        audio of the scenes along with the transitions.
+   
+        @author Niles Tristan V. Cabrera ()
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -23,6 +44,16 @@ public class SceneHandler {
     private double butterflyXend;
     private double mouseXend;
 
+    /**
+     * Creates a sceneHandler that manages scenes for the provided sceneCanvas, initializes audio, and starts the animation with a Scene0 object. 
+     * @param sceneCanvas the canvas where scenes are displayed
+     * @param drawingObjects the ArrayList containing the objects to be drawn
+     * @param w the width of the scenes
+     * @param h the height of the scenes
+      * @throws UnsupportedAudioFileException when the audio file used is not supported See: http://docs.oracle.com/javase/8/docs/api/javax/sound/sampled/UnsupportedAudioFileException.html
+     * @throws IOException when an Input-Output error has occured. See: https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html
+     * @throws LineUnavailableException when a line cannot be opened. See: https://docs.oracle.com/javase/8/docs/api/javax/sound/sampled/LineUnavailableException.html
+     */
     public SceneHandler(SceneCanvas sceneCanvas, ArrayList<DrawingObject> drawingObjects, int w, int h) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         this.sceneCanvas = sceneCanvas;
         this.drawingObjects = drawingObjects;
@@ -35,17 +66,25 @@ public class SceneHandler {
         clips = new ArrayList<>();
         butterflies = new ArrayList<>();
 
+        // Populate the ArrayLists with appropriate files
         for (int i = 0; i < 9; i++){
             files.add(new File(String.format("%d.wav", i+1)));
             streams.add(AudioSystem.getAudioInputStream(files.get(i)));
             clips.add(AudioSystem.getClip());
         }
 
-        
         // Start with Scene1 and a SleepingCat
         drawingObjects.add(new Scene0(width, height));
     }
 
+    /**
+     * Changes the scene displayed and audio played based on the value of sceneCount
+     * Creates appropriate drawing objects and sets up animations in different scenes 
+     * @param sceneCount
+     * @throws UnsupportedAudioFileException
+     * @throws IOException
+     * @throws LineUnavailableException
+     */
     public void changeScene(int sceneCount) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
         if (isLooped){
             for (int j = 0; j < 9; j++) {
