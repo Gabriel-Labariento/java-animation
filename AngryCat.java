@@ -31,7 +31,7 @@ public class AngryCat implements DrawingObject {
      * Constructor initializes a new AngryCat with the given arguments
      * @param xPositon the x-coordinate of the AngryCat
      * @param yPosition the y-coordinate of the AngryCat
-     * @param size the scaling applied to the AngryCat
+     * @param size the scaling applied to the AngryCat. If size = 1, the framing rectangle is 146.3px by 123.9px 
      * @param color the color of the AngryCat's entire figure
      */
     public AngryCat(double xPositon, double yPosition, double size, Color color){

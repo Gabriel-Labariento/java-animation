@@ -23,6 +23,9 @@ public class Scene0 implements DrawingObject {
         g2d.drawString("don't let go", 100, 325);
         g2d.setFont(new Font("Arial", Font.PLAIN, 15));
         g2d.drawString("HOLD THE SPACEBAR TO MOVE", 280, 550);
+
+        Line lineUnderSubTitle = new Line(260, 560, 540, 560, 2, Color.WHITE);
+        lineUnderSubTitle.draw(g2d);
     }
 
     @Override

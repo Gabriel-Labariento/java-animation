@@ -2,7 +2,7 @@
         The Blood class creates a Blood object and has methods
         for drawing it as it implements DrawingObject. It paints
         on the canvas three drops of blood at three different
-        x-coordinates.
+        x-coordinates. The Blood object appears in scene five.
 
         @author Niles Tristan V. Cabrera ()
         @author Gabriel Matthew P. Labariento (242425)
