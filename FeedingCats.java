@@ -1,3 +1,23 @@
+/**
+        The FeedingCats class creates a FeedingCats object and has methods
+        for drawing it as it implements DrawingObject. This object
+        appears in scene one and seven.
+   
+        @author Niles Tristan V. Cabrera ()
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
@@ -12,11 +32,20 @@ public class FeedingCats implements DrawingObject{
     private Color c2;
     private Color c3;
 
-    public FeedingCats(double xPosition, double yPosition, double size, Color colorONe, Color colorTwo, Color colorThree){
+    /**
+     * Initializes the FeedingCat object's field values to the provided arguments
+     * @param xPosition the object's x-coordinate
+     * @param yPosition the object's y-coordinate
+     * @param size the scaling applied to the object. If size = 1, the framing rectangle is 138.6px by 126px
+     * @param colorOne the color of the biggest cat
+     * @param colorTwo the color of the cat in the middle
+     * @param colorThree the color of the leftmost cat
+     */
+    public FeedingCats(double xPosition, double yPosition, double size, Color colorOne, Color colorTwo, Color colorThree){
         x = xPosition;
         y = yPosition;
         this.size = size;
-        c1 = colorONe;
+        c1 = colorOne;
         c2 = colorTwo;
         c3 = colorThree;
     }
@@ -37,11 +66,10 @@ public class FeedingCats implements DrawingObject{
     @Override
     public void setColor(Color color) {};
     
-
-    public void adjustX(double distance){
-        x += distance;
-    };
-
+    /**
+     * Factors out drawing the largest cat
+     * @param g2d object to manipulate geometric shapes
+     */
     private void drawCatOne(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 
@@ -102,6 +130,10 @@ public class FeedingCats implements DrawingObject{
         g2d.setTransform(reset);
     }
 
+    /**
+     * Factors out drawing the middle cat
+     * @param g2d object to manipulate geometric shapes
+     */
     private void drawCatTwo(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 
@@ -136,6 +168,10 @@ public class FeedingCats implements DrawingObject{
         g2d.setTransform(reset);
     }
 
+    /**
+     * Factors out draing the leftmost cat
+     * @param g2d object to manipulate geometric shapes
+     */
     private void drawCatThree(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 
