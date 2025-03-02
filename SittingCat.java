@@ -1,3 +1,24 @@
+/**
+        The SittingCat class creates a SittingCat object and has methods
+        for drawing it as it implements DrawingObject. This object also
+        implements the Cat interface since the main cat will turn into
+        a SittingCat when the spacebar is released.
+   
+        @author Niles Tristan V. Cabrera ()
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -8,6 +29,13 @@ public class SittingCat implements DrawingObject, Cat{
     private Color color;
     private final int CATLENGTH = 81;
 
+    /**
+     * Initializes the object's field values to the arguments provided.
+     * @param xPosition the object's x-coordinate
+     * @param yPosition the object's y-coordinate
+     * @param size the scaling applied to the object. If size = 1, the framing rectangle is 81px by 145.4px
+     * @param color the cat's color
+     */
     public SittingCat(double xPosition, double yPosition, double size, Color color){
         x = xPosition;
         y = yPosition;
@@ -47,6 +75,10 @@ public class SittingCat implements DrawingObject, Cat{
         g2d.setTransform(reset);
     }
 
+    /**
+     * Factors out draing the cat's head
+     * @param g2d object to manipulate geometric shapes
+     */
     private void drawHead(Graphics2D g2d){
         Point2D.Double[] earOnePoints = new Point2D.Double[3];
         earOnePoints[0] = new Point2D.Double((6.4), (18));
@@ -67,6 +99,10 @@ public class SittingCat implements DrawingObject, Cat{
         head.draw(g2d);
     };
 
+    /**
+     * Factors out draing the cat's body
+     * @param g2d object to manipulate geometric shapes
+     */
     private void drawBody(Graphics2D g2d){
         Ellipse2D.Double e1 = new Ellipse2D.Double((15.6), (51.7), 46.5, 79.6);
         Ellipse2D.Double e2 = new Ellipse2D.Double((7.8), (64.9), 62.8, 77.3);
@@ -75,6 +111,10 @@ public class SittingCat implements DrawingObject, Cat{
         g2d.fill(e2);
     };
 
+    /**
+     * Factors out draing the cat's tail
+     * @param g2d object to manipulate geometric shapes
+     */
     private void drawTail(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
 
