@@ -5,7 +5,7 @@
         and releases to activate the walking cat animation. It also handles
         triggering scene-specific animations in scene 4, 6, and 9.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 

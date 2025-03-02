@@ -4,7 +4,7 @@
         on the canvas three drops of blood at three different
         x-coordinates. The Blood object appears in scene five.
 
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 

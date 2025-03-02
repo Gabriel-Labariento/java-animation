@@ -1,3 +1,23 @@
+/**
+        The Tree class creates a Tree object and has methods
+        for drawing it as it implements DrawingObject. This object
+        uses multiple Ellipse2D.Double for composition.  
+   
+        @author Niles Tristan V. Cabrera (240828)
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -6,15 +26,18 @@ public class Tree implements DrawingObject{
     private double x, y, size;
     private Color color;
 
+    /**
+     * Initializes the object's field values to the arguments provided
+     * @param xPositon the object's x-coordinate
+     * @param yPosition the object's y-coordinate
+     * @param size the scaling applied to the object. If size = 1, the framing rectangle is 255.2px by 277.5px
+     * @param color the object's color
+     */
     public Tree(double xPositon, double yPosition, double size, Color color){
         x = xPositon;
         y = yPosition;
         this.size = size;
         this.color = color;
-    }
-
-    public void adjustX(double distance){
-        x += distance;
     }
 
     @Override
@@ -26,6 +49,10 @@ public class Tree implements DrawingObject{
         g2d.setTransform(reset);
     }
 
+    /**
+     * Draws the Tree object without the translations and scaling provided to the constructor
+     * @param g2d
+     */
     private void drawTreeNoScaling(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
         g2d.setColor(color);
@@ -169,5 +196,7 @@ public class Tree implements DrawingObject{
     }
 
     @Override
-    public void setColor(Color color) {};
+    public void setColor(Color color) {
+        this.color = color;
+    };
 }

@@ -3,7 +3,7 @@
         for drawing it as it implements DrawingObject. This object
         appears in scene three as prey to the cat.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 

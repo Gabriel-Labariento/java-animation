@@ -4,7 +4,7 @@
         uses the Circle, Cloud, Quadrilateral, Grass, Tree, and Triangle
         classes to compose the scene.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 

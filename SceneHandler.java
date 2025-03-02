@@ -4,7 +4,7 @@
         based on the passed value of sceneCount. It also handles the 
         audio of the scenes along with the transitions.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 
@@ -50,7 +50,7 @@ public class SceneHandler {
      * @param drawingObjects the ArrayList containing the objects to be drawn
      * @param w the width of the scenes
      * @param h the height of the scenes
-      * @throws UnsupportedAudioFileException when the audio file used is not supported See: http://docs.oracle.com/javase/8/docs/api/javax/sound/sampled/UnsupportedAudioFileException.html
+     * @throws UnsupportedAudioFileException when the audio file used is not supported See: http://docs.oracle.com/javase/8/docs/api/javax/sound/sampled/UnsupportedAudioFileException.html
      * @throws IOException when an Input-Output error has occured. See: https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html
      * @throws LineUnavailableException when a line cannot be opened. See: https://docs.oracle.com/javase/8/docs/api/javax/sound/sampled/LineUnavailableException.html
      */

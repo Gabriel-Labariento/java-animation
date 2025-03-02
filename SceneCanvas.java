@@ -4,7 +4,7 @@
         be drawn. It works with a sceneHandler object to transition the
         scenes appropriately.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 

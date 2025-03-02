@@ -5,7 +5,7 @@
         has exited this scene by pressing on the spacebar, the
         animation will not loop back to it.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 

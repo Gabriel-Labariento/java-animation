@@ -5,7 +5,7 @@
         change frame, activate limping animation, return its x-position,
         and return its length.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 

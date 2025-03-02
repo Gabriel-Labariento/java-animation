@@ -5,7 +5,7 @@
         uses Rectangle2D.Double to create a rectangle of the same
         height and width.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 

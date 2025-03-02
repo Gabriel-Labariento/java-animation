@@ -4,7 +4,7 @@
         objects implement DrawingObject. Its main use is through the 
         drawingObjects ArrayList field of SceneCanvas.
 
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 02 September 2023
 

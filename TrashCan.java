@@ -1,3 +1,23 @@
+/**
+        The TrashCan class creates a TrashCan object and has methods
+        for drawing it as it implements DrawingObject. This object
+        uses the Quadrilateral class for composition. 
+   
+        @author Niles Tristan V. Cabrera (240828)
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -5,6 +25,13 @@ public class TrashCan implements DrawingObject {
     private double x, y, size;
     private Color color;
 
+    /**
+     * Initializes this object's field values to the arguments provided
+     * @param xPositon the object's x-coordinate
+     * @param yPosition the object's y-coordinate
+     * @param size the scaling applied to the object. If size = 1, the framing rectangle is 90.8px by 116.5px
+     * @param color the object's color
+     */
     public TrashCan(double xPositon, double yPosition, double size, Color color){
         x = xPositon;
         y = yPosition;
@@ -38,11 +65,9 @@ public class TrashCan implements DrawingObject {
         g2d.setTransform(reset);
     };
 
-    public void adjustX(double distance){
-        x += distance;
-    };
-
     @Override
-    public void setColor(Color color) {};
+    public void setColor(Color color) {
+        this.color = color;
+    };
 
 }

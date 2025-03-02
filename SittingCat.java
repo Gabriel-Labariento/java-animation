@@ -4,7 +4,7 @@
         implements the Cat interface since the main cat will turn into
         a SittingCat when the spacebar is released.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 

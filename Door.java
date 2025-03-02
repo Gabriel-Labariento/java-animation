@@ -4,7 +4,7 @@
         is seen in scene eight. It has fields for positioning and
         scaling, but transparency is unmodifiable.
    
-        @author Niles Tristan V. Cabrera ()
+        @author Niles Tristan V. Cabrera (240828)
         @author Gabriel Matthew P. Labariento (242425)
         @version 03 March 2025
 
