@@ -1,3 +1,25 @@
+/**
+        The KeyControls class implements KeyListener and it's three abstract
+        methods KeyTyped, KeyPressed, and KeyReleased. KeyControls is the 
+        program's main event listener class. It listens for spacebar presses 
+        and releases to activate the walking cat animation. It also handles
+        triggering scene-specific animations in scene 4, 6, and 9.
+   
+        @author Niles Tristan V. Cabrera ()
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -14,7 +36,7 @@ public class KeyControls implements KeyListener {
     private int stepSize;
     private int pastDigit;
     private SceneCanvas sceneCanvas;
-    private Timer timer1;
+    private Timer timer;
     private Cat walkingCat;
     private boolean isCatWalking;
     private boolean isCatFighting;
@@ -28,6 +50,11 @@ public class KeyControls implements KeyListener {
     private ArrayList<DrawingObject> drawingObjects;
     private double xCatPos;
 
+    /**
+     * Initializes the boolean variables needed to describe the initial state of the main cat
+     * Initializes the sceneHandler and drawingObjects fields by their respective get methods from sceneCanvas
+     * @param sceneCanvas the animation's canvas where objects are drawn. Source of sceneHandler and drawingObjects
+     */
     public KeyControls(SceneCanvas sceneCanvas){
         this.sceneCanvas = sceneCanvas;
         isCatWalking = false;
@@ -42,17 +69,23 @@ public class KeyControls implements KeyListener {
         frameDelay = 200;
         timerDelay = 2000;
         xCatPos = 446.5;
-        timer1 = null;
+        timer = null;
         }
 
+    // Prefer to use keyPressed over keyTyped
     @Override
     public void keyTyped(KeyEvent event){};
 
+    /**
+     * Listens for a spacebar press and calls different event animations based on the sceneCount and 
+     * the cat's current state.
+     */
     @Override
     public void keyPressed(KeyEvent event){
         if ((event.getKeyCode() == SPACEBARKEYCODE) && (!isCatWalking) && (!isCatFighting) && (!isCatMingling)){
             isCatWalking = true;
 
+            // After the first click, switch from scene 0 to scene 1
             if (sceneCount == 0){
                 sceneCount++;
                 try {
@@ -65,7 +98,7 @@ public class KeyControls implements KeyListener {
 
                 //Modify walking cat according to current scene
 
-                timer1 = new Timer(200, new ActionListener() {
+                timer = new Timer(frameDelay, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent ae){
                         if(isCatSleeping){
@@ -75,16 +108,20 @@ public class KeyControls implements KeyListener {
                         startAnimation();
                     }
                 });
-                timer1.setInitialDelay(timerDelay);
-                timer1.start();
+                timer.setInitialDelay(timerDelay);
+                timer.start();
             } else {
                 changeStance();
-                timer1.setInitialDelay(200);
-                if (!timer1.isRunning()) timer1.start();
+                timer.setInitialDelay(frameDelay);
+                if (!timer.isRunning()) timer.start();
             }   
         }
     };
  
+    /**
+     * Listens for when the spacebar is released. Triggers stopping the cat
+     * from walking and looping the scenes after scene nine. 
+     */
     @Override
     public void keyReleased(KeyEvent event){
         if (event.getKeyCode() == SPACEBARKEYCODE && (!isCatFighting) && (!isCatMingling)){
@@ -103,8 +140,8 @@ public class KeyControls implements KeyListener {
                 sceneCanvas.repaint();
             } 
             
-            if (timer1 != null) {
-                if (timer1.isRunning()) timer1.stop();
+            if (timer != null) {
+                if (timer.isRunning()) timer.stop();
                 isCatWalking = false;
                 changeStance();
                 sceneCanvas.repaint();
@@ -112,16 +149,22 @@ public class KeyControls implements KeyListener {
         }
     }
 
+    /**
+     * Handles the animations. It handles checking when the cat is out of frame and
+     * transitions the scenes appropriately. It supports looping the scenes. Scene five's
+     * walking cat to limping cat transition and scene-specific animations in scenes 
+     * 4, 6, and 9 are also handled by this method.
+     */
     private void startAnimation(){
         if (drawingObjects.size() > 1) walkingCat = (Cat) drawingObjects.get(1);
         stepSize = getStepsize();
         xCatPos += stepSize;
 
-        // Check if cat is out of frame and transition scenes
+        // Change the scenes whenever the cat get out of frame
         if (walkingCat.getX() >= sceneCanvas.getWidth()){
-            double excess = sceneCanvas.getWidth() + walkingCat.getCatLength();
-            walkingCat.adjustX(-(excess));
-            xCatPos -= excess;
+            double positionOfCatSnout = sceneCanvas.getWidth() + walkingCat.getCatLength();
+            walkingCat.adjustX(-(positionOfCatSnout));
+            xCatPos -= positionOfCatSnout;
             sceneCount++;
             changeStance();
 
@@ -135,33 +178,36 @@ public class KeyControls implements KeyListener {
 				} catch (LineUnavailableException e) {
 				}
         }
-        //LOCAL SCENE HANDLING (ANIMATION)
+
+        // LOCAL SCENE HANDLING (SCENE SPECIFIC ANIMATIONS)
+
         // Scene 4 cat fight animation
         else if ((sceneCount == 4) && (xCatPos >= 200) && (!isCatFighting) && (!isDoneFighting)){
-            scene4Animation();
+            sceneFourAnimation();
         }
-        // Scene 5  make cat limp
+        // Scene 5 make cat limp
         else if (sceneCount == 5){
             walkingCat.setIsLimping(true);
             walkingCat.adjustX(stepSize);
             walkingCat.changeFrame();
 
             //Handles blood drops
-            int thirdDigit = ((int)Math.round(xCatPos)/100)%10;
+            int thirdDigit = ( (int) Math.round(xCatPos) / 100) % 10;
+
             //Checks for any change in the third digit of xCatPos and if the new third digit is an odd number
-            if(pastDigit != thirdDigit && thirdDigit % 2 != 0) {
+            if (pastDigit != thirdDigit && thirdDigit % 2 != 0) {
                 pastDigit = thirdDigit;
-                if(dropShiftedUp){
+                if (dropShiftedUp){
                     drawingObjects.add(new Blood(xCatPos-30, 535.3));      
                     dropShiftedUp = false;
                 }
-                else{
+                else {
                     drawingObjects.add(new Blood(xCatPos-30, 502.2));
                     dropShiftedUp = true;    
                 }
             }
         }
-        // Scene 6 Cutscene Animation
+        // Scene 6 lovercats animation
         else if ((sceneCount == 6) && (xCatPos >= 182.1) && (!isCatMingling)){
             sceneSixAnimation();
         }
@@ -176,10 +222,15 @@ public class KeyControls implements KeyListener {
         sceneCanvas.repaint();
     }
 
-    private void scene4Animation(){
+    /**
+     * A private method called by startAnimation when the main cat in scene four 
+     * and is sufficiently close enough to the enemy cat. It simulates a fight 
+     * scene between the two cats by using the FightCloud object.
+     */
+    private void sceneFourAnimation(){
         // Disable other key controls
         isCatFighting = true;
-        timer1.stop();
+        timer.stop();
 
         // Repaint canvas, now with an angry enemy cat
         drawingObjects.set(2, new AngryCat(519.5, 377.6, 1.10, Color.decode("#242424")));
@@ -190,11 +241,12 @@ public class KeyControls implements KeyListener {
         FightCloud fightCloud = new FightCloud(400, 320.6, 1.5);
 
         // Task 2: Make cloud move
-        final int cloudMovesAllowed = 50;        
-        //CHANGE AS INTENDED
-        Timer cloudMovementTimer = new Timer(50, new ActionListener() {
+        final int cloudMovesAllowed = 50;
+        final int delayBetweenCloudMoves = 50;        
+
+        Timer cloudMovementTimer = new Timer(delayBetweenCloudMoves, new ActionListener() {
             int moveCounter = 0;
-            int direction = 1;
+            int direction = 1; // Determines whether the cloud moves left or right
             
             @Override
             public void actionPerformed(ActionEvent ae){    
@@ -218,7 +270,7 @@ public class KeyControls implements KeyListener {
         });
         
         // Task 1: Make cat transparent and add cloud
-        Timer scene4Timer = new Timer(3000, new ActionListener() {
+        Timer sceneFourTimer = new Timer(3000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae){
                 // Make the walkingCat transparent
@@ -231,14 +283,21 @@ public class KeyControls implements KeyListener {
                 ((Timer) ae.getSource()).stop();
             }
         });
-        scene4Timer.start();
+        sceneFourTimer.start();
     }
-        
+    
+
+    /**
+     * A private method called by startAnimation when the main cat is in scene six
+     * and is sufficiently close enough to the lover cat. The user then loses control
+     * of the cats as they walk off frame.  
+     */
     private void sceneSixAnimation(){
-        timer1.stop();
+        // Disable other key controls
+        timer.stop();
         isCatMingling = true;
 
-        //Make the black cat sit for 5 seconds and move with the white cat after
+        // Set the position of the main cat and convert from WalkingCat to SittingCat
         xCatPos = 330.3;
         drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#242424")));
         
@@ -270,8 +329,9 @@ public class KeyControls implements KeyListener {
                     xCatPos = 0;
                 }
                 else {
-                    loverCatBlack.adjustX(20);
-                    loverCatWhite.adjustX(20);
+                    final int loverCatStepSize = 20;
+                    loverCatBlack.adjustX(loverCatStepSize);
+                    loverCatWhite.adjustX(loverCatStepSize);
                     loverCatBlack.changeFrame();
                     loverCatWhite.changeFrame();
                 }
@@ -279,7 +339,9 @@ public class KeyControls implements KeyListener {
             }
         });
 
-        Timer timer2 = new Timer(5000, new ActionListener() {
+        // After 5 seconds of sitting down together, have the cats walk out of frame
+        final int loverCatsSittingTime = 5000;
+        Timer loverCatsSittingTimer = new Timer(loverCatsSittingTime, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae){
                 if (!catsCreated){
@@ -293,18 +355,24 @@ public class KeyControls implements KeyListener {
                 }
             }
         });
-        timer2.start();
+        loverCatsSittingTimer.start();
     }
 
+    /**
+     * A private method called by startAnimation when the main cat is in scene nine
+     * and is sufficiently close enough to the right edge of the frame. The sitting cat
+     * is converted to a sleeping cat after five seconds.
+     */
     private void sceneNineAnimation(){
-        timer1.stop();
+        timer.stop();
         isCatSleeping = true;
 
         xCatPos = 495;
         drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#242424")));
         sceneCanvas.repaint();
         
-        sittingCatToSleepingCatTimer = new Timer(5000, new ActionListener() {
+        final int sittingCatToSleepingCatTime = 5000;
+        sittingCatToSleepingCatTimer = new Timer(sittingCatToSleepingCatTime, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae){
                 drawingObjects.set(1, new SleepingCat(xCatPos, 473.1, 1, Color.decode("#242424")));
@@ -314,6 +382,11 @@ public class KeyControls implements KeyListener {
         sittingCatToSleepingCatTimer.start();
     }
 
+    /**
+     * Changes the x and y position of the cat along with the size depending on the scene count.
+     * Also converts the WalkingCat to SittingCat when the spacebar is released and isCatWalking is false.
+     * Conversely, converts the SittingCat to WalkingCat when the spacebar is pressed and isCatWalking is true.
+     */
     private void changeStance(){
         // Change y position of cat depending on scene. Change to sittingcat when not key pressed.
         switch (sceneCount){
@@ -356,10 +429,10 @@ public class KeyControls implements KeyListener {
             }
         }
 
-    public int getSceneCount(){
-        return sceneCount;
-    }
-
+    /**
+     * Determines far along the x-axis the cat moves depending on the scene
+     * @return an integer representing the distance along the x-axis the cat moves for each step
+     */
     private int getStepsize(){
         //STEPSIZE HANDLING
         switch (sceneCount){
