@@ -47,7 +47,7 @@ public class Door implements DrawingObject{
         g2d.translate(x, y);
         g2d.scale(size, size);
 
-        
+        // Door frame
         Point2D.Double[] quadPoints = new Point2D.Double[4];
         quadPoints[0] = new Point2D.Double(735.4, 38.7);
         quadPoints[1] = new Point2D.Double(735.4, 500.3);
@@ -56,16 +56,19 @@ public class Door implements DrawingObject{
         Quadrilateral doorFrame = new Quadrilateral(quadPoints, Color.decode("#556265"), true);
         doorFrame.draw(g2d);
 
+        // Door front
         quadPoints[2] = new Point2D.Double(557.4, 539.7);
         quadPoints[3] = new Point2D.Double(557.4, 0);
         Quadrilateral doorFront = new Quadrilateral(quadPoints, Color.decode("#354649"), true);
         doorFront.draw(g2d);
 
+        // Door side
         quadPoints[0] = new Point2D.Double(552.4, 38.7);
         quadPoints[1] = new Point2D.Double(552.4, 503.2);
         Quadrilateral doorSide = new Quadrilateral(quadPoints, Color.decode("#081a2c"), true);
         doorSide.draw(g2d);
 
+        // Outside the door
         quadPoints[0] = new Point2D.Double(745.4, 49.6);
         quadPoints[1] = new Point2D.Double(800, 38.7);
         quadPoints[2] = new Point2D.Double(800, 513.9);
@@ -73,12 +76,14 @@ public class Door implements DrawingObject{
         Quadrilateral outside = new Quadrilateral(quadPoints, Color.WHITE, true);
         outside.draw(g2d);
 
+        // Light entering scene
         quadPoints[2] = new Point2D.Double(800, 600);
         quadPoints[3] = new Point2D.Double(248, 600);
         Quadrilateral light = new Quadrilateral(quadPoints, Color.WHITE, true);
         g2d.setComposite(ac);
         light.draw(g2d);
 
+        // Reverts
         ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,1f); 
         g2d.setComposite(ac);
         g2d.setTransform(reset);
