@@ -26,7 +26,7 @@ public class Door implements DrawingObject{
     private double x;
     private double y;
     private double size;
-    private AlphaComposite ac;
+    private AlphaComposite ac; // https://docs.oracle.com/javase/8/docs/api/java/awt/AlphaComposite.html
 
     /**
      * Initializes the Door object's field values to the provided arguments. AlphaComposite value is initialized to 0.3
