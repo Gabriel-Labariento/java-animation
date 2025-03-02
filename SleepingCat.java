@@ -1,3 +1,25 @@
+/**
+        The SleepingCat class creates a SleepingCat object and has methods
+        for drawing it as it implements DrawingObject. This object is appears
+        at the beginning and end of the animation and also in scene four when
+        the enemy cat is put to sleep.
+   
+        @author Niles Tristan V. Cabrera ()
+        @author Gabriel Matthew P. Labariento (242425)
+        @version 03 March 2025
+
+        We have not discussed the Java language code in my program
+        with anyone other than my instructor or the teaching assistants
+        assigned to this course.
+        We have not used Java language code obtained from another student,
+        or any other unauthorized source, either modified or unmodified.
+        If any Java language code or documentation used in our program
+        was obtained from another source, such as a textbook or website,
+        that has been clearly noted with a proper citation in the comments
+        of our program.
+**/
+
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -5,6 +27,13 @@ public class SleepingCat implements DrawingObject{
     private double x, y, size;
     private Color color;
 
+    /**
+     * Initializes the object's field values to the arguments provided
+     * @param xPosition the object's x-coordinate
+     * @param yPosition the object's y-coordinate
+     * @param size the scaling applied to the object. If size = 1, the framing rectangle is 191.7px by 77.4px
+     * @param color the object's color
+     */
     public SleepingCat(double xPosition, double yPosition, double size, Color color){
         x = xPosition;
         y = yPosition;
@@ -22,7 +51,10 @@ public class SleepingCat implements DrawingObject{
 
     }
 
-
+    /**
+     * Draws the object without the translation and scaling passed to the constructor
+     * @param g2d
+     */
     private void drawSleepingCatNoScaling(Graphics2D g2d){
         AffineTransform reset = g2d.getTransform();
         g2d.setColor(color);
@@ -72,6 +104,8 @@ public class SleepingCat implements DrawingObject{
     }
     
     @Override
-    public void setColor(Color color) {};
+    public void setColor(Color color) {
+        this.color = color;
+    };
     
 }
