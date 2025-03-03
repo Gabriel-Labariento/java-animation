@@ -116,9 +116,7 @@ public class SceneHandler {
         
         switch (sceneCount){
             case 0:
-                //Remove left-over sleeping cat from scene9
-                drawingObjects.remove(1);
-
+                cleanUpScene(sceneCount);
                 drawingObjects.set(0, new Scene0(width, height));
                 break;
             case 1:
@@ -158,12 +156,7 @@ public class SceneHandler {
                 butterfliesTimer.start();
                 break;
             case 3:
-                //Delete left-over effects from previous scene
-                for (int l = 0; l < 3; l++){
-                    drawingObjects.remove(2);
-                    butterflies.remove(0);
-                }
-
+                cleanUpScene(sceneCount);
                 drawingObjects.set(0, new Scene3(width, height));
                 drawingObjects.add(new Mouse(-179.5, 496.2, 1.29, Color.decode("#242424")));
                 Mouse mouse = (Mouse) drawingObjects.get(2);
@@ -193,23 +186,16 @@ public class SceneHandler {
                 mouseTimer.start();
                 break;
             case 4:
-                //Delete left-over mouse from previous scene
-                drawingObjects.remove(2);
-
+                cleanUpScene(sceneCount);
                 drawingObjects.set(0, new Scene4(width, height));
                 drawingObjects.add(new SittingCat(519.5, 377.6, 1.10, Color.decode("#242424")));
                 break;
             case 5:
-                //Delete left-over sleeping cat from previous scene
-                drawingObjects.remove(2);
+                cleanUpScene(sceneCount);
                 drawingObjects.set(0, new Scene5(width, height));
                 break;
             case 6:
-                //Delete left-over blood from previous scene
-                for (int m = 0; m < 5; m++){
-                    drawingObjects.remove(2);
-                }
-
+                cleanUpScene(sceneCount);
                 drawingObjects.set(0, new Scene6(width, height));
                 drawingObjects.add(new SittingCat(414, 381.5, 1, Color.WHITE));
                 break;
@@ -222,6 +208,19 @@ public class SceneHandler {
             case 9:
                 drawingObjects.set(0, new Scene9(width, height));
                 break;
+        }
+    }
+    
+    /**
+     * A private method called by changeScene whenever there are certain changes in the sceneCount variable
+     * Cleans up effects from the previous scene by removing certain objects from the drawingObjects ArrayList 
+     * @param sceneCount
+     */
+    private void cleanUpScene(int sceneCount){
+        if (sceneCount == 0) drawingObjects.remove(1);
+        while (drawingObjects.size() > 2){
+            drawingObjects.remove(2);
+            if (sceneCount == 4) butterflies.remove(0);
         }
     }
 }
