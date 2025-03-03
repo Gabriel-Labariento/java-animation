@@ -91,9 +91,6 @@ public class Scene3 implements DrawingObject {
 
         Circle sun = new Circle(335.9, 45.8, 63.6, Color.decode("#fffdfd"));
         sun.draw(g2d);
-
-        Mouse mouse = new Mouse(-198.8, 496.2, 1.29, darkGrass);
-        mouse.draw(g2d);
     }
 
     @Override

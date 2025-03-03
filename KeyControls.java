@@ -431,11 +431,11 @@ public class KeyControls implements KeyListener {
                 else drawingObjects.set(1, new SittingCat(xCatPos, 382.6, 1.02, Color.decode("#242424")));
                 break;
             case 9:
-                if (isCatWalking) drawingObjects.set(1, new WalkingCat(xCatPos, 430.7, 0.96, 0, Color.decode("#242424")));
-                else drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#242424")));    
-            default:
                 if (isCatWalking) drawingObjects.set(1, new WalkingCat(xCatPos, 430.7, 0.96, 0, Color.decode("#1f2020")));
-                else drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#1f2020")));
+                else drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#1f2020")));    
+            default:
+                if (isCatWalking) drawingObjects.set(1, new WalkingCat(xCatPos, 430.7, 0.96, 0, Color.decode("#242424")));
+                else drawingObjects.set(1, new SittingCat(xCatPos, 365.1, 1.14, Color.decode("#242424")));
                 break;
         }     
     }

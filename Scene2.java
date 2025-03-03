@@ -45,7 +45,7 @@ public class Scene2 implements DrawingObject {
 
         Rectangle2D.Double background = new Rectangle2D.Double(0, 0, width, height);
         g2d.setColor(Color.decode("#ffdb6f"));
-        g2d.fill(background);
+        g2d.fill(background);   
 
         Rainbow rainbow = new Rainbow(-119.2, 60, 2.59, Color.decode("#ffdb6f"));
         rainbow.draw(g2d);
@@ -98,8 +98,8 @@ public class Scene2 implements DrawingObject {
         Grass g2 = new Grass(202.3, 300, 0.89, grassColor);
         Grass g3 = new Grass(47.4, 319.3, 0.79, grassColor);
         Grass g4 = new Grass(-102.8, 260.7, 1.18, grassColor);
-        Grass g5 = new Grass(628.1, 516.9, 1.33, grassColor);
-        Grass g6 = new Grass(530.8, 550.7, 1.33, grassColor);
+        Grass g5 = new Grass(628.1, 531.4, 1.33, grassColor);
+        Grass g6 = new Grass(530.8, 565.2, 1.33, grassColor);
         g1.draw(g2d);
         g2.draw(g2d);
         g3.draw(g2d);

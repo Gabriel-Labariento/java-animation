@@ -43,7 +43,7 @@ public class SceneHandler {
     private Timer butterfliesTimer;
     private Timer mouseTimer;
     private Boolean hasPlayed;
-    private Boolean isLooped;
+    private Boolean isFirstLoop;
     private double butterflyXend;
     private double mouseXend;
 
@@ -63,20 +63,13 @@ public class SceneHandler {
         width = w;
         height = h;
         hasPlayed = false;
-        isLooped = false;
+        isFirstLoop = true;
         bgFiles = new ArrayList<>();
         bgStreams = new ArrayList<>();
         bgClips = new ArrayList<>();
         butterflies = new ArrayList<>();
 
-        // Populate the ArrayLists with appropriate files
-        for (int i = 0; i < 9; i++){
-            bgFiles.add(new File(String.format("%d.wav", i+1)));
-            bgStreams.add(AudioSystem.getAudioInputStream(bgFiles.get(i)));
-            bgClips.add(AudioSystem.getClip());
-        }
-
-        // Start with Scene1 and a SleepingCat
+        // Start with Scene0
         drawingObjects.add(new Scene0(width, height));
     }
 
@@ -89,12 +82,20 @@ public class SceneHandler {
      * @throws LineUnavailableException
      */
     public void changeScene(int sceneCount) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
-        if (isLooped){
+        if (isFirstLoop){
+            // Populate the ArrayLists with appropriate files
+            for (int i = 0; i < 9; i++){
+                bgFiles.add(new File(String.format("%d.wav", i+1)));
+                bgStreams.add(AudioSystem.getAudioInputStream(bgFiles.get(i)));
+                bgClips.add(AudioSystem.getClip());
+            }
+            isFirstLoop = false;
+        }
+        else {
             for (int j = 0; j < 9; j++) {
                 bgFiles.set(j, new File(String.format("%d.wav", j+1)));
                 bgStreams.set(j, AudioSystem.getAudioInputStream(bgFiles.get(j)));
                 bgClips.set(j, AudioSystem.getClip());
-                isLooped = false;
             }
         }
 
@@ -116,7 +117,7 @@ public class SceneHandler {
             case 0:
                 drawingObjects.set(0, new Scene0(width, height));
                 drawingObjects.remove(1);
-                isLooped = true;
+                isFirstLoop = false;
                 break;
             case 1:
                 drawingObjects.set(0, new Scene1(width, height));
@@ -141,9 +142,10 @@ public class SceneHandler {
                             butterfly.adjustX(20);
                             butterfly.adjustY(-4);
                             butterfly.changeFrame();
-                            //For tracking if the butterflies have gone off screen without relying on getx
+
                         }
                         if (butterflyXend >= width){
+                            //For tracking if the butterflies have gone off screen without relying on getx
                             butterfliesTimer.stop();
                         }
                         sceneCanvas.repaint();
