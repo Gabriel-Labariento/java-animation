@@ -366,7 +366,7 @@ public class KeyControls implements KeyListener {
         });
 
         // After 5 seconds of sitting down together, have the cats walk out of frame
-        final int loverCatsSittingTime = 5000;
+        final int loverCatsSittingTime = 8000;
         Timer loverCatsSittingTimer = new Timer(loverCatsSittingTime, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae){

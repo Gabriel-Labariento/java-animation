@@ -92,6 +92,7 @@ public class SceneHandler {
             isFirstLoop = false;
         }
         else {
+            // Reload the ArrayLists
             for (int j = 0; j < 9; j++) {
                 bgFiles.set(j, new File(String.format("%d.wav", j+1)));
                 bgStreams.set(j, AudioSystem.getAudioInputStream(bgFiles.get(j)));
@@ -106,7 +107,7 @@ public class SceneHandler {
                 clip.close();
             } 
             else hasPlayed = true;
-            
+            //Play the music appropriate to each scene by matching the clip index and sceneCount
             clip = bgClips.get(sceneCount-1);
             clip.open(bgStreams.get(sceneCount-1));
             clip.start();
@@ -115,9 +116,10 @@ public class SceneHandler {
         
         switch (sceneCount){
             case 0:
-                drawingObjects.set(0, new Scene0(width, height));
+                //Remove left-over sleeping cat from scene9
                 drawingObjects.remove(1);
-                isFirstLoop = false;
+
+                drawingObjects.set(0, new Scene0(width, height));
                 break;
             case 1:
                 drawingObjects.set(0, new Scene1(width, height));
@@ -125,6 +127,8 @@ public class SceneHandler {
                 break;
             case 2:
                 drawingObjects.set(0, new Scene2(width, height));
+
+                //Animate three butterflies flying across the screen
                 drawingObjects.add(new Butterfly(-32.6, 398.2, 0.33, 0, Color.WHITE));
                 drawingObjects.add(new Butterfly(20.9, 429.8, 0.23, 0, Color.WHITE));
                 drawingObjects.add(new Butterfly(31.6, 362, 0.42, 0, Color.WHITE));
@@ -189,16 +193,19 @@ public class SceneHandler {
                 mouseTimer.start();
                 break;
             case 4:
-                //Delete left-over effects from previous scene
+                //Delete left-over mouse from previous scene
                 drawingObjects.remove(2);
+
                 drawingObjects.set(0, new Scene4(width, height));
                 drawingObjects.add(new SittingCat(519.5, 377.6, 1.10, Color.decode("#242424")));
                 break;
             case 5:
+                //Delete left-over sleeping cat from previous scene
                 drawingObjects.remove(2);
                 drawingObjects.set(0, new Scene5(width, height));
                 break;
             case 6:
+                //Delete left-over blood from previous scene
                 for (int m = 0; m < 5; m++){
                     drawingObjects.remove(2);
                 }

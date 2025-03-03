@@ -157,7 +157,7 @@ public class Scene9 implements DrawingObject {
         Tree tree = new Tree(561.9, 265.3, 0.87, sceneBlack);
         tree.draw(g2d);
 
-        Grass g1 = new Grass(192.1, 429.1, 0.65, sceneBlack);
+        Grass g1 = new Grass(188.1, 433, 0.65, sceneBlack);
         Grass g2 = new Grass(143, 455.2, 0.65, sceneBlack);
         g1.draw(g2d);
         g2.draw(g2d);
